@@ -1,0 +1,21 @@
+{
+  "name": "vxteaser",
+  "version": "1.0.0",
+  "description": "VX teaser components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "/home/repositories/vxteaser.git/"
+  },
+  "keywords": [
+    "VX",
+    "teaser",
+    "promotion",
+    "javascript"
+  ],
+  "author": "",
+  "license": "ISC"
+}
