@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`banner renders correctly 1`] = `
+<div
+  className="teaser-banner sc-bdVaJa gUCzSg"
+  onClick={[Function]}
+>
+  <div
+    className="sc-htpNat jAPvIx"
+  >
+    <div
+      className="sc-bwzfXH gvnnog"
+    >
+      SexyVany - Deutschlands jüngstes Camgirl
+    </div>
+    <div
+      className="sc-bxivhb gTyBKV"
+    >
+      EXKLUSIV AUF VISIT-X!
+    </div>
+    <div
+      className="sc-ifAKCX gdGkiv"
+    >
+      Schau Dir hier unzensierte Bilder und Videos von der süßen 18 jährigen
+      <br />
+      an oder besuche sie bis zu 17 Stunden am Tag im Livechat.
+    </div>
+    <div
+      className="sc-EHOje jDUGaz"
+    >
+      <a
+        className="sc-bZQynM jtAGBJ"
+      >
+        Zum Profil
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`button renders correctly 1`] = `
+<a
+  className="sc-gzVnrw bZtgKD"
+>
+  Text
+</a>
+`;

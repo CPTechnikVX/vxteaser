@@ -1,4 +1,4 @@
-import Index from './view/Index';
+import Index from './views/Index';
 
 export {
 	Index,
