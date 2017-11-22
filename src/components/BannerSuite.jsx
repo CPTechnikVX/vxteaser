@@ -132,8 +132,8 @@ class BannerSuite extends React.PureComponent {
 						{
 							greaterThan:        0,
 							height:             500,
-							backgroundPosition: 'initial',
-							backgroundSize:     'contain',
+							backgroundPosition: 'top right',
+							backgroundSize:     'cover',
 						},
 						{
 							greaterThan: 1200,

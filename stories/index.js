@@ -10,16 +10,20 @@ storiesOf('BannerBuilder', module)
 	.add('standard', () => {
 		const config = {
 			id:            '123456-123456',
-				typeId:        'banner',
-			type:          'fixedHeight',
+			typeId:        'banner',
+			template:      'fixedHeight',
 			fixedHeights:  [
 			{
 				greaterThan: 0,
 				height:      500,
+				backgroundPosition: 'top right',
+				backgroundSize:     'auto',
 			},
 			{
 				greaterThan: 1200,
 				height:      260,
+				backgroundPosition: 'top right',
+				backgroundSize:     'auto',
 			},
 		],
 			backgroundUrl: 'https://www.visit-x.net/assets/img/teaser/sexyvany/teaser-sexyvany.jpg',
@@ -49,7 +53,7 @@ storiesOf('BannerBuilder', module)
 		</div>`,
 	};
 
-		return <BannerBuilder config={config} />;
+		return BannerBuilder(config);
 	});
 
 storiesOf('BannerSuite', module)
