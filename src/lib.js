@@ -1,5 +1,5 @@
-import Banner from './components/Banner';
+import BannerSuite from './components/BannerSuite';
 
-export {
-	Banner
+export default {
+	BannerSuite
 };

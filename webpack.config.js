@@ -5,7 +5,8 @@ module.exports = [
 		output: {
 			filename: 'vxteaser.js',
 			path:     __dirname + '/lib',
-			library:  'VXTeaser'
+			library:  'VXTeaser',
+			libraryTarget: 'umd'
 		},
 
 		module:  {
