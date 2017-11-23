@@ -1,8 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ElementFactory from '../utils/StyledElementFactory';
 
 export default class Banner extends React.PureComponent {
 
+	constructor(props) {
+		super(props);
+		
+		// bind
+		this.onBannerClick = this.onBannerClick.bind(this);
+	}
+	
 	onBannerClick = (event) => {
 		event.preventDefault();
 		event.stopPropagation();
@@ -34,7 +42,7 @@ export default class Banner extends React.PureComponent {
 }
 
 Banner.propTypes = {
-	onBannerClick: React.PropTypes.func,
+	onBannerClick: PropTypes.func,
 };
 
 Banner.defaultProps = {

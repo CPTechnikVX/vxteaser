@@ -11,19 +11,37 @@ const ComponentsMapping = {
 };
 
 export default class Processor {
-	static processHTMLtoReact(html, config = {}) {
+	static processHTMLtoReact(html, config = {}, props = {}) {
+		let i = 0;
+
 		// Order matters. Instructions are processed in the order they're defined
 		const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
 		const processingInstructions = [
 			{
-				// Custom <Headline> processing
+				shouldProcessNode: function(node) {
+					return node && node.name === 'vxbutton';
+				},
+				processNode:       function(node, children) {
+					let attrs    = node.attribs || {};
+					attrs.config = config;
+
+					const elAttrs = node.attribs;
+					elAttrs.style = null;
+
+					return React.createElement(ComponentsMapping[node.name]({...attrs}), {
+						onClick: props.onButtonClick,
+						key:     i++, ...elAttrs
+					}, children);
+				}
+			},
+			{
 				shouldProcessNode: function(node) {
 					return node && node.name && typeof ComponentsMapping[node.name] !== 'undefined';
 				},
 				processNode:       function(node, children) {
 					let attrs    = node.attribs || {};
 					attrs.config = config;
-					return React.createElement(ComponentsMapping[node.name]({...attrs}), {children});
+					return React.createElement(ComponentsMapping[node.name]({...attrs}), {children, key: i++});
 				}
 			},
 			{
@@ -32,7 +50,8 @@ export default class Processor {
 					return true;
 				},
 				processNode:       processNodeDefinitions.processDefaultNode
-			}];
+			}
+		];
 
 		const htmlToReactParser = new HtmlToReact.Parser();
 

@@ -46,20 +46,62 @@ storiesOf('BannerBuilder', module)
 			</div>
 			<div>
 				<div style="margin-top: 2em;">
-					<VXButton style="padding: 0.7em 5em 0.65em; font-size: 1.7rem; background-color: #43B31C; border-color: #43B31C; text-transform: uppercase;">Jetzt einlösen</VXButton>
+					<VXButton style="padding: 0.7em 5em 0.65em; font-size: 1.7rem; background-color: #43B31C; border-color: #43B31C; text-transform: uppercase;" data-type="action">Jetzt einlösen</VXButton>
 				</div>
 			</div>
 		</VXContent>`,
 		};
 
 		return DesktopWrapper(BannerBuilder(config, {
-			onBannerClick: () => { alert('teaser clicked'); }
+			onBannerClick: () => { alert('teaser clicked'); },
+			onButtonClick: (event) => { console.log(event.target.dataset); event.preventDefault(); event.stopPropagation(); alert('button clicked'); }
+		}));
+	})
+	.add('calendar', () => {
+		const config = {
+			id:              '123456-123456',
+			typeId:          'banner',
+			template:        'fixedHeight',
+			fixedHeights:    [
+				{
+					greaterThan:        0,
+					height:             500,
+					backgroundPosition: 'top right',
+					backgroundSize:     'auto',
+				},
+				{
+					greaterThan:        1200,
+					height:             260,
+					backgroundPosition: 'top right',
+					backgroundSize:     'auto',
+				},
+			],
+			color:           '#000000',
+			backgroundColor: '#FFFFFF',
+			backgroundUrl:   'http://www.visit-x.net/assets/img/teaser/teaser-vx-calendar-2018-1300x260-bg.jpg',
+			htmlText:        `
+		<VXContent>
+			<div style="margin-top: 2em;">
+				<VXCaption>12 heiße</VXCaption>
+				<VXHeadline style="text-transform: uppercase;">Hol dir die camgirls</VXHeadline>
+			</div>
+			<div>
+				<div style="margin-top: 1em;">
+					<VXButton style="text-transform: uppercase;" data-type="action">Kalender bestellen!</VXButton>
+				</div>
+			</div>
+		</VXContent>`,
+		};
+
+		return DesktopWrapper(BannerBuilder(config, {
+			onBannerClick: () => { alert('teaser clicked'); },
+			onButtonClick: (event) => { console.log(event.target.dataset); event.preventDefault(); event.stopPropagation(); alert('button clicked'); }
 		}));
 	});
 
 storiesOf('BannerSuite', module)
 	.add('standard', () => {
-		return <BannerSuite onBannerClick={()=> alert('click')} />;
+		return <BannerSuite onBannerClick={()=> alert('click')} onButtonClick={(event)=> {event.stopPropagation(); event.preventDefault(); alert('button click')}} />;
 	});
 
 

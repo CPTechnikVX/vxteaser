@@ -1,15 +1,20 @@
+var path    = require('path');
+var webpack = require('webpack');
+require('imports-loader');
+require('exports-loader');
+
 module.exports = [
 	{
 		entry: __dirname + '/src/lib.js',
 
 		output: {
-			filename: 'vxteaser.js',
-			path:     __dirname + '/lib',
-			library:  'VXTeaser',
+			filename:      'vxteaser.js',
+			path:          path.resolve(__dirname, ".") + '/lib',
+			library:       'VXTeaser',
 			libraryTarget: 'umd'
 		},
 
-		module:  {
+		module:    {
 			loaders: [
 				{
 					test:    /(\.jsx|\.js)$/,
@@ -18,12 +23,29 @@ module.exports = [
 				},
 			],
 		},
-		stats:   {
+//		externals: {
+//			// Use external versions
+//			"react":     "React",
+//			"react-dom": "ReactDOM"
+//		},
+		stats:     {
 			colors: true
 		},
-		resolve: {
+		resolve:   {
 			extensions: ['.js', '.jsx']
-		}
+		},
+		plugins:   [
+			new webpack.HotModuleReplacementPlugin(),
+			new webpack.ProvidePlugin({
+				'Promise': 'promise-polyfill',
+				'fetch':   'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
+			}),
+			new webpack.optimize.UglifyJsPlugin({
+				compress: {
+					warnings: false
+				}
+			}),
+		]
 	},
 	{
 		entry: __dirname + '/src/playground.js',
@@ -48,7 +70,19 @@ module.exports = [
 		},
 		resolve: {
 			extensions: ['.js', '.jsx']
-		}
+		},
+		plugins: [
+			new webpack.HotModuleReplacementPlugin(),
+			new webpack.ProvidePlugin({
+				'Promise': 'promise-polyfill',
+				'fetch':   'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
+			}),
+//			new webpack.optimize.UglifyJsPlugin({
+//				compress: {
+//					warnings: false
+//				}
+//			}),
+		]
 	}
 ];
 

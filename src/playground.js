@@ -1,5 +1,5 @@
-import Index from './views/Index';
+import Preview from './views/Preview';
 
 export {
-	Index,
+	Preview,
 };
