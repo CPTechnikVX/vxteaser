@@ -1,40 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
-import BannerBuilder from '../utils/BannerBuilder';
+import {BannerBuilder} from '../utils/Builder';
+import {classNames, StyledElementFactory} from '../utils/StyledElementFactory';
 
-class BannerSuite extends React.PureComponent {
+export default class BannerSuite extends React.PureComponent {
 
 	constructor(props) {
 		super(props);
 
-		this.timerInterval = null;
 		this.banners       = {};
 		this.itemRefs      = [];
 		this.pointRefs     = [];
-		this.state         = this.getInitialState();
+		this.timerInterval = null;
+
+		// state
+		this.state = this.getInitialState();
+
+		// bind
+		this.onBannerClick = this.onBannerClick.bind(this);
 	}
 
+	/**
+	 * initial state
+	 * @returns {Object}
+	 */
 	getInitialState() {
-//		const vxqlEndpoint = 'https://pu.vxnextgen.x/vxql';
-		const vxqlEndpoint = 'http://ph.vxteaser.x/banner.php';
-		const vxqlWebToken = '';
-		const query        = 'query{model(name:"pus001"){id,name}}';
+		if (this.props.config && this.props.config.vxqlEndpoint) {
+			const query = 'query{model(name:"pus001"){id,name}}';
 
-		fetch(
-			vxqlEndpoint,
-			{
-//				method:  'get',
-				method:  'post',
-				headers: {
-					'Authorization': 'Bearer ' + vxqlWebToken,
-				},
+			fetch(
+				this.props.config.vxqlEndpoint,
+				{
+					method:  'get',
+//					method:  'post',
+					headers: {
+						'Authorization': 'Bearer ' + this.props.config.vxqlWebToken,
+					},
 //				body:    JSON.stringify({query})
-			}
-		)
-			.then((res) => res.json())
-			.then((data) => { /*this.setState({config: data}); */
-			});
+				}
+			)
+				.then((res) => res.json())
+				.then((data) => { /*this.setState({config: data}); */
+				});
+		}
 
 		this.startInterval();
 
@@ -62,7 +70,7 @@ class BannerSuite extends React.PureComponent {
 					],
 					backgroundUrl: 'https://www.visit-x.net/assets/img/teaser/teaser-all-welcome-bg.jpg',
 					htmlText:      `
-		<div class="teaser__container-content">
+		<VXContent>
 			<div class="row">
 				<div class="col-xs-12">
 					<VXHeadline>
@@ -81,7 +89,7 @@ class BannerSuite extends React.PureComponent {
 					</div>
 				</div>
 			</div>
-		</div>`,
+		</VXContent>`,
 				},
 				{
 					id:            '123456-2222',
@@ -103,7 +111,7 @@ class BannerSuite extends React.PureComponent {
 					],
 					backgroundUrl: 'https://www.visit-x.net/assets/img/teaser/teaser_nologin_02_02.jpg?v=2017-04-27',
 					htmlText:      `
-		<div class="teaser__container-content">
+		<VXContent>
 			<div class="row">
 				<div class="col-xs-12">
 					<VXHeadline>
@@ -122,7 +130,7 @@ class BannerSuite extends React.PureComponent {
 					</div>
 				</div>
 			</div>
-		</div>`,
+		</VXContent>`,
 				},
 				{
 					id:            '123456-3333',
@@ -142,7 +150,7 @@ class BannerSuite extends React.PureComponent {
 					],
 					backgroundUrl: 'https://www.visit-x.net/assets/img/teaser/sexyvany/teaser-sexyvany.jpg',
 					htmlText:      `
-		<div class="teaser__container-content">
+		<VXContent>
 			<div class="row">
 				<div class="col-xs-12">
 					<VXCaption>
@@ -164,12 +172,17 @@ class BannerSuite extends React.PureComponent {
 					</div>
 				</div>
 			</div>
-		</div>`,
+		</VXContent>`,
 				},
 			],
 		};
 	}
 
+	/**
+	 * Create or load banner via config
+	 * @param config
+	 * @returns {*}
+	 */
 	getBannerByConfig(config) {
 		let bannerDOM;
 		// get banner from cache
@@ -178,7 +191,9 @@ class BannerSuite extends React.PureComponent {
 		}
 		// render banner
 		else {
-			this.banners[config.id] = bannerDOM = BannerBuilder(config);
+			this.banners[config.id] = bannerDOM = BannerBuilder(config, {
+				onBannerClick: this.onBannerClick,
+			});
 		}
 
 		return bannerDOM;
@@ -192,6 +207,16 @@ class BannerSuite extends React.PureComponent {
 		}
 	}
 
+	onBannerClick() {
+		if (typeof this.props.onBannerClick === 'function') {
+			this.props.onBannerClick();
+		}
+	}
+
+	/**
+	 * set visible item via index
+	 * @param i
+	 */
 	setVisible(i) {
 		if (this.itemRefs && typeof this.itemRefs[i] !== 'undefined') {
 			const oldIndex = this.state.visibleIndex;
@@ -214,10 +239,11 @@ class BannerSuite extends React.PureComponent {
 		}
 	}
 
+	/**
+	 * activate timer interval for switching items
+	 */
 	startInterval() {
-		if (this.timerInterval) {
-			window.clearInterval(this.timerInterval);
-		}
+		this.clearInterval();
 
 		this.timerInterval = window.setInterval(() => {
 			const cnt = this.state.config.length;
@@ -225,138 +251,90 @@ class BannerSuite extends React.PureComponent {
 			if (cnt > 0 && !this.state.mouseOver) {
 				this.setVisible((this.state.visibleIndex + 1) % cnt);
 			}
-		}, 10000);
+		}, this.props.delay);
+	}
+
+	/**
+	 * deactivate timer interval for switching items
+	 */
+	clearInterval() {
+		if (this.timerInterval) {
+			window.clearInterval(this.timerInterval);
+			this.timerInterval = null;
+		}
 	}
 
 	render() {
-		console.log('render');
-		const config = this.state.config;
+		const configs = this.state.config;
+		let content;
 
-		let bannerDOM, pointsDOM = [];
-		let fixedHeights;
+		// is configuration provided?
+		if (configs && configs.length > 0) {
+			let bannerDOM, pointsDOM = [];
+			const fixedHeights       = configs[0].fixedHeights;
+			const TeaserPointElement = StyledElementFactory.getTeaserPoint();
 
-		if (config && config.length > 0) {
-			const TeaserPointElement = styled.div`
-			    border: 1px solid #F1F1F1;
-			    border-radius: 100%;
-			    cursor: pointer;
-			    display: block;
-			    height: 8px;
-			    opacity: 1;
-			    width: 8px;
-			    z-index: 9999;
-			    margin-bottom: 10px;
-			`;
-
-			bannerDOM = config.map((config, i) => {
+			// generate banners from config array
+			bannerDOM = configs.map((config, i) => {
 				const setVisible = () => {
-					this.startInterval();
+					this.clearInterval();
 					this.setVisible(i);
 				};
 
-				pointsDOM.push(<TeaserPointElement className={'teaser-point' + (i === 0 ? ' is-active' : '')}
+				// banner switch control
+				pointsDOM.push(<TeaserPointElement className={classNames.TeaserPoint + (i === 0 ? ' is-active' : '')}
 				                                   onClick={setVisible}
 				                                   key={i}
 				                                   ref={(ref) => {
 					                                   this.pointRefs.push(ref)
 				                                   }} />);
 
-				if (!fixedHeights) {
-					fixedHeights = config.fixedHeights;
-				}
+				// define suite item
+				const ListItemElement = StyledElementFactory.getSuiteItem();
 
-				const ListItemElement = styled.div`
-					position: absolute;
-					left: 0;	
-					top: 0;
-					width: 100%;
-				`;
-
-				return <ListItemElement key={i} className={'teaser-item' + (i === 0 ? ' is-active' : '')} ref={(ref) => {
+				return <ListItemElement key={i} className={classNames.TeaserSuiteItem + (i === 0 ? ' is-active' : '')} ref={(ref) => {
 					this.itemRefs.push(ref)
 				}}>{this.getBannerByConfig(config)}</ListItemElement>;
 			});
+
+			// define suite
+			const ListElement = StyledElementFactory.getSuite({fixedHeights});
+
+			if (bannerDOM.length > 0) {
+				const PointsContainerElement = StyledElementFactory.getTeaserPointContainer({fixedHeights});
+
+				// hover actions
+				const onMouseOver = () => {
+					this.clearInterval();
+				};
+				const onMouseOut  = () => {
+					this.startInterval();
+				};
+
+				content = (
+					<ListElement onMouseEnter={onMouseOver} onMouseLeave={onMouseOut} className={classNames.TeaserSuite}>
+						{bannerDOM}
+						{PointsContainerElement && <PointsContainerElement>{pointsDOM}</PointsContainerElement>}
+					</ListElement>
+				);
+			}
 		}
 
-		const ListElement = styled.div`
-			position: relative;
-			margin: 0;
-			padding: 0;
-			width: 1300px;
-			max-width: 100%;
-			height:     ${fixedHeights[1]['height']}px;
-
-			.teaser-item {
-				visibility: hidden;
-				opacity: 0;
-				z-index: 0;
-				transition: opacity 2s;
-			}
-
-			.teaser-item.is-active {
-				visibility: visible;
-				opacity: 1;
-				z-index: 9999;
-				transition: opacity 1.2s;
-			}
-
-			@media (max-width: ${fixedHeights[1]['greaterThan']}px) {
-                height: ${fixedHeights[0]['height']}px;
-            }
-		`;
-
-		let PointsElement;
-		if (pointsDOM.length > 0) {
-			PointsElement = styled.div`
-				font-size: 2rem;
-				position: absolute;
-				transform: translateY(-50%);
-				top: 50%;
-				right: 1em;
-				color: red;
-				z-index: 9999;
-				
-				.teaser-point {
-					background-color: transparent;			    
-				}
-	
-				.teaser-point.is-active {
-					background-color: #F1F1F1; 				
-				}
-				
-				@media (max-width: ${fixedHeights[1]['greaterThan']}px) {
-                    width: 100%;
-	                top: auto;
-					right: auto;
-	                bottom: -10px;
-	                text-align: center;
-	                margin-bottom: 0;
-	                
-	                .teaser-point {
-	                    display: inline-block;
-	                    margin-right: 10px;
-	                }
-	            }
-			`;
-		}
-
-		// hover actions
-		const onMouseOver = () => {
-			if (this.timerInterval) {
-				window.clearInterval(this.timerInterval);
-			}
-		};
-		const onMouseOut  = () => {
-			this.startInterval();
-		};
-
-		return (
-			<ListElement onMouseEnter={onMouseOver} onMouseLeave={onMouseOut}>
-				{bannerDOM}
-				{PointsElement && <PointsElement>{pointsDOM}</PointsElement>}
-			</ListElement>
-		);
+		return content;
 	}
 }
 
-export default BannerSuite;
+BannerSuite.propTypes = {
+	config:        React.PropTypes.object,
+	delay:         React.PropTypes.number,
+	onBannerClick: React.PropTypes.func,
+};
+
+BannerSuite.defaultProps = {
+	config: {
+//		vxqlEndpoint: 'https://pu.vxnextgen.x/vxql',
+		vxqlEndpoint: 'http://ph.vxteaser.x/banner.php',
+		vxqlWebToken: '',
+	},
+	delay:  10000,
+};
