@@ -12,7 +12,11 @@ function parseCSSText(cssText = '') {
 	const style      = {}, [, ruleName, rule] = cssTxt.match(/ ?(.*?) ?{([^}]*)}/) || [, , cssTxt];
 	const cssToJs    = s => s.replace(/\W+\w/g, match => match.slice(-1).toUpperCase());
 	const properties = rule.split(";").map(o => o.split(":").map(x => x && x.trim()));
-	for (const [property, value] of properties) style[cssToJs(property)] = value;
+	for (let i = 0; i < properties.length; i++) {
+		const property           = properties[i][0];
+		const value              = properties[i][1];
+		style[cssToJs(property)] = value
+	}
 	return {cssText, ruleName, style};
 }
 

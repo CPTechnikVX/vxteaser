@@ -7,6 +7,28 @@ const ComponentsMapping = {
 	vxcontent: (args) => ElementFactory.getBannerContent(args),
 };
 
+if (typeof Object.assign != 'function') {
+	Object.assign = function(target) {
+		'use strict';
+		if (target == null) {
+			throw new TypeError('Cannot convert undefined or null to object');
+		}
+
+		target = Object(target);
+		for (var index = 1; index < arguments.length; index++) {
+			var source = arguments[index];
+			if (source != null) {
+				for (var key in source) {
+					if (Object.prototype.hasOwnProperty.call(source, key)) {
+						target[key] = source[key];
+					}
+				}
+			}
+		}
+		return target;
+	};
+}
+
 export default class Processor {
 	static processHTMLtoReact(html, config = {}, props = {}) {
 		let i = 0;
@@ -46,7 +68,7 @@ export default class Processor {
 					const attrs  = node.attribs || {};
 					attrs.config = config;
 
-					const elAttrs = node.attribs;
+					const elAttrs = Object.assign({}, node.attribs);
 					elAttrs.style = null;
 
 					return React.createElement(ComponentsMapping[node.name]({...attrs}), {
