@@ -22,35 +22,35 @@ export default class Processor {
 					return node && node.name === 'vxbutton';
 				},
 				processNode:       function(node, children) {
-					let attrs    = node.attribs || {};
+					const attrs  = node.attribs || {};
 					attrs.config = config;
 
 					const elAttrs = node.attribs;
 					elAttrs.style = null;
 
 					return React.createElement(ComponentsMapping[node.name]({...attrs}), {
-						onClick: props.onButtonClick,
-						key:     i++, ...elAttrs
+						onClick: props.onButtonClick, // eslint-disable-line
+						key:     i++, ...elAttrs,
 					}, children);
-				}
+				},
 			},
 			{
 				shouldProcessNode: function(node) {
 					return node && node.name && typeof ComponentsMapping[node.name] !== 'undefined';
 				},
 				processNode:       function(node, children) {
-					let attrs    = node.attribs || {};
+					const attrs  = node.attribs || {};
 					attrs.config = config;
 					return React.createElement(ComponentsMapping[node.name]({...attrs}), {children, key: i++});
-				}
+				},
 			},
 			{
 				// Anything else
-				shouldProcessNode: function(node) {
+				shouldProcessNode: function() {
 					return true;
 				},
-				processNode:       processNodeDefinitions.processDefaultNode
-			}
+				processNode:       processNodeDefinitions.processDefaultNode,
+			},
 		];
 
 		const htmlToReactParser = new HtmlToReact.Parser();

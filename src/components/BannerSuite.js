@@ -16,12 +16,14 @@ export default class BannerSuite extends React.PureComponent {
 		this.pointRefs     = [];
 		this.timerInterval = null;
 
-		// state
-		this.state = this.getInitialState();
-
 		// bind
 		this.onBannerClick = this.onBannerClick.bind(this);
+		this.onBannerOver  = this.onBannerOver.bind(this);
+		this.onBannerOut   = this.onBannerOut.bind(this);
 		this.onButtonClick = this.onButtonClick.bind(this);
+
+		// state
+		this.state = this.getInitialState();
 	}
 
 	/**
@@ -34,138 +36,21 @@ export default class BannerSuite extends React.PureComponent {
 		return {
 			visibleIndex: 0,
 			mouseOver:    false,
-			configs:      [
-//				{
-//					id:            '123456-1111',
-//					typeId:        'banner',
-//					template:      'fixedHeight',
-//					fixedHeights:  [
-//						{
-//							greaterThan:        0,
-//							height:             500,
-//							backgroundPosition: 'initial',
-//							backgroundSize:     'auto',
-//						},
-//						{
-//							greaterThan:        1200,
-//							height:             260,
-//							backgroundPosition: 'right 90%',
-//							backgroundSize:     'contain',
-//						},
-//					],
-//					backgroundUrl: 'https://www.visit-x.net/assets/img/teaser/teaser-all-welcome-bg.jpg',
-//					htmlText:      `
-//		<VXContent>
-//			<div class="row">
-//				<div class="col-xs-12">
-//					<VXHeadline>
-//						EXKLUSIV AUF VISIT-X!
-//					</VXHeadline>
-//					<VXText>
-//						Schau Dir hier unzensierte Bilder und Videos von der süßen 18 jährigen<br>
-//						an oder besuche sie bis zu 17 Stunden am Tag im Livechat.
-//					</VXText>
-//				</div>
-//			</div>
-//			<div class="row">
-//				<div class="col-xs-12">
-//					<div class="teaser__sexyvany-buttoncontainer" style="margin-top: 2em;">
-//						<VXButton style="padding: 0.7em 5em 0.65em; font-size: 1.7rem; background-color: #43B31C; border-color: #43B31C;">Zum Profil</VXButton>
-//					</div>
-//				</div>
-//			</div>
-//		</VXContent>`,
-//				},
-//				{
-//					id:            '123456-2222',
-//					typeId:        'banner',
-//					template:      'fixedHeight',
-//					fixedHeights:  [
-//						{
-//							greaterThan:        0,
-//							height:             500,
-//							backgroundPosition: 'initial',
-//							backgroundSize:     'contain',
-//						},
-//						{
-//							greaterThan:        1200,
-//							height:             260,
-//							backgroundPosition: 'right 90%',
-//							backgroundSize:     '71%',
-//						},
-//					],
-//					backgroundUrl: 'https://www.visit-x.net/assets/img/teaser/teaser_nologin_02_02.jpg?v=2017-04-27',
-//					htmlText:      `
-//		<VXContent>
-//			<div class="row">
-//				<div class="col-xs-12">
-//					<VXHeadline>
-//						EXKLUSIV AUF VISIT-X!
-//					</VXHeadline>
-//					<VXText>
-//						Schau Dir hier unzensierte Bilder und Videos von der süßen 18 jährigen<br>
-//						an oder besuche sie bis zu 17 Stunden am Tag im Livechat.
-//					</VXText>
-//				</div>
-//			</div>
-//			<div class="row">
-//				<div class="col-xs-12">
-//					<div class="teaser__sexyvany-buttoncontainer" style="margin-top: 2em;">
-//						<VXButton style="padding: 0.7em 5em 0.65em; font-size: 1.7rem; background-color: #43B31C; border-color: #43B31C;">Zum Profil</VXButton>
-//					</div>
-//				</div>
-//			</div>
-//		</VXContent>`,
-//				},
-//				{
-//					id:            '123456-3333',
-//					typeId:        'banner',
-//					template:      'fixedHeight',
-//					fixedHeights:  [
-//						{
-//							greaterThan:        0,
-//							height:             500,
-//							backgroundPosition: 'top right',
-//							backgroundSize:     'cover',
-//						},
-//						{
-//							greaterThan: 1200,
-//							height:      260,
-//						},
-//					],
-//					backgroundUrl: 'https://www.visit-x.net/assets/img/teaser/sexyvany/teaser-sexyvany.jpg',
-//					htmlText:      `
-//		<VXContent>
-//			<div class="row">
-//				<div class="col-xs-12">
-//					<VXCaption>
-//						<span style="color: #FF4D3C;">SexyVany</span> - Deutschlands jüngstes Camgirl
-//					</VXCaption>
-//					<VXHeadline>
-//						EXKLUSIV AUF VISIT-X!
-//					</VXHeadline>
-//					<VXText>
-//						Schau Dir hier unzensierte Bilder und Videos von der süßen 18 jährigen<br>
-//						an oder besuche sie bis zu 17 Stunden am Tag im Livechat.
-//					</VXText>
-//				</div>
-//			</div>
-//			<div class="row">
-//				<div class="col-xs-12">
-//					<div class="teaser__sexyvany-buttoncontainer" style="margin-top: 2em;">
-//						<VXButton style="padding: 0.7em 5em 0.65em; font-size: 1.7rem;">Zum Profil</VXButton>
-//					</div>
-//				</div>
-//			</div>
-//		</VXContent>`,
-//				},
-			],
+			configs:      [],
 		};
 	}
 
 	componentDidMount() {
 		if (this.needTimerInterval()) {
 			this.startInterval();
+		}
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		if (nextState.visibleIndex !== this.state.visibleIndex) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 
@@ -185,8 +70,7 @@ export default class BannerSuite extends React.PureComponent {
 
 	loadConfig() {
 		if (this.props.providerConfig && this.props.providerConfig.vxqlEndpoint) {
-			let vxql;
-			vxql = VXQL(this.props.providerConfig.vxqlEndpoint, this.props.providerConfig.vxqlWebToken);
+			const vxql = VXQL(this.props.providerConfig.vxqlEndpoint, this.props.providerConfig.vxqlWebToken);
 			vxql.query(
 				`query ($id: ID!) {
                     config(id: $id) {
@@ -242,18 +126,24 @@ export default class BannerSuite extends React.PureComponent {
 		return bannerDOM;
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		if (nextState.visibleIndex !== this.state.visibleIndex) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
 	onBannerClick(event) {
 		if (typeof this.props.onBannerClick === 'function') {
 			this.props.onBannerClick(event);
 		}
+	}
+
+	/**
+	 * mouse over banner
+	 */
+	onBannerOver() {
+		this.clearInterval();
+	}
+
+	/**
+	 * mouse out banner
+	 */
+	onBannerOut() {
+		this.startInterval();
 	}
 
 	onButtonClick(event) {
@@ -327,25 +217,29 @@ export default class BannerSuite extends React.PureComponent {
 
 		// is configuration provided?
 		if (configs && configs.length > 0) {
-			let bannerDOM, pointsDOM = [];
+			const pointsDOM          = [];
 			const fixedHeights       = configs[0].fixedHeights;
 			const TeaserPointElement = StyledElementFactory.getTeaserPoint();
 
 			// generate banners from config array
-			bannerDOM = configs.map((config, i) => {
-				const setVisible = () => {
-					this.clearInterval();
-					this.setVisible(i);
-				};
-
+			const bannerDOM = configs.map((config, i) => {
 				if (configs.length > 1) {
+					const setVisible = () => {
+						this.clearInterval();
+						this.setVisible(i);
+					};
+					const getRef = (ref) => {
+						this.pointRefs[i] = ref;
+					};
+
 					// banner switch control
+					/*eslint-disable*/
 					pointsDOM.push(<TeaserPointElement className={classNames.TeaserPoint + (i === 0 ? ' is-active' : '')}
 					                                   onClick={setVisible}
 					                                   key={i}
-					                                   ref={(ref) => {
-						                                   this.pointRefs[i] = ref;
-					                                   }} />);
+					                                   ref={getRef}
+					               />);
+					/*eslint-enable*/
 				}
 
 				// define suite item
@@ -353,7 +247,8 @@ export default class BannerSuite extends React.PureComponent {
 
 				return <ListItemElement key={i} className={classNames.TeaserSuiteItem + (i === 0 ? ' is-active' : '')} ref={(ref) => {
 					this.itemRefs[i] = ref;
-				}}>{this.getBannerByConfig(config)}</ListItemElement>;
+				}}
+				       >{this.getBannerByConfig(config)}</ListItemElement>;
 			});
 
 			// define suite
@@ -365,16 +260,8 @@ export default class BannerSuite extends React.PureComponent {
 					PointsContainerElement = StyledElementFactory.getTeaserPointContainer({fixedHeights});
 				}
 
-				// hover actions
-				const onMouseOver = () => {
-					this.clearInterval();
-				};
-				const onMouseOut  = () => {
-					this.startInterval();
-				};
-
 				content = (
-					<ListElement onMouseEnter={onMouseOver} onMouseLeave={onMouseOut} className={classNames.TeaserSuite}>
+					<ListElement onMouseEnter={this.onBannerOver} onMouseLeave={this.onBannerOut} className={classNames.TeaserSuite}>
 						{bannerDOM}
 						{PointsContainerElement && <PointsContainerElement>{pointsDOM}</PointsContainerElement>}
 					</ListElement>
@@ -387,9 +274,10 @@ export default class BannerSuite extends React.PureComponent {
 }
 
 BannerSuite.propTypes = {
-	providerConfig: PropTypes.object,
 	delay:          PropTypes.number,
 	onBannerClick:  PropTypes.func,
+	onButtonClick:  PropTypes.func,
+	providerConfig: PropTypes.object,
 };
 
 BannerSuite.defaultProps = {

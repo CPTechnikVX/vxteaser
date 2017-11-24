@@ -23,5 +23,5 @@ export default {
 	render(container, config) {
 		ReactDOM.unmountComponentAtNode(container);
 		ReactDOM.render(<PreviewView config={config} />, container);
-	}
-}
+	},
+};

@@ -18,8 +18,8 @@ export default function(endpoint, webToken) {
 					},
 					body:    JSON.stringify({
 						query:     query,
-						variables: vars
-					})
+						variables: vars,
+					}),
 				}
 			).then((res) => res.json()
 			).then((jsonRes) => {
@@ -31,6 +31,6 @@ export default function(endpoint, webToken) {
 	}
 
 	return {
-		query
-	}
-};
+		query,
+	};
+}

@@ -6,11 +6,11 @@ export default class Banner extends React.PureComponent {
 
 	constructor(props) {
 		super(props);
-		
+
 		// bind
 		this.onBannerClick = this.onBannerClick.bind(this);
 	}
-	
+
 	onBannerClick = (event) => {
 		event.preventDefault();
 		event.stopPropagation();
@@ -25,7 +25,7 @@ export default class Banner extends React.PureComponent {
 		const backgroundColor = this.props.config.backgroundColor ? this.props.config.backgroundColor : '#262728';
 		const backgroundUrl   = this.props.config.backgroundUrl ? this.props.config.backgroundUrl : '';
 
-		let BannerElement, BannerContentElement;
+		let BannerElement;
 		if (this.props.config.template === 'fixedHeight') {
 			const fixedHeights = this.props.config.fixedHeights;
 
@@ -42,6 +42,8 @@ export default class Banner extends React.PureComponent {
 }
 
 Banner.propTypes = {
+	config:        PropTypes.object,
+	children:      PropTypes.node,
 	onBannerClick: PropTypes.func,
 };
 
