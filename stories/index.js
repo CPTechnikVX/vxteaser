@@ -82,7 +82,7 @@ storiesOf('BannerBuilder', module)
 			htmlText:        `
 		<VXContent>
 			<div style="margin-top: 2em;">
-				<VXCaption>12 heiße</VXCaption>
+				<VXCaption style="color: red;">12 heiße</VXCaption>
 				<VXHeadline style="text-transform: uppercase;">Hol dir die camgirls</VXHeadline>
 			</div>
 			<div>

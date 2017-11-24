@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import 'whatwg-fetch';
 import {BannerBuilder} from '../utils/Builder';
-import {classNames, StyledElementFactory} from '../utils/StyledElementFactory';
+import {classNames} from './../utils/Constants';
+import ElementFactory from '../utils/ElementFactory';
 import VXQL from '../utils/Query';
 
 export default class BannerSuite extends React.PureComponent {
@@ -15,12 +16,14 @@ export default class BannerSuite extends React.PureComponent {
 		this.itemRefs      = [];
 		this.pointRefs     = [];
 		this.timerInterval = null;
+		this.resizeTimeout = null;
 
 		// bind
 		this.onBannerClick = this.onBannerClick.bind(this);
 		this.onBannerOver  = this.onBannerOver.bind(this);
 		this.onBannerOut   = this.onBannerOut.bind(this);
 		this.onButtonClick = this.onButtonClick.bind(this);
+		this.onResize      = this.onResize.bind(this);
 
 		// state
 		this.state = this.getInitialState();
@@ -37,17 +40,27 @@ export default class BannerSuite extends React.PureComponent {
 			visibleIndex: 0,
 			mouseOver:    false,
 			configs:      [],
+			windowWidth:  window.innerWidth,
 		};
 	}
 
 	componentDidMount() {
+		window.addEventListener('resize', this.onResize);
+
 		if (this.needTimerInterval()) {
 			this.startInterval();
 		}
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
+		const breakpoint = this.state.configs && this.state.configs.length > 0 ? this.state.configs[0].fixedHeights[1]['greaterThan'] : null;
+
 		if (nextState.visibleIndex !== this.state.visibleIndex) {
+			return false;
+		} else if (breakpoint && nextState.windowWidth !== this.state.windowWidth
+			&& !(this.state.windowWidth < breakpoint && nextState.windowWidth >= breakpoint
+				|| this.state.windowWidth >= breakpoint && nextState.windowWidth < breakpoint)
+		) {
 			return false;
 		} else {
 			return true;
@@ -61,6 +74,7 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	componentWillUnmount() {
+		window.removeEventListener('resize', this.onResize);
 		this.clearInterval();
 	}
 
@@ -87,12 +101,14 @@ export default class BannerSuite extends React.PureComponent {
 						const typeConfig        = JSON.parse(config.typeConfig);
 						typeConfig.fixedHeights = [
 							{
-								greaterThan: 0,
-								height:      typeConfig.height2,
+								greaterThan:   0,
+								height:        typeConfig.height2,
+								backgroundUrl: typeConfig.backgroundUrl1,
 							},
 							{
-								greaterThan: typeConfig.breakpoint1,
-								height:      typeConfig.height1,
+								greaterThan:   typeConfig.breakpoint1,
+								height:        typeConfig.height1,
+								backgroundUrl: typeConfig.backgroundUrl2,
 							},
 						];
 
@@ -112,16 +128,17 @@ export default class BannerSuite extends React.PureComponent {
 	getBannerByConfig(config) {
 		let bannerDOM;
 		// get banner from cache
-		if (typeof this.banners[config.id] !== 'undefined') {
-			bannerDOM = this.banners[config.id];
-		}
-		// render banner
-		else {
-			this.banners[config.id] = bannerDOM = BannerBuilder(config, {
-				onBannerClick: this.onBannerClick,
-				onButtonClick: this.onButtonClick,
-			});
-		}
+		//		if (typeof this.banners[config.id] !== 'undefined') {
+		//			bannerDOM = this.banners[config.id];
+		//		}
+		//		 render banner
+		//		else {
+		this.banners[config.id] = bannerDOM = BannerBuilder(config, {
+			onBannerClick: this.onBannerClick,
+			onButtonClick: this.onButtonClick,
+			windowWidth:   window.innerWidth,
+		});
+		//		}
 
 		return bannerDOM;
 	}
@@ -129,6 +146,21 @@ export default class BannerSuite extends React.PureComponent {
 	onBannerClick(event) {
 		if (typeof this.props.onBannerClick === 'function') {
 			this.props.onBannerClick(event);
+		}
+	}
+
+	onResize() {
+		if (this.resizeTimeout) {
+			window.clearTimeout(this.resizeTimeout);
+			this.resizeTimeout = null;
+		}
+
+		if (!this.resizeTimeout) {
+			this.resizeTimeout = window.setTimeout(() => {
+				this.setState({windowWidth: window.innerWidth}, () => {
+					this.resizeTimeout = null;
+				});
+			}, 100);
 		}
 	}
 
@@ -219,7 +251,7 @@ export default class BannerSuite extends React.PureComponent {
 		if (configs && configs.length > 0) {
 			const pointsDOM          = [];
 			const fixedHeights       = configs[0].fixedHeights;
-			const TeaserPointElement = StyledElementFactory.getTeaserPoint();
+			const TeaserPointElement = ElementFactory.getTeaserPoint();
 
 			// generate banners from config array
 			const bannerDOM = configs.map((config, i) => {
@@ -228,7 +260,7 @@ export default class BannerSuite extends React.PureComponent {
 						this.clearInterval();
 						this.setVisible(i);
 					};
-					const getRef = (ref) => {
+					const getRef     = (ref) => {
 						this.pointRefs[i] = ref;
 					};
 
@@ -238,12 +270,12 @@ export default class BannerSuite extends React.PureComponent {
 					                                   onClick={setVisible}
 					                                   key={i}
 					                                   ref={getRef}
-					               />);
+					/>);
 					/*eslint-enable*/
 				}
 
 				// define suite item
-				const ListItemElement = StyledElementFactory.getSuiteItem();
+				const ListItemElement = ElementFactory.getSuiteItem();
 
 				return <ListItemElement key={i} className={classNames.TeaserSuiteItem + (i === 0 ? ' is-active' : '')} ref={(ref) => {
 					this.itemRefs[i] = ref;
@@ -252,12 +284,12 @@ export default class BannerSuite extends React.PureComponent {
 			});
 
 			// define suite
-			const ListElement = StyledElementFactory.getSuite({fixedHeights});
+			const ListElement = ElementFactory.getSuite({fixedHeights});
 
 			if (bannerDOM.length > 0) {
 				let PointsContainerElement;
 				if (pointsDOM.length > 0) {
-					PointsContainerElement = StyledElementFactory.getTeaserPointContainer({fixedHeights});
+					PointsContainerElement = ElementFactory.getTeaserPointContainer({fixedHeights});
 				}
 
 				content = (

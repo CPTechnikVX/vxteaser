@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-
-const classNames = {
-	TeaserSuite:     'teaser-suite',
-	TeaserSuiteItem: 'teaser-suite-item',
-	TeaserPoint:     'teaser-point',
-};
+import {classNames} from "./Constants";
 
 export default class StyledElementFactory {
 

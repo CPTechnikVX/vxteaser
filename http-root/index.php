@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 			background: #101112 url('http://www.visit-x.net/assets/img/bg_pattern.jpg');
 		}
 	</style>
+	<link rel="stylesheet" href="css/vx.css" />
 </head>
 <body>
 <div id="app"></div>

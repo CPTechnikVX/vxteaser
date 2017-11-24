@@ -24,7 +24,7 @@ module.exports = [
 			],
 		},
 //		externals: {
-//			// Use external versions
+//			 Use external versions
 //			"react":     "React",
 //			"react-dom": "ReactDOM"
 //		},

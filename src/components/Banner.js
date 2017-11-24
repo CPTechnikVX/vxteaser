@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ElementFactory from '../utils/StyledElementFactory';
+import ElementFactory from '../utils/ElementFactory';
 
 export default class Banner extends React.PureComponent {
 
@@ -23,13 +23,13 @@ export default class Banner extends React.PureComponent {
 	render() {
 		const color           = this.props.config.color ? this.props.config.color : 'white';
 		const backgroundColor = this.props.config.backgroundColor ? this.props.config.backgroundColor : '#262728';
-		const backgroundUrl   = this.props.config.backgroundUrl ? this.props.config.backgroundUrl : '';
 
 		let BannerElement;
 		if (this.props.config.template === 'fixedHeight') {
 			const fixedHeights = this.props.config.fixedHeights;
 
-			BannerElement = ElementFactory.getBanner({color, backgroundColor, backgroundUrl, fixedHeights});
+			const windowWidth = this.props.windowWidth;
+			BannerElement     = ElementFactory.getBanner({color, backgroundColor, fixedHeights, windowWidth});
 		}
 
 		return (
@@ -45,8 +45,10 @@ Banner.propTypes = {
 	config:        PropTypes.object,
 	children:      PropTypes.node,
 	onBannerClick: PropTypes.func,
+	windowWidth:   PropTypes.number,
 };
 
 Banner.defaultProps = {
-	config: {},
+	config:      {},
+	windowWidth: window.innerWidth,
 };
