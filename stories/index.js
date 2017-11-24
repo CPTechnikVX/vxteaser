@@ -101,7 +101,13 @@ storiesOf('BannerBuilder', module)
 
 storiesOf('BannerSuite', module)
 	.add('standard', () => {
-		return <BannerSuite onBannerClick={()=> alert('click')} onButtonClick={(event)=> {event.stopPropagation(); event.preventDefault(); alert('button click')}} />;
+		const config = {
+			vxqlEndpoint: 'https://pu.vxnextgen.x/vxql',
+			vxqlWebToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXJ0bmVySWQiOjgyNzgsInByb2R1Y3RJZCI6MTAwMDN9.8B65L1KiQ4xhJlSNJGvcBInBx4CtlUV_KrLMz3AnLyk',
+			id:   'e683a10b-c159-4533-b04f-140a5bab61ec'
+		};
+
+		return <BannerSuite providerConfig={config} onBannerClick={()=> alert('click')} onButtonClick={(event)=> {event.stopPropagation(); event.preventDefault(); alert('button click')}} />;
 	});
 
 
