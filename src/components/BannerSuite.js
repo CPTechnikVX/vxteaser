@@ -251,7 +251,6 @@ export default class BannerSuite extends React.PureComponent {
 		if (configs && configs.length > 0) {
 			const pointsDOM          = [];
 			const fixedHeights       = configs[0].fixedHeights;
-			const TeaserPointElement = ElementFactory.getTeaserPoint();
 
 			// generate banners from config array
 			const bannerDOM = configs.map((config, i) => {
@@ -261,12 +260,14 @@ export default class BannerSuite extends React.PureComponent {
 						this.setVisible(i);
 					};
 					const getRef     = (ref) => {
-						this.pointRefs[i] = ref;
+						if (ref) {
+							this.pointRefs[i] = ref;
+						}
 					};
 
 					// banner switch control
 					/*eslint-disable*/
-					pointsDOM.push(<TeaserPointElement className={classNames.TeaserPoint + (i === 0 ? ' is-active' : '')}
+					pointsDOM.push(<div className={classNames.TeaserPoint + (i === 0 ? ' is-active' : '')}
 					                                   onClick={setVisible}
 					                                   key={i}
 					                                   ref={getRef}
@@ -278,24 +279,22 @@ export default class BannerSuite extends React.PureComponent {
 				const ListItemElement = ElementFactory.getSuiteItem();
 
 				return <ListItemElement key={i} className={classNames.TeaserSuiteItem + (i === 0 ? ' is-active' : '')} ref={(ref) => {
-					this.itemRefs[i] = ref;
+					if (ref) {
+						this.itemRefs[i] = ref;
+					}
 				}}
 				       >{this.getBannerByConfig(config)}</ListItemElement>;
 			});
 
 			// define suite
-			const ListElement = ElementFactory.getSuite({fixedHeights});
+			const windowWidth = this.state.windowWidth;
+			const ListElement = ElementFactory.getSuite({fixedHeights, windowWidth});
 
 			if (bannerDOM.length > 0) {
-				let PointsContainerElement;
-				if (pointsDOM.length > 0) {
-					PointsContainerElement = ElementFactory.getTeaserPointContainer({fixedHeights});
-				}
-
 				content = (
 					<ListElement onMouseEnter={this.onBannerOver} onMouseLeave={this.onBannerOut} className={classNames.TeaserSuite}>
 						{bannerDOM}
-						{PointsContainerElement && <PointsContainerElement>{pointsDOM}</PointsContainerElement>}
+						{pointsDOM.length > 1 && <div className={classNames.TeaserPointContainer}>{pointsDOM}</div>}
 					</ListElement>
 				);
 			}

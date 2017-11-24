@@ -1,3 +1,32 @@
+.teaser-suite {
+	position:  relative;
+	margin:    0;
+	padding:   0;
+	width:     100%;
+	max-width: 100%;
+}
+
+.teaser-suite .teaser-suite__item {
+	visibility: hidden;
+	opacity:    0;
+	z-index:    0;
+	transition: opacity 2s;
+}
+
+.teaser-suite .teaser-suite__item.is-active {
+	visibility: visible;
+	opacity:    1;
+	z-index:    9999;
+	transition: opacity 1.2s;
+}
+
+.teaser-suite__item {
+	position: absolute;
+	left:     0;
+	top:      0;
+	width:    100%;
+}
+
 .teaser-caption {
 	font-family: 'Roboto Condensed';
 	font-size:   2.6rem;
@@ -64,4 +93,34 @@
 .teaser-banner__content {
 	position: relative;
 	padding:  2.5em 2.5em 2.5em 2.5em;
+}
+
+.teaser-point-container {
+	font-size: 2rem;
+	position:  absolute;
+	transform: translateY(-50%);
+	top:       50%;
+	right:     1em;
+	color:     red;
+	z-index:   9999;
+}
+
+.teaser-point {
+	border:        1px solid #F1F1F1;
+	border-radius: 100%;
+	cursor:        pointer;
+	display:       block;
+	height:        8px;
+	opacity:       1;
+	width:         8px;
+	z-index:       9999;
+	margin-bottom: 10px;
+}
+
+.teaser-point-container .teaser-point {
+	background-color: transparent;
+}
+
+.teaser-point-container .teaser-point.is-active {
+	background-color: #F1F1F1;
 }

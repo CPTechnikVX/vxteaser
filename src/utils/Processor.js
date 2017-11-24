@@ -32,30 +32,6 @@ if (typeof Object.assign != 'function') {
 export default class Processor {
 	static processHTMLtoReact(html, config = {}, props = {}) {
 		let i = 0;
-		html  = `
-<VXContent>
- <div class="row">
-  <div class="col-xs-12">
-   <div class="teaser-caption">
-    <span style="color: #FF4D3C;">SexyVany</span> - Deutschlands jüngstes Camgirl
-   </div>
-   <div class="teaser-headline">
-    EXKLUSIV AUF VISIT-X!
-   </div>
-   <div class="teaser-text">
-    Schau Dir hier unzensierte Bilder und Videos von der süßen 18 jährigen<br>
-    an oder besuche sie bis zu 17 Stunden am Tag im Livechat.
-   </div>
-  </div>
- </div>
- <div class="row">
-  <div class="col-xs-12">
-   <div class="teaser__sexyvany-buttoncontainer" style="margin-top: 2em;">
-    <VXButton style="padding: 0.7em 5em 0.65em; font-size: 1.7rem;">Zum Profil</VXButton>
-   </div>
-  </div>
- </div>
-</VXContent>		`;
 
 		// Order matters. Instructions are processed in the order they're defined
 		const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);

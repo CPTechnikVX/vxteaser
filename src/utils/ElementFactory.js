@@ -29,20 +29,20 @@ export default class ElementFactory {
 		return (props) => <button className={classNames.TeaserButton} style={styleObj}>{props.children}</button>;
 	}
 
-	static getTeaserPoint() {
-		return (props) => <div>{props.children}</div>;
-	}
-
-	static getTeaserPointContainer() {
-		return (props) => <div>{props.children}</div>;
-	}
-
 	static getSuiteItem() {
-		return (props) => <div>{props.children}</div>;
+		return (props) => <div {...props}>{props.children}</div>;
 	}
 
-	static getSuite() {
-		return (props) => <div className={classNames.TeaserSuite}>{props.children}</div>;
+	static getSuite({fixedHeights, windowWidth}) {
+		const styleObj = {
+			height: `${fixedHeights[1]['height']}px`
+		};
+
+		if (windowWidth < fixedHeights[1]['greaterThan']) {
+			styleObj.height = `${fixedHeights[0]['height']}px`;
+		}
+
+		return (props) => <div className={classNames.TeaserSuite} style={styleObj}>{props.children}</div>;
 	}
 
 	static getBanner({color, backgroundColor, fixedHeights, windowWidth}) {
