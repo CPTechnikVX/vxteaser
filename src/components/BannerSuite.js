@@ -1,11 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import 'whatwg-fetch';
+import React           from 'react';
+import ReactDOM        from 'react-dom';
+import PropTypes       from 'prop-types';
 import {BannerBuilder} from '../utils/Builder';
-import {classNames} from './../utils/Constants';
-import ElementFactory from '../utils/ElementFactory';
-import VXQL from '../utils/Query';
+import {classNames}    from './../utils/Constants';
+import ElementFactory  from '../utils/ElementFactory';
 
 export default class BannerSuite extends React.PureComponent {
 
@@ -34,12 +32,9 @@ export default class BannerSuite extends React.PureComponent {
 	 * @returns {Object}
 	 */
 	getInitialState() {
-		this.loadConfig();
-
 		return {
 			visibleIndex: 0,
 			mouseOver:    false,
-			configs:      [],
 			windowWidth:  window.innerWidth,
 		};
 	}
@@ -53,7 +48,7 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		const breakpoint = this.state.configs && this.state.configs.length > 0 ? this.state.configs[0].fixedHeights[1]['greaterThan'] : null;
+		const breakpoint = this.props.configs && this.props.configs.length > 0 ? this.props.configs[0].fixedHeights[1]['greaterThan'] : null;
 
 		if (nextState.visibleIndex !== this.state.visibleIndex) {
 			return false;
@@ -79,45 +74,7 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	needTimerInterval() {
-		return this.state.configs && this.state.configs.length > 1 && this.props.delay > 0;
-	}
-
-	loadConfig() {
-		if (this.props.providerConfig && this.props.providerConfig.vxqlEndpoint) {
-			const vxql = VXQL(this.props.providerConfig.vxqlEndpoint, this.props.providerConfig.vxqlWebToken);
-			vxql.query(
-				`query ($id: ID!) {
-                    config(id: $id) {
-                        typeConfig
-                    }
-                }`,
-				{
-					id: this.props.providerConfig.id,
-				}
-			).then((data) => {
-				const {config} = data;
-				if (config) {
-					try {
-						const typeConfig        = JSON.parse(config.typeConfig);
-						typeConfig.fixedHeights = [
-							{
-								greaterThan:   0,
-								height:        typeConfig.height2,
-								backgroundUrl: typeConfig.backgroundUrl1,
-							},
-							{
-								greaterThan:   typeConfig.breakpoint1,
-								height:        typeConfig.height1,
-								backgroundUrl: typeConfig.backgroundUrl2,
-							},
-						];
-
-						this.setState({configs: [typeConfig]});
-					} catch (e) { /* nothing */
-					}
-				}
-			});
-		}
+		return this.props.configs && this.props.configs.length > 1 && this.props.delay > 0;
 	}
 
 	/**
@@ -225,7 +182,7 @@ export default class BannerSuite extends React.PureComponent {
 		this.clearInterval();
 
 		this.timerInterval = window.setInterval(() => {
-			const cnt = this.state.configs.length;
+			const cnt = this.props.configs.length;
 
 			if (cnt > 0 && !this.state.mouseOver) {
 				this.setVisible((this.state.visibleIndex + 1) % cnt);
@@ -244,13 +201,13 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	render() {
-		const configs = this.state.configs;
+		const configs = this.props.configs;
 		let content   = null;
 
 		// is configuration provided?
 		if (configs && configs.length > 0) {
-			const pointsDOM          = [];
-			const fixedHeights       = configs[0].fixedHeights;
+			const pointsDOM    = [];
+			const fixedHeights = configs[0].fixedHeights;
 
 			// generate banners from config array
 			const bannerDOM = configs.map((config, i) => {
@@ -268,9 +225,9 @@ export default class BannerSuite extends React.PureComponent {
 					// banner switch control
 					/*eslint-disable*/
 					pointsDOM.push(<div className={classNames.TeaserPoint + (i === 0 ? ' is-active' : '')}
-					                                   onClick={setVisible}
-					                                   key={i}
-					                                   ref={getRef}
+					                    onClick={setVisible}
+					                    key={i}
+					                    ref={getRef}
 					/>);
 					/*eslint-enable*/
 				}
@@ -283,7 +240,7 @@ export default class BannerSuite extends React.PureComponent {
 						this.itemRefs[i] = ref;
 					}
 				}}
-				       >{this.getBannerByConfig(config)}</ListItemElement>;
+				>{this.getBannerByConfig(config)}</ListItemElement>;
 			});
 
 			// define suite
@@ -305,13 +262,12 @@ export default class BannerSuite extends React.PureComponent {
 }
 
 BannerSuite.propTypes = {
-	delay:          PropTypes.number,
-	onBannerClick:  PropTypes.func,
-	onButtonClick:  PropTypes.func,
-	providerConfig: PropTypes.object,
+	configs:       PropTypes.array,
+	delay:         PropTypes.number,
+	onBannerClick: PropTypes.func,
+	onButtonClick: PropTypes.func,
 };
 
 BannerSuite.defaultProps = {
-	providerConfig: {},
-	delay:          10000,
+	delay: 10000,
 };

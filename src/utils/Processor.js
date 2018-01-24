@@ -1,11 +1,5 @@
-import React from 'react';
-import HtmlToReact from 'html-to-react';
+import React          from 'react';
 import ElementFactory from "./ElementFactory";
-
-const ComponentsMapping = {
-	vxbutton:  (args) => ElementFactory.getButton(args),
-	vxcontent: (args) => ElementFactory.getBannerContent(args),
-};
 
 if (typeof Object.assign != 'function') {
 	Object.assign = function(target) {
@@ -29,52 +23,80 @@ if (typeof Object.assign != 'function') {
 	};
 }
 
+function isNumeric(n) {
+	return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+//called with every property and its value
+function process(key, children, attrs, config, props) {
+	console.log('node', key, attrs, children);
+	if (!isNumeric(key)) {
+		return ElementFactory.getForName(key, attrs, children, config, props);
+	}
+}
+
+function traverse(o, func, config, props) {
+	const children = [];
+	for (let i in o) {
+		let subchildren;
+		console.log('iter', i, o[i]);
+		if (o[i] !== null && typeof o[i] === 'object' && i[0] !== '@') {
+			//going one step down in the object tree!!
+			subchildren = traverse(o[i], func, config, props);
+		}
+
+		if (!isNumeric(i) && i[0] !== '@') {
+			let child;
+			if (typeof o[i] === 'object') {
+				const {'@attributes': attrs, '@value': value} = o[i];
+				child                                         = func.apply(this, [i, value ? value : subchildren, attrs, config, props]);
+			} else {
+				child = func.apply(this, [i, o[i], null, config, props]);
+			}
+			children.push(child);
+		}
+		else if (isNumeric(i)) {
+			children.push(subchildren);
+		}
+	}
+
+	return children;
+}
+
 export default class Processor {
-	static processHTMLtoReact(html, config = {}, props = {}) {
-		let i = 0;
+	static processJSONToReact(config = {}, props = {}) {
+		const result = traverse(config.json, process, config, props);
 
-		// Order matters. Instructions are processed in the order they're defined
-		const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
-		const processingInstructions = [
-			{
-				shouldProcessNode: function(node) {
-					return node && node.name === 'vxbutton';
-				},
-				processNode:       function(node, children) {
-					const attrs  = node.attribs || {};
-					attrs.config = config;
+		return result;
+	}
 
-					const elAttrs = Object.assign({}, node.attribs);
-					elAttrs.style = null;
+	static processNode(key, node) {
+		const children = [];
 
-					return React.createElement(ComponentsMapping[node.name]({...attrs}), {
-						onClick: props.onButtonClick, // eslint-disable-line
-						key:     i++, ...elAttrs,
-					}, children);
-				},
-			},
-			{
-				shouldProcessNode: function(node) {
-					return node && node.name === 'vxcontent';
-				},
-				processNode:       function(node, children) {
-					const attrs       = node.attribs || {};
-					attrs.config      = config;
-					attrs.windowWidth = props.windowWidth; // eslint-disable-line
-					return React.createElement(ComponentsMapping[node.name]({...attrs}), {children, key: i++});
-				},
-			},
-			{
-				// Anything else
-				shouldProcessNode: function() {
-					return true;
-				},
-				processNode:       processNodeDefinitions.processDefaultNode,
-			},
-		];
+		if (typeof node === 'object') {
+			const {'@attributes': attrs, '@value': value, ...childArrObj} = node;
 
-		const htmlToReactParser = new HtmlToReact.Parser();
+			const children = [];
+			for (let key in childArrObj) {
+				console.log(key, childArrObj);
+				if (childArrObj.hasOwnProperty(key) && isNumeric(key)) {
+					for (let keyName in childArrObj[key]) {
+						if (childArrObj[key].hasOwnProperty(keyName)) {
+							console.log('recur', keyName, childArrObj[key][keyName]);
+							children.push(Processor.processNode(keyName, childArrObj[key][keyName]));
+						}
+					}
+				} else {
+					console.log('stop', key, childArrObj[key]);
+					children.push(Processor.processNode(key, childArrObj[key]));
+				}
+			}
+			console.log(children);
 
-		return htmlToReactParser.parseWithInstructions(html, () => true, processingInstructions);
+		} else {
+			children.push(Processor.processNode(key, childArrObj[key]));
+		}
+
+		return ElementFactory.getForName(key, attrs, children);
 	}
 }
