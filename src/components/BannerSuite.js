@@ -1,9 +1,7 @@
-import React           from 'react';
-import ReactDOM        from 'react-dom';
-import PropTypes       from 'prop-types';
-import {BannerBuilder} from '../utils/Builder';
-import {classNames}    from './../utils/Constants';
-import ElementFactory  from '../utils/ElementFactory';
+import React         from 'react';
+import PropTypes     from 'prop-types';
+import BannerBuilder from '../utils/Builder';
+import Constants     from './../utils/Constants';
 
 export default class BannerSuite extends React.PureComponent {
 
@@ -17,11 +15,9 @@ export default class BannerSuite extends React.PureComponent {
 		this.resizeTimeout = null;
 
 		// bind
-		this.onBannerClick = this.onBannerClick.bind(this);
-		this.onBannerOver  = this.onBannerOver.bind(this);
-		this.onBannerOut   = this.onBannerOut.bind(this);
-		this.onButtonClick = this.onButtonClick.bind(this);
-		this.onResize      = this.onResize.bind(this);
+		this.onBannerOver = this.onBannerOver.bind(this);
+		this.onBannerOut  = this.onBannerOut.bind(this);
+		this.onResize     = this.onResize.bind(this);
 
 		// state
 		this.state = this.getInitialState();
@@ -84,26 +80,11 @@ export default class BannerSuite extends React.PureComponent {
 	 */
 	getBannerByConfig(config) {
 		let bannerDOM;
-		// get banner from cache
-		//		if (typeof this.banners[config.id] !== 'undefined') {
-		//			bannerDOM = this.banners[config.id];
-		//		}
-		//		 render banner
-		//		else {
 		this.banners[config.id] = bannerDOM = BannerBuilder(config, {
-			onBannerClick: this.onBannerClick,
-			onButtonClick: this.onButtonClick,
-			windowWidth:   window.innerWidth,
+			windowWidth: window.innerWidth,
 		});
-		//		}
 
 		return bannerDOM;
-	}
-
-	onBannerClick(event) {
-		if (typeof this.props.onBannerClick === 'function') {
-			this.props.onBannerClick(event);
-		}
 	}
 
 	onResize() {
@@ -135,12 +116,6 @@ export default class BannerSuite extends React.PureComponent {
 		this.startInterval();
 	}
 
-	onButtonClick(event) {
-		if (typeof this.props.onButtonClick === 'function') {
-			this.props.onButtonClick(event);
-		}
-	}
-
 	/**
 	 * set visible item via index
 	 * @param i
@@ -152,23 +127,23 @@ export default class BannerSuite extends React.PureComponent {
 			this.setState({visibleIndex: i}, () => {
 				if (oldIndex !== i) {
 					if (typeof this.itemRefs[oldIndex] !== 'undefined') {
-						const el = ReactDOM.findDOMNode(this.itemRefs[oldIndex]);
+						const el = this.itemRefs[oldIndex];
 						el.classList.remove('is-active');
 					}
 
 					if (typeof this.pointRefs[oldIndex] !== 'undefined') {
-						const point = ReactDOM.findDOMNode(this.pointRefs[oldIndex]);
+						const point = this.pointRefs[oldIndex];
 						point.classList.remove('is-active');
 					}
 				}
 
 				if (typeof this.itemRefs[i] !== 'undefined') {
-					const el = ReactDOM.findDOMNode(this.itemRefs[i]);
+					const el = this.itemRefs[i];
 					el.classList.add('is-active');
 				}
 
 				if (typeof this.pointRefs[i] !== 'undefined') {
-					const point = ReactDOM.findDOMNode(this.pointRefs[i]);
+					const point = this.pointRefs[i];
 					point.classList.add('is-active');
 				}
 			});
@@ -184,7 +159,7 @@ export default class BannerSuite extends React.PureComponent {
 		this.timerInterval = window.setInterval(() => {
 			const cnt = this.props.configs.length;
 
-			if (cnt > 0 && !this.state.mouseOver) {
+			if (cnt > 0) {
 				this.setVisible((this.state.visibleIndex + 1) % cnt);
 			}
 		}, this.props.delay);
@@ -224,7 +199,7 @@ export default class BannerSuite extends React.PureComponent {
 
 					// banner switch control
 					/*eslint-disable*/
-					pointsDOM.push(<div className={classNames.TeaserPoint + (i === 0 ? ' is-active' : '')}
+					pointsDOM.push(<div className={Constants.ClassName.Point + (i === 0 ? ' is-active' : '')}
 					                    onClick={setVisible}
 					                    key={i}
 					                    ref={getRef}
@@ -232,27 +207,33 @@ export default class BannerSuite extends React.PureComponent {
 					/*eslint-enable*/
 				}
 
-				// define suite item
-				const ListItemElement = ElementFactory.getSuiteItem();
-
-				return <ListItemElement key={i} className={classNames.TeaserSuiteItem + (i === 0 ? ' is-active' : '')} ref={(ref) => {
+				return <div key={i} className={Constants.ClassName.SuiteItem + (i === 0 ? ' is-active' : '')} ref={(ref) => {
 					if (ref) {
 						this.itemRefs[i] = ref;
 					}
 				}}
-				>{this.getBannerByConfig(config)}</ListItemElement>;
+				>{this.getBannerByConfig(config)}</div>;
 			});
 
 			// define suite
 			const windowWidth = this.state.windowWidth;
-			const ListElement = ElementFactory.getSuite({fixedHeights, windowWidth});
+			const styleObj    = {
+				height: `${fixedHeights[1]['height']}px`
+			};
+
+			if (windowWidth < fixedHeights[1]['greaterThan']) {
+				styleObj.height = `${fixedHeights[0]['height']}px`;
+			}
 
 			if (bannerDOM.length > 0) {
 				content = (
-					<ListElement onMouseEnter={this.onBannerOver} onMouseLeave={this.onBannerOut} className={classNames.TeaserSuite}>
+					<div className={Constants.ClassName.Suite + ' ' + this.props.className}
+					     style={styleObj}
+					     onMouseEnter={this.onBannerOver}
+					     onMouseLeave={this.onBannerOut}>
 						{bannerDOM}
-						{pointsDOM.length > 1 && <div className={classNames.TeaserPointContainer}>{pointsDOM}</div>}
-					</ListElement>
+						{pointsDOM.length > 1 && <div className={Constants.ClassName.PointContainer}>{pointsDOM}</div>}
+					</div>
 				);
 			}
 		}
@@ -262,12 +243,12 @@ export default class BannerSuite extends React.PureComponent {
 }
 
 BannerSuite.propTypes = {
-	configs:       PropTypes.array,
-	delay:         PropTypes.number,
-	onBannerClick: PropTypes.func,
-	onButtonClick: PropTypes.func,
+	className: PropTypes.string,
+	configs:   PropTypes.array,
+	delay:     PropTypes.number,
 };
 
 BannerSuite.defaultProps = {
-	delay: 10000,
+	className: '',
+	delay:     10000,
 };

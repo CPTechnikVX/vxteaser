@@ -7,8 +7,11 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "storybook": "start-storybook -p 9001 -c .storybook",
+    "build-storybook": "build-storybook -c .storybook -o http-root/storybook",
     "test": "jest",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watch",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
   },
   "repository": {
     "type": "git",
@@ -24,6 +27,7 @@
   "license": "ISC",
   "devDependencies": {
     "@storybook/react": "^3.2.16",
+    "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.2",
     "babel-jest": "^21.2.0",
@@ -33,24 +37,30 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.9",
     "enzyme": "^3.2.0",
     "eslint": "^4.11.0",
     "eslint-plugin-react": "^7.5.1",
     "exports-loader": "^0.6.4",
+    "extract-text-webpack-plugin": "^3.0.2",
     "imports-loader": "^0.7.1",
     "jest": "^21.2.1",
+    "jsx-loader": "^0.13.2",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
     "path": "^0.12.7",
     "react-addons-test-utils": "^15.4.2",
     "react-test-renderer": "^15.4.2",
+    "style-loader": "^0.20.1",
     "webpack": "^3.8.1",
     "webpack-bundle-size-analyzer": "^2.7.0"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "exports-loader": "^0.6.4",
     "imports-loader": "^0.7.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "styled-components": "^2.2.3",
     "whatwg-fetch": "^2.0.3"
   }
 }

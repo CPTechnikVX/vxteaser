@@ -1,15 +1,39 @@
-const classNames = {
-	TeaserBanner:             'teaser-banner',
-	TeaserBannerNoSkew:       'teaser-banner teaser--has-no-skew',
-	TeaserBannerContent:      'teaser-banner__content',
-	TeaserBannerContentInner: 'teaser-banner__content__inner',
-	TeaserButton:             'teaser-button',
-	TeaserSuite:              'teaser-suite',
-	TeaserSuiteItem:          'teaser-suite__item',
-	TeaserPoint:              'teaser-point',
-	TeaserPointContainer:     'teaser-point-container',
+const ClassName = {
+	Banner:             'vxteaser-banner vxteaser--has-skew',
+	BannerContent:      'vxteaser-banner__content',
+	BannerContentInner: 'vxteaser-banner__content__inner',
+	BannerNoSkew:       'vxteaser-banner vxteaser--has-no-skew',
+	Button:             'vxteaser-button',
+	Headline:           'vxteaser-headline',
+	Point:              'vxteaser-point',
+	PointContainer:     'vxteaser-point-container',
+	Suite:              'vxteaser-suite',
+	SuiteItem:          'vxteaser-suite__item',
+	Text:               'vxteaser-text',
 };
 
-export {
-	classNames,
+const PrefixClassName = {
+	BackgroundColor: 'vxteaser-bg-color--',
+	Color:           'vxteaser-color--',
+	Type:            '-type-',
+};
+
+const Element = {
+	Banner:         'banner',
+	Button:         'button',
+	Column:         'col',
+	Content:        'content',
+	Headline:       'headline',
+	Link:           'link',
+	Panel:          'panel',
+	PanelGroup:     'panelgroup',
+	Row:            'row',
+	SkewPanelGroup: 'skewpanelgroup',
+	Text:           'text',
+};
+
+export default {
+	ClassName,
+	Element,
+	PrefixClassName,
 };

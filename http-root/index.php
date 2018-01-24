@@ -24,21 +24,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 		body {
 			margin:     0;
 			padding:    0;
-			background: #101112 url('http://www.visit-x.net/assets/img/bg_pattern.jpg');
+			background: #101112 url('https://www.visit-x.net/assets/img/bg_pattern.jpg');
 		}
 	</style>
-	<link rel="stylesheet" href="css/vx.css" />
+	<link rel="stylesheet" href="lib/css/main.css" />
 </head>
 <body>
 <div id="app"></div>
-<script src="lib/vxteaser.js"></script>
+<script src="lib/vxteaser-lib.js"></script>
 <script src="lib/vxteaser-playground.js"></script>
 <div style="width: 1300px; margin: 0 auto; max-width: 100%;">
+	<div style="color: white; font-size: 1.6rem; cursor: pointer; line-height: 25px; background-color: #505050; margin-bottom: 5px;">
+		<label><input type="checkbox" onClick="toggleLinear(this.checked)">show linear</label>
+	</div>
 	<div id="banner"></div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 
-
 <script>
+	var id = findGetParameter('id');
+
+	function toggleLinear(status) {
+		renderPreview(id, status);
+	}
+
 	function findGetParameter(parameterName) {
 		var result = null,
 		    tmp    = [];
@@ -61,13 +70,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 		}
 	}, false);
 
-	renderPreview(findGetParameter('id'));
+	renderPreview(id);
 
-	function renderPreview(id) {
-		VXTeaserView.Preview.render(document.querySelector('#banner'), {
-			vxqlEndpoint: 'https://pu.vxnextgen.x/vxql',
-			vxqlWebToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXJ0bmVySWQiOjgyNzgsInByb2R1Y3RJZCI6MTAwMDN9.8B65L1KiQ4xhJlSNJGvcBInBx4CtlUV_KrLMz3AnLyk',
-			id:           id
+	function renderPreview(id, isLinear) {
+		VXTeaser.Preview.render(document.querySelector('#banner'), {
+			bannerSuiteClassName: isLinear ? 'is-linear' : '',
+			vxqlEndpoint:         'https://pu.vxnextgen.x/vxql',
+			vxqlWebToken:         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXJ0bmVySWQiOjgyNzgsInByb2R1Y3RJZCI6MTAwMDN9.8B65L1KiQ4xhJlSNJGvcBInBx4CtlUV_KrLMz3AnLyk',
+			id:                   id
 		});
 	}
 </script>

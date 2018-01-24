@@ -1,0 +1,27 @@
+#!/bin/bash
+
+cd "$(dirname "$0")/../.."
+
+files=$(git diff --cached --name-only | grep '\.js\?$')
+
+# Prevent ESLint help message if no files matched
+if [[ $files = "" ]] ; then
+  exit 0
+fi
+
+failed=0
+for file in ${files}; do
+  if [[ $file =~ (src/) ]]; then
+    git show :$file | /opt/node6/bin/node ./node_modules/.bin/eslint $file
+    if [[ $? != 0 ]] ; then
+      failed=1
+    fi
+  fi
+done;
+
+if [[ $failed != 0 ]] ; then
+  echo -e "\033[1;31mESLint failed, git commit denied!"
+  echo -e "\033[0m"
+  exit $failed
+fi
+

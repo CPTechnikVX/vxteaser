@@ -1,7 +1,7 @@
 import React          from 'react';
-import ElementFactory from "./ElementFactory";
+import ElementFactory from './ElementFactory';
 
-if (typeof Object.assign != 'function') {
+if (typeof Object.assign !== 'function') {
 	Object.assign = function(target) {
 		'use strict';
 		if (target == null) {
@@ -9,10 +9,10 @@ if (typeof Object.assign != 'function') {
 		}
 
 		target = Object(target);
-		for (var index = 1; index < arguments.length; index++) {
-			var source = arguments[index];
+		for (let index = 1; index < arguments.length; index++) {
+			const source = arguments[index];
 			if (source != null) {
-				for (var key in source) {
+				for (let key in source) {
 					if (Object.prototype.hasOwnProperty.call(source, key)) {
 						target[key] = source[key];
 					}
@@ -27,36 +27,46 @@ function isNumeric(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-//called with every property and its value
-function process(key, children, attrs, config, props) {
-	console.log('node', key, attrs, children);
-	if (!isNumeric(key)) {
-		return ElementFactory.getForName(key, attrs, children, config, props);
-	}
+function renderNode({...args}) {
+	return ElementFactory.getForName.call(this, args);
 }
 
-function traverse(o, func, config, props) {
+function traverse(o, func, config, props, counter = 0) {
 	const children = [];
-	for (let i in o) {
-		let subchildren;
-		console.log('iter', i, o[i]);
-		if (o[i] !== null && typeof o[i] === 'object' && i[0] !== '@') {
-			//going one step down in the object tree!!
-			subchildren = traverse(o[i], func, config, props);
-		}
+	let n          = 0;
 
-		if (!isNumeric(i) && i[0] !== '@') {
-			let child;
-			if (typeof o[i] === 'object') {
-				const {'@attributes': attrs, '@value': value} = o[i];
-				child                                         = func.apply(this, [i, value ? value : subchildren, attrs, config, props]);
-			} else {
-				child = func.apply(this, [i, o[i], null, config, props]);
+	for (let i in o) {
+		n++;
+		if (o.hasOwnProperty(i)) {
+			let subchildren;
+			if (o[i] !== null && typeof o[i] === 'object' && i[0] !== '@') {
+				//going one step down in the object tree!!
+				subchildren = traverse(o[i], func, config, props, counter);
 			}
-			children.push(child);
-		}
-		else if (isNumeric(i)) {
-			children.push(subchildren);
+
+			if (!isNumeric(i) && i[0] !== '@') {
+				let child;
+				const params = {
+					attrs:        {key: 'vxk-' + n},
+					name:         i,
+					renderNodeFn: renderNode,
+					config,
+					props,
+				};
+
+				if (typeof o[i] === 'object') {
+					params.attrs    = {...params.attrs, ...o[i]['@attributes']};
+					params.children = o[i]['@value'] ? o[i]['@value'] : subchildren;
+				} else {
+					params.children = o[i];
+				}
+
+				child = func.call(this, params);
+				children.push(child);
+			}
+			else if (isNumeric(i)) {
+				children.push(subchildren);
+			}
 		}
 	}
 
@@ -64,39 +74,9 @@ function traverse(o, func, config, props) {
 }
 
 export default class Processor {
-	static processJSONToReact(config = {}, props = {}) {
-		const result = traverse(config.json, process, config, props);
+	static processJSONToReact(json, config = {}, props = {}, renderFn = renderNode) {
+		const result = traverse(json, renderFn, config, props);
 
 		return result;
-	}
-
-	static processNode(key, node) {
-		const children = [];
-
-		if (typeof node === 'object') {
-			const {'@attributes': attrs, '@value': value, ...childArrObj} = node;
-
-			const children = [];
-			for (let key in childArrObj) {
-				console.log(key, childArrObj);
-				if (childArrObj.hasOwnProperty(key) && isNumeric(key)) {
-					for (let keyName in childArrObj[key]) {
-						if (childArrObj[key].hasOwnProperty(keyName)) {
-							console.log('recur', keyName, childArrObj[key][keyName]);
-							children.push(Processor.processNode(keyName, childArrObj[key][keyName]));
-						}
-					}
-				} else {
-					console.log('stop', key, childArrObj[key]);
-					children.push(Processor.processNode(key, childArrObj[key]));
-				}
-			}
-			console.log(children);
-
-		} else {
-			children.push(Processor.processNode(key, childArrObj[key]));
-		}
-
-		return ElementFactory.getForName(key, attrs, children);
 	}
 }
