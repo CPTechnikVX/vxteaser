@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 import 'whatwg-fetch';
 import VXQL      from '../utils/Query';
 
-export default class Provider extends React.Component {
+/**
+ * Load configs via VXQL and pass it to the child element
+ */
+export default class Provider extends React.PureComponent {
+
+	static propTypes = {
+		/** @ignore */
+		children: PropTypes.node,
+		config:   PropTypes.object,
+	};
 
 	constructor(props) {
 		super(props);
@@ -31,8 +40,6 @@ export default class Provider extends React.Component {
 					id: config.id,
 				}
 			).then((data) => {
-				console.log('provider', data);
-				console.log('provider config', JSON.parse(data.config.typeConfig));
 				this.processData(data);
 			});
 		}
@@ -59,9 +66,7 @@ export default class Provider extends React.Component {
 						backgroundUrl: origTypeConfig.backgroundUrl2,
 					},
 				];
-				console.log(typeConfig);
 				this.setState({configs: [typeConfig]});
-
 
 			} catch (e) { /* nothing */
 			}
@@ -70,11 +75,9 @@ export default class Provider extends React.Component {
 
 	render() {
 		const childrenWithProps = React.Children.map(this.props.children,
-			(child) => {
-				return React.cloneElement(child, {
-					configs: this.state.configs
-				});
-			}
+			(child) => React.cloneElement(child, {
+				configs: this.state.configs,
+			})
 		);
 
 		return (
@@ -84,7 +87,3 @@ export default class Provider extends React.Component {
 		);
 	}
 }
-
-Provider.propTypes = {
-	config: PropTypes.object,
-};

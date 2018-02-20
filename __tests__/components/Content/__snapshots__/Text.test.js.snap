@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render text with color 1`] = `
+<span
+  className="vxteaser-text vxteaser-color--highlight"
+>
+  This is the text with highlight color!
+</span>
+`;
+
+exports[`render text with content 1`] = `
+<span
+  className="vxteaser-text"
+>
+  This is the text!
+</span>
+`;

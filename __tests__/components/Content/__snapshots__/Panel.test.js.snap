@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render panel with content 1`] = `
+<div
+  className="vxteaser-panel"
+  style={
+    Object {
+      "width": "50%",
+    }
+  }
+>
+  Panel content
+</div>
+`;

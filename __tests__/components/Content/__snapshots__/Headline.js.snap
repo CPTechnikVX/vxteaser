@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render headline default text headline 1`] = `
+<div
+  className="vxteaser-headline -type-text"
+>
+  This is text
+</div>
+`;
+
+exports[`render headline empty headline 1`] = `
+<div
+  className="vxteaser-headline -type-text"
+>
+  This is headline
+</div>
+`;
+
+exports[`render headline main headline 1`] = `
+<div
+  className="vxteaser-headline -type-main"
+>
+  This is a main headline
+</div>
+`;
+
+exports[`render headline sub headline 1`] = `
+<div
+  className="vxteaser-headline -type-sub"
+>
+  This is a sub
+</div>
+`;

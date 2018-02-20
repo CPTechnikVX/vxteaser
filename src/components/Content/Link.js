@@ -1,25 +1,38 @@
-import React             from 'react';
-import {PrefixClassName} from '../../utils/Constants';
-import classnames        from 'classnames';
+import React       from 'react';
+import PropTypes   from 'prop-types';
+import Constants   from '../../utils/Constants';
+import classnames  from 'classnames';
+import LinkHandler from '../LinkHandler';
 
+/**
+ * General link component
+ */
 export default class Link extends React.PureComponent {
-	render() {
-		const classList = [];
-		let onClick;
+	static propTypes = {
+		/** @ignore */
+		children: PropTypes.node,
+		color:    PropTypes.string,
+		link:     PropTypes.string,
+	};
 
-		if (this.props.color) {
-			classList.push(PrefixClassName.Color + this.props.color);
+	render() {
+		const {children, color, link} = this.props;
+		const classList               = [];
+		let onClickFn;
+
+		if (color) {
+			classList.push(Constants.PrefixClassName.Color + color);
 		}
 
-		if (typeof this.props.url !== 'undefined') {
-			onClick = (e) => {
+		if (link) {
+			onClickFn = (e) => {
 				e.preventDefault();
 				e.stopPropagation();
 
-				alert('Redirect to:' + this.props.url);
+				LinkHandler.handle(link);
 			};
 		}
 
-		return <a className={classnames(classList)} onClick={onClick}>{this.props.children}</a>;
+		return <a className={classnames(classList)} onClick={onClickFn}>{children}</a>;
 	}
 }

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render button empty 1`] = `
+<a
+  className="vxteaser-button"
+/>
+`;
+
+exports[`render button with props 1`] = `
+<a
+  className="vxteaser-button vxteaser-color--primary"
+  onClick={[Function]}
+>
+  This is button
+</a>
+`;

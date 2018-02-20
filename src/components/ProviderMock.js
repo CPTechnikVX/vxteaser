@@ -2,7 +2,10 @@ import React     from 'react';
 import PropTypes from 'prop-types';
 import 'whatwg-fetch';
 
-export default class Provider extends React.Component {
+/**
+ * Mock Provider connection with dummy configs
+ */
+export default class Provider extends React.PureComponent {
 	static propTypes = {
 		children: PropTypes.object,
 		config:   PropTypes.object,
@@ -35,31 +38,33 @@ export default class Provider extends React.Component {
 				.then((jsonRes) => {
 					const configs = [];
 					for (const configIndex in jsonRes) {
-						const config = jsonRes[configIndex];
+						if (jsonRes.hasOwnProperty(configIndex)) {
+							const config = jsonRes[configIndex];
 
-						const typeConfig = config.typeConfig;
-						typeConfig.json  = config.json;
+							const typeConfig = config.typeConfig;
+							typeConfig.json  = config.json;
 
-						typeConfig.fixedHeights = [
-							{
-								greaterThan:     0,
-								height:          typeConfig.height2,
-								backgroundUrl:   typeConfig.backgroundUrl2,
-								backgroundColor: typeConfig.backgroundColor2,
-								backgroundSize:  typeConfig.backgroundSize2,
-								color:           typeConfig.color2,
-							},
-							{
-								greaterThan:     typeConfig.breakpoint1,
-								height:          typeConfig.height1,
-								backgroundUrl:   typeConfig.backgroundUrl1,
-								backgroundColor: typeConfig.backgroundColor1,
-								backgroundSize:  typeConfig.backgroundSize1,
-								color:           typeConfig.color1,
-							},
-						];
+							typeConfig.fixedHeights = [
+								{
+									greaterThan:     0,
+									height:          typeConfig.height2,
+									backgroundUrl:   typeConfig.backgroundUrl2,
+									backgroundColor: typeConfig.backgroundColor2,
+									backgroundSize:  typeConfig.backgroundSize2,
+									color:           typeConfig.color2,
+								},
+								{
+									greaterThan:     typeConfig.breakpoint1,
+									height:          typeConfig.height1,
+									backgroundUrl:   typeConfig.backgroundUrl1,
+									backgroundColor: typeConfig.backgroundColor1,
+									backgroundSize:  typeConfig.backgroundSize1,
+									color:           typeConfig.color1,
+								},
+							];
 
-						configs.push(typeConfig);
+							configs.push(typeConfig);
+						}
 					}
 
 					this.setState({configs: configs});

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render link with content 1`] = `
+<a
+  className="vxteaser-color--highlight"
+  onClick={[Function]}
+>
+  Link content
+</a>
+`;

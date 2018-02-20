@@ -2,11 +2,19 @@
 @color-black: #000000;
 @color-primary: #1F93E9;
 @color-highlight: #FF4D3C;
+@color-dark: #1D1E1F;
+@color-special: #1f93e9;
+@color-transparent: transparent;
 
-@color-mood-4: #262728;
+@color-mood-1: #F1F1F1;
+@color-mood-5: #1D1E1F;
 @color-mood-6: #151617;
 
-@color-teaser-point: #F1F1F1;
+@font-family: 'Roboto Condensed';
+
+@font-weight-light: 300;
+@font-weight-normal: 400;
+@font-weight-bold: 700;
 
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
@@ -14,7 +22,7 @@
 /*********** COMMON ***************/
 
 html {
-	font-family: Roboto;
+	font-family: @font-family;
 	font-size:   10px;
 }
 
@@ -24,6 +32,22 @@ body {
 }
 
 /******* END OF COMMON ************/
+
+/******* MODIFIER ********/
+
+.-mb-10 {
+	margin-bottom: 10px !important;
+}
+
+.-mb-15 {
+	margin-bottom: 15px !important;
+}
+
+.-mb-20 {
+	margin-bottom: 20px !important;
+}
+
+/******* END OF MODIFEIR ************/
 
 .vxteaser-suite {
 	position:  relative;
@@ -46,7 +70,7 @@ body {
 	&.is-active {
 		visibility: visible;
 		opacity:    1;
-		z-index:    9999;
+		z-index:    1;
 		transition: opacity 1.2s;
 	}
 
@@ -62,20 +86,25 @@ body {
 }
 
 .vxteaser-headline {
-	font-size:   1.8rem;
-	font-family: 'Roboto Condensed';
+	font-family: @font-family;
 
 	&.-type-sub {
-		font-size: 2.6rem;
+		font-size:   2.6rem;
+		font-weight: @font-weight-light;
+		line-height: 2.3rem;
 	}
 	&.-type-main {
-		font-size:      4.5rem;
-		font-weight:    700;
+		margin-bottom:  1.5rem;
+		font-size:      4.6rem;
+		font-weight:    @font-weight-bold;
 		text-transform: uppercase;
+		line-height:    4rem;
 	}
 	&, &.-type-text {
-		font-size:   1.7rem;
-		line-height: 1.2;
+		margin-bottom: 2rem;
+		font-size:     1.7rem;
+		font-weight:   @font-weight-normal;
+		line-height:   2rem;
 	}
 }
 
@@ -85,17 +114,22 @@ body {
 	border:           1px solid @color-primary;
 	background-color: @color-primary;
 	display:          inline-block;
-	font-size:        1.4rem;
-	font-weight:      normal;
-	padding:          0.65em 1em 0.55em;
+	font-size:        1.7rem;
+	font-weight:      @font-weight-light;
+	padding:          0.7em 0 0.65em 0;
 	cursor:           pointer;
-	min-width:        50px;
+	min-width:        180px;
 	position:         relative;
-	text-align:       left;
+	text-align:       center;
 	text-decoration:  none;
 	text-transform:   none;
 	transition:       all 0.15s linear;
 	vertical-align:   top;
+
+	&.vxteaser-color--white {
+		color:            @color-special;
+		background-color: @color-white
+	}
 }
 
 .vxteaser-banner {
@@ -116,11 +150,19 @@ body {
 	content:          ' ';
 	top:              -120%;
 	left:             -9%;
-	background-color: @color-mood-4;
+	background-color: @color-mood-5;
 
-	.-theme-white.vxteaser--has-skew & {
+	.-theme-light.vxteaser--has-skew & {
 		color:            @color-black;
 		background-color: @color-white;
+	}
+	.-theme-special.vxteaser--has-skew & {
+		color:            @color-white;
+		background-color: @color-special;
+	}
+	.-theme-transparent.vxteaser--has-skew & {
+		color:            @color-white;
+		background-color: @color-transparent;
 	}
 }
 
@@ -134,48 +176,63 @@ body {
 	color:            @color-white;
 	background-color: transparent;
 
-	.-theme-white & {
+	.-theme-light & {
 		color: @color-black;
 	}
+	.-theme-special & {
+		color: @color-white;
+	}
+	.-theme-transparent & {
+		color: @color-white;
+	}
 
-	.-theme-white.vxteaser--has-no-skew & {
+	.-theme-light.vxteaser--has-no-skew & {
 		background-color: @color-white;
+	}
+	.-theme-special.vxteaser--has-no-skew & {
+		background-color: @color-special;
+	}
+	.-theme-transparent.vxteaser--has-no-skew & {
+		background-color: @color-transparent;
 	}
 }
 
 .vxteaser-banner__content__inner {
 	height:     100%;
-	padding:    2.5em 2.5em 2.5em 2.5em;
+	padding:    2.5em 5em;
 	box-sizing: border-box;
 }
 
-.vxteaser-point-container {
-	font-size: 2rem;
+.vxteaser-arrow--left, .vxteaser-arrow--right {
 	position:  absolute;
-	transform: translateY(-50%);
+	z-index:   300;
 	top:       50%;
-	right:     1em;
-	z-index:   9999;
+	transform: translateY(-50%);
+	cursor:    pointer;
+	font-size: 6rem;
+	color:     @color-mood-1;
+
+	.is-linear & {
+		display: none;
+	}
 }
 
-.vxteaser-point {
-	border:        1px solid @color-teaser-point;
-	border-radius: 100%;
-	cursor:        pointer;
-	display:       block;
-	height:        8px;
-	opacity:       1;
-	width:         8px;
-	z-index:       9999;
-	margin-bottom: 10px;
+.vxteaser-arrow--left {
+	left:        10px;
+	text-shadow: -5px 1px 5px rgba(16, 17, 18, .9);
+
+	&:before {
+		content: "<";
+	}
 }
 
-.vxteaser-point-container .vxteaser-point {
-	background-color: transparent;
-}
+.vxteaser-arrow--right {
+	right:       10px;
+	text-shadow: 5px 1px 5px rgba(16, 17, 18, .9);
 
-.vxteaser-point-container .vxteaser-point.is-active {
-	background-color: @color-teaser-point;
+	&:before {
+		content: ">";
+	}
 }
 
 .vxteaser-row:after {
@@ -196,105 +253,161 @@ body {
 
 /****************** END COLORS ******************/
 
-/* test, @todo: needs to be converted */
-
-@media only screen and (min-width: 1199px) {
-	.teaser__skew-container {
-		height: 100%;
-	}
-}
-
-.teaser__skew-container {
+.vxteaser-panel--skew {
 	position: absolute;
-	right:    -63px;
 	top:      0;
-	height:   100%;
-}
-
-@media only screen and (min-width: 1199px) {
-	.teaser__skew {
-		width:             300px;
-		-webkit-transform: skewX(-26deg);
-		transform:         skewX(-26deg);
-	}
-
-}
-
-.teaser__skew {
 	overflow: hidden;
-	width:    33.3%;
 	height:   100%;
 	margin:   auto;
-	float:    left;
-}
 
-@media only screen and (min-width: 1199px) {
-	.teaser__skew {
-		width: 300px;
+	.-has-panelskew-2 & {
+		width: 50%;
+	}
+
+	.-has-panelskew-3 & {
+		width: 33.3%;
+	}
+
+	&.-nth-of-class-1 {
+		left: 0;
+
+		@media only screen and (min-width: 1199px) {
+			.-has-panelskew-2 & {
+			}
+
+			left: 36%;
+		}
+	}
+	&.-nth-of-class-2 {
+		left: 33.3%;
+
+		.-has-panelskew-2 & {
+			left: 50%;
+		}
+
+		@media only screen and (min-width: 1199px) {
+			.-has-panelskew-2 & {
+				left: 68%;
+			}
+
+			left: 59%;
+		}
+	}
+	&.-nth-of-class-3 {
+		left: 66.6%;
+
+		@media only screen and (min-width: 1199px) {
+			left: 82%;
+		}
 	}
 }
 
 @media only screen and (min-width: 1199px) {
-	.teaser__skew .teaser__skew-image {
-		-webkit-transform: skewX(26deg) translateX(-63px);
-		transform:         skewX(26deg) translateX(-63px);
+	.vxteaser-panel--skew {
+		transform: skewX(-26deg);
+	}
+
+	.vxteaser-panel--skew .vxteaser-panel--skew__image {
+		transform: skewX(26deg) translateX(-63px);
 	}
 }
 
-.teaser__skew .teaser__skew-image {
+.vxteaser-panel--skew .vxteaser-panel--skew__image {
 	display: block;
 	margin:  0;
 	height:  100%;
 }
 
 @media only screen and (max-width: 991px) {
-	.teaser__skew .teaser__skew-image {
+	.vxteaser-panel--skew .vxteaser-panel--skew__image {
 		position: relative;
 		left:     -20%;
 	}
 }
 
-.btn--icon.teaser__skew-button {
-	position:           absolute;
-	z-index:            2;
-	bottom:             35px;
-	font-size:          2.4rem;
-	font-family:        'Roboto Condensed';
-	text-transform:     none;
-	color:              @color-white;
-	background-color:   @color-mood-6;
-	padding:            .55em 1.5em .45em 1.45em;
-	border:             none;
-	-webkit-transition: none;
-	transition:         none;
-}
+/* teaser skew buttons */
 
-@media only screen and (min-width: 1199px) {
-	.teaser__skew-container a:nth-of-type(1) {
-		left: -37px;
+.vxteaser-skew-button {
+	position:         absolute;
+	z-index:          2;
+	font-size:        2.4rem;
+	font-family:      @font-family;
+	line-height:      1;
+	text-transform:   none;
+	color:            @color-white;
+	background-color: @color-mood-6;
+	padding:          .55em 1.5em .45em 1.45em;
+	border:           none;
+	transition:       none;
+	text-decoration:  none;
+
+	&:hover {
+		background-color: lighten(@color-mood-6, 15%);
+	}
+	&:hover::before {
+		transition:   none;
+		border-color: transparent transparent lighten(@color-mood-6, 15%) transparent;
+	}
+	&:before {
+		border-style: solid;
+		border-width: 0 0 2em 1em;
+		border-color: transparent transparent #151617 transparent;
+	}
+	&:after {
+		position:    absolute;
+		right:       0.4em;
+		content:     ">";
+		display:     inline-block;
+		float:       left;
+		font-weight: @font-weight-normal;
+	}
+
+	@media only screen and (min-width: (1199px)) {
+		top:    auto;
+		bottom: 35px;
+
+		&::before {
+			content:      '';
+			width:        0;
+			height:       0;
+			position:     absolute;
+			left:         -1em;
+			top:          0;
+			border-style: solid;
+			border-width: 0 0 2em 1em;
+			border-color: transparent transparent @color-mood-6 transparent;
+		}
 	}
 }
 
-.teaser__skew-container a:nth-of-type(1) {
+.vxteaser-skew-button.-nth-of-class-1 {
 	left: 0;
-}
 
-@media only screen and (min-width: 1199px) {
-	.teaser__skew-container a:nth-of-type(2) {
-		left: 263px;
+	@media only screen and (min-width: 1199px) {
+		left: 33%;
 	}
 }
 
-.teaser__skew-container a:nth-of-type(2) {
+.vxteaser-skew-button.-nth-of-class-2 {
 	left: 33.3%;
-}
 
-@media only screen and (min-width: 1199px) {
-	.teaser__skew-container a:nth-of-type(3) {
-		left: 563px;
+	.-has-panelskew-2 & {
+		left: 50%;
+	}
+
+	@media only screen and (min-width: 1199px) {
+		.-has-panelskew-2 & {
+			left: 65%;
+		}
+
+		left: 56%;
 	}
 }
 
-.teaser__skew-container a:nth-of-type(3) {
+.vxteaser-skew-button.-nth-of-class-3 {
 	left: 66.6%;
+
+	@media only screen and (min-width: 1199px) {
+		left: 79%;
+	}
 }

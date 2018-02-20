@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render banner banner content 1`] = `
+<div
+  className="vxteaser-banner vxteaser--has-skew"
+  onClick={[Function]}
+  style={
+    Object {
+      "background": "no-repeat url('url0') top right",
+      "backgroundSize": "contain",
+      "height": "260px",
+    }
+  }
+>
+  <BannerContent
+    key=".0"
+  />
+</div>
+`;
+
+exports[`render banner banner content tablet 1`] = `
+<div
+  className="vxteaser-banner vxteaser--has-no-skew"
+  onClick={[Function]}
+  style={
+    Object {
+      "background": "no-repeat url('url1') top right",
+      "backgroundSize": "contain",
+      "height": "500px",
+    }
+  }
+>
+  <BannerContent
+    key=".0"
+    windowWidth={768}
+  />
+</div>
+`;
+
+exports[`render banner banner theme 1`] = `
+<div
+  className="vxteaser-banner vxteaser--has-skew -theme-white"
+  onClick={[Function]}
+  style={
+    Object {
+      "background": "no-repeat url('url0') top right",
+      "backgroundSize": "contain",
+      "height": "260px",
+    }
+  }
+>
+  <BannerContent
+    key=".0"
+  />
+</div>
+`;
+
+exports[`render banner empty banner 1`] = `""`;

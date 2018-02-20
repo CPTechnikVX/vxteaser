@@ -6,7 +6,13 @@ import classnames from 'classnames';
 export default class Headline extends React.PureComponent {
 
 	static propTypes = {
-		type: PropTypes.oneOf(['main', 'sub', 'text']),
+		/** @ignore */
+		children: PropTypes.node,
+		/**
+		 * CSS modifier
+		 */
+		modifier: PropTypes.string,
+		type:     PropTypes.oneOf(['main', 'sub', 'text']),
 	};
 
 	static defaultProps = {
@@ -14,14 +20,19 @@ export default class Headline extends React.PureComponent {
 	};
 
 	render() {
-		const classList = [];
+		const {children, modifier, type} = this.props;
+		const classList                  = [];
 
 		classList.push(Constants.ClassName.Headline);
 
-		if (this.props.type) {
-			classList.push(Constants.PrefixClassName.Type + this.props.type)
+		if (type) {
+			classList.push(Constants.PrefixClassName.Type + type);
 		}
 
-		return <div className={classnames(classList)}>{this.props.children}</div>;
+		if (modifier) {
+			classList.push(modifier);
+		}
+
+		return <div className={classnames(classList)}>{children}</div>;
 	}
 }

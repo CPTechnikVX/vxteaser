@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render column empty 1`] = `
+<div
+  className="vxteaser-col"
+  style={
+    Object {
+      "float": "left",
+      "width": "33%",
+    }
+  }
+/>
+`;
+
+exports[`render column with content 1`] = `
+<div
+  className="vxteaser-col"
+  style={
+    Object {
+      "float": "left",
+      "width": "33%",
+    }
+  }
+>
+  Column content
+</div>
+`;

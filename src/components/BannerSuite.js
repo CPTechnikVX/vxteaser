@@ -3,36 +3,40 @@ import PropTypes     from 'prop-types';
 import BannerBuilder from '../utils/Builder';
 import Constants     from './../utils/Constants';
 
+/**
+ * Top level banner suite component containing one or more banners
+ */
 export default class BannerSuite extends React.PureComponent {
+
+	/**
+	 * initial state
+	 * @returns {Object}
+	 */
+	static getInitialState() {
+		return {
+			visibleIndex: 0,
+			mouseOver:    false,
+			windowWidth:  window.innerWidth,
+		};
+	}
 
 	constructor(props) {
 		super(props);
 
 		this.banners       = {};
 		this.itemRefs      = [];
-		this.pointRefs     = [];
 		this.timerInterval = null;
 		this.resizeTimeout = null;
 
 		// bind
 		this.onBannerOver = this.onBannerOver.bind(this);
 		this.onBannerOut  = this.onBannerOut.bind(this);
+		this.onNextClick  = this.onNextClick.bind(this);
+		this.onPrevClick  = this.onPrevClick.bind(this);
 		this.onResize     = this.onResize.bind(this);
 
 		// state
-		this.state = this.getInitialState();
-	}
-
-	/**
-	 * initial state
-	 * @returns {Object}
-	 */
-	getInitialState() {
-		return {
-			visibleIndex: 0,
-			mouseOver:    false,
-			windowWidth:  window.innerWidth,
-		};
+		this.state = BannerSuite.getInitialState();
 	}
 
 	componentDidMount() {
@@ -45,17 +49,18 @@ export default class BannerSuite extends React.PureComponent {
 
 	shouldComponentUpdate(nextProps, nextState) {
 		const breakpoint = this.props.configs && this.props.configs.length > 0 ? this.props.configs[0].fixedHeights[1]['greaterThan'] : null;
+		let retVal       = true;
 
 		if (nextState.visibleIndex !== this.state.visibleIndex) {
-			return false;
+			retVal = false;
 		} else if (breakpoint && nextState.windowWidth !== this.state.windowWidth
 			&& !(this.state.windowWidth < breakpoint && nextState.windowWidth >= breakpoint
 				|| this.state.windowWidth >= breakpoint && nextState.windowWidth < breakpoint)
 		) {
-			return false;
-		} else {
-			return true;
+			retVal = false;
 		}
+
+		return retVal;
 	}
 
 	componentDidUpdate() {
@@ -103,24 +108,44 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	/**
-	 * mouse over banner
+	 * Mouse over banner
 	 */
 	onBannerOver() {
 		this.clearInterval();
 	}
 
 	/**
-	 * mouse out banner
+	 * Mouse out of banner
 	 */
 	onBannerOut() {
 		this.startInterval();
 	}
 
 	/**
-	 * set visible item via index
+	 * Click previous arrow
+	 */
+	onPrevClick() {
+		this.setVisible(this.state.visibleIndex - 1);
+	}
+
+	/**
+	 * Click next arrow
+	 */
+	onNextClick() {
+		this.setVisible(this.state.visibleIndex + 1);
+	}
+
+	/**
+	 * Set visible item via index
 	 * @param i
 	 */
 	setVisible(i) {
+		if (i < 0) {
+			i = this.itemRefs.length - 1;
+		} else if (i >= this.itemRefs.length) {
+			i = 0;
+		}
+
 		if (this.itemRefs && typeof this.itemRefs[i] !== 'undefined') {
 			const oldIndex = this.state.visibleIndex;
 
@@ -130,28 +155,18 @@ export default class BannerSuite extends React.PureComponent {
 						const el = this.itemRefs[oldIndex];
 						el.classList.remove('is-active');
 					}
-
-					if (typeof this.pointRefs[oldIndex] !== 'undefined') {
-						const point = this.pointRefs[oldIndex];
-						point.classList.remove('is-active');
-					}
 				}
 
 				if (typeof this.itemRefs[i] !== 'undefined') {
 					const el = this.itemRefs[i];
 					el.classList.add('is-active');
 				}
-
-				if (typeof this.pointRefs[i] !== 'undefined') {
-					const point = this.pointRefs[i];
-					point.classList.add('is-active');
-				}
 			});
 		}
 	}
 
 	/**
-	 * activate timer interval for switching items
+	 * Activate timer interval for switching items
 	 */
 	startInterval() {
 		this.clearInterval();
@@ -166,7 +181,7 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	/**
-	 * deactivate timer interval for switching items
+	 * Deactivate timer interval for switching items
 	 */
 	clearInterval() {
 		if (this.timerInterval) {
@@ -176,8 +191,8 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	render() {
-		const configs = this.props.configs;
-		let content   = null;
+		const {className, configs} = this.props;
+		let content                = null;
 
 		// is configuration provided?
 		if (configs && configs.length > 0) {
@@ -187,24 +202,8 @@ export default class BannerSuite extends React.PureComponent {
 			// generate banners from config array
 			const bannerDOM = configs.map((config, i) => {
 				if (configs.length > 1) {
-					const setVisible = () => {
-						this.clearInterval();
-						this.setVisible(i);
-					};
-					const getRef     = (ref) => {
-						if (ref) {
-							this.pointRefs[i] = ref;
-						}
-					};
-
 					// banner switch control
-					/*eslint-disable*/
-					pointsDOM.push(<div className={Constants.ClassName.Point + (i === 0 ? ' is-active' : '')}
-					                    onClick={setVisible}
-					                    key={i}
-					                    ref={getRef}
-					/>);
-					/*eslint-enable*/
+					pointsDOM.push(i);
 				}
 
 				return <div key={i} className={Constants.ClassName.SuiteItem + (i === 0 ? ' is-active' : '')} ref={(ref) => {
@@ -212,13 +211,13 @@ export default class BannerSuite extends React.PureComponent {
 						this.itemRefs[i] = ref;
 					}
 				}}
-				>{this.getBannerByConfig(config)}</div>;
+				       >{this.getBannerByConfig(config)}</div>;
 			});
 
 			// define suite
 			const windowWidth = this.state.windowWidth;
 			const styleObj    = {
-				height: `${fixedHeights[1]['height']}px`
+				height: `${fixedHeights[1]['height']}px`,
 			};
 
 			if (windowWidth < fixedHeights[1]['greaterThan']) {
@@ -227,12 +226,16 @@ export default class BannerSuite extends React.PureComponent {
 
 			if (bannerDOM.length > 0) {
 				content = (
-					<div className={Constants.ClassName.Suite + ' ' + this.props.className}
+					<div className={Constants.ClassName.Suite + ' ' + className}
 					     style={styleObj}
 					     onMouseEnter={this.onBannerOver}
-					     onMouseLeave={this.onBannerOut}>
+					     onMouseLeave={this.onBannerOut}
+					>
+						{pointsDOM.length > 1 &&
+						<div className={'vxteaser-arrow--left'} onClick={this.onPrevClick} />}
 						{bannerDOM}
-						{pointsDOM.length > 1 && <div className={Constants.ClassName.PointContainer}>{pointsDOM}</div>}
+						{pointsDOM.length > 1 &&
+						<div className={'vxteaser-arrow--right'} onClick={this.onNextClick} />}
 					</div>
 				);
 			}

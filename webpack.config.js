@@ -1,73 +1,102 @@
-var path    = require('path');
-var webpack = require('webpack');
+const path    = require('path');
+const webpack = require('webpack');
 require('imports-loader');
 require('exports-loader');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-module.exports = {
-	entry: {
+module.exports = [
+	getConfig(),
+	getConfig('standalone')
+];
+
+/**
+ * Load specific configuration
+ * @param type
+ * @returns {{entry: {lib: string, playground: string}, output: {filename: string, path: string, hotUpdateChunkFilename: string, hotUpdateMainFilename: string, library: string, libraryTarget: string}, module: {rules: *[]}, externals: *, stats: {colors: boolean}, resolve: {extensions: string[]}, plugins: *[]}}
+ */
+function getConfig(type = '') {
+	const entries = {
 		lib:        __dirname + '/src/lib.js',
-		main:       __dirname + '/src/less/index.less',
 		playground: __dirname + '/src/playground.js',
-	},
+	};
 
-	output: {
-		filename:               'vxteaser-[name].js',
-		path:                   path.resolve(__dirname, ".") + '/lib',
-		hotUpdateChunkFilename: 'temp/hot/hot-update.js',
-		hotUpdateMainFilename:  'temp/hot/hot-update.json',
-		library:                'VXTeaser',
-		libraryTarget:          'umd'
-	},
+	if (type !== 'standalone') {
+		entries.main = __dirname + '/src/less/index.less';
+	}
 
-	module: {
-		rules: [
-			{
-				test:    /\.js$/,
-				use:     [
-					'babel-loader',
-				],
-				exclude: /(node_modules|bower_components)/
-			},
-			{
-				test: /\.less/,
-				use:  ExtractTextPlugin.extract({
-					fallback: 'style-loader',
-					use:      ['css-loader', 'less-loader']
-				})
-			},
-			{
-				test: /\.css$/,
-				use:  ['style-loader', 'css-loader']
-			}
-		]
-	},
+	return {
+		entry: entries,
 
-	externals: {
+		output: {
+			filename:               'vxteaser-[name]' + (type ? '-' + type : '') + '.js',
+			path:                   path.resolve(__dirname, ".") + '/lib',
+			hotUpdateChunkFilename: 'temp/hot/hot-update.js',
+			hotUpdateMainFilename:  'temp/hot/hot-update.json',
+			library:                'VXTeaser',
+			libraryTarget:          'umd'
+		},
+
+		module: {
+			rules: [
+				{
+					test:    /\.js$/,
+					use:     [
+						'babel-loader',
+					],
+					exclude: /(node_modules|bower_components)/
+				},
+				{
+					test: /\.less/,
+					use:  ExtractTextPlugin.extract({
+						fallback: 'style-loader',
+						use:      [
+							'css-loader',
+							{
+								loader:  'clean-css-loader',
+								options: {
+									compatibility: 'ie9',
+									level:         2,
+									inline:        ['remote']
+								}
+							},
+							'postcss-loader',
+							'less-loader'
+						]
+					})
+				},
+				{
+					test: /\.css$/,
+					use:  ['style-loader', 'css-loader']
+				}
+			]
+		},
+
+		externals: type === 'standalone' ? {
 //			 Use external versions
-//			"react": "React"
-	},
-	stats:     {
-		colors: true
-	},
-	resolve:   {
-		extensions: ['.js', '.jsx']
-	},
-	plugins:   [
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.ProvidePlugin({
-			'Promise': 'promise-polyfill',
-			'fetch':   'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
-		}),
-		new webpack.optimize.UglifyJsPlugin({
-			compress: {
-				warnings: false
-			}
-		}),
-		new ExtractTextPlugin({
-			filename: (getPath) => {
-				return getPath('css/[name].css').replace('css/js', 'css');
-			},
-		})
-	]
-};
+			"react": "React"
+		} : {},
+		stats:     {
+			colors: true
+		},
+		resolve:   {
+			extensions: ['.js', '.jsx']
+		},
+		plugins:   [
+			new webpack.HotModuleReplacementPlugin(),
+			new webpack.ProvidePlugin({
+				'Promise': 'promise-polyfill',
+				'fetch':   'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
+			}),
+			new webpack.optimize.UglifyJsPlugin({
+				compress: {
+					warnings: false
+				}
+			}),
+			new ExtractTextPlugin({
+				filename: (getPath) => {
+					return getPath('css/[name]' + (type ? '-' + type : '') + '.css').replace('css/js', 'css');
+				},
+			})
+		]
+	};
+}

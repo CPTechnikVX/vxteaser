@@ -1,6 +1,12 @@
 let _endpoint = '';
 let _webToken = '';
 
+/**
+ * VXQL connector
+ * @param endpoint
+ * @param webToken
+ * @returns {{query: query}}
+ */
 export default function(endpoint, webToken) {
 	_endpoint = endpoint;
 	_webToken = webToken;

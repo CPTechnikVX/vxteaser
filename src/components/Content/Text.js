@@ -1,17 +1,28 @@
 import React      from 'react';
 import Constants  from '../../utils/Constants';
 import classnames from 'classnames';
+import PropTypes  from 'prop-types';
 
+/**
+ * Default free text element
+ */
 export default class Text extends React.PureComponent {
+	static propTypes = {
+		/** @ignore */
+		children: PropTypes.node,
+		color:    PropTypes.string,
+	};
+
 	render() {
-		const classList = [];
+		const {children, color} = this.props;
+		const classList         = [];
 
 		classList.push(Constants.ClassName.Text);
 
-		if (this.props.color) {
-			classList.push(Constants.PrefixClassName.Color + this.props.color);
+		if (color) {
+			classList.push(Constants.PrefixClassName.Color + color);
 		}
 
-		return <span className={classnames(classList)}>{this.props.children}</span>;
+		return <span className={classnames(classList)}>{children}</span>;
 	}
 }

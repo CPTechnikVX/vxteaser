@@ -1,83 +1,80 @@
-import React      from 'react';
-import PropTypes  from 'prop-types';
-import classnames from 'classnames';
-import Constants  from '../../utils/Constants';
+import React       from 'react';
+import PropTypes   from 'prop-types';
+import classnames  from 'classnames';
+import Constants   from '../../utils/Constants';
+import LinkHandler from '../LinkHandler';
 
+/**
+ * Main Banner component
+ */
 export default class Banner extends React.PureComponent {
+
+	static propTypes = {
+		/** @ignore */
+		config:      PropTypes.object,
+		/** @ignore */
+		children:    PropTypes.node,
+		/** @ignore */
+		onClickFn:   PropTypes.func,
+		link:        PropTypes.string,
+		theme:       PropTypes.string,
+		/** @ignore */
+		windowWidth: PropTypes.number,
+	};
 
 	constructor(props) {
 		super(props);
 
 		// bind
-		this.onBannerClick = this.onBannerClick.bind(this);
+		this.onClickFn = this.onClickFn.bind(this);
 	}
 
-	onBannerClick = (event) => {
+	onClickFn(event) {
 		event.preventDefault();
 		event.stopPropagation();
 
-		alert(this.props.url);
-
-		if (typeof this.props.onBannerClick === 'function') {
-			this.props.onBannerClick();
-		}
+		LinkHandler.handle(this.props.link);
 	}
 
 	render() {
-		const {config, windowWidth} = this.props;
-		const classList             = [];
+		const {children, config, theme, windowWidth} = this.props;
 
-		const styleObj = {
-			height:         `${config.fixedHeights[1]['height']}px`,
-			color:          `${config.fixedHeights[0]['color']}`,
-			background:     `no-repeat url('${config.fixedHeights[0]['backgroundUrl']}') top right`,
-			backgroundSize: `${config.fixedHeights[1]['backgroundSize'] ? config.fixedHeights[1]['backgroundSize'] : 'contain'}`,
-		};
+		if (config) {
+			const classList = [];
 
-		if (windowWidth < config.fixedHeights[1]['greaterThan']) {
-			styleObj.background     = `no-repeat url('${config.fixedHeights[1]['backgroundUrl']}') top right`;
-			styleObj.backgroundSize = `${config.fixedHeights[0]['backgroundSize'] ? config.fixedHeights[0]['backgroundSize'] : 'contain'}`;
-			styleObj.height         = `${config.fixedHeights[0]['height']}px`;
-			styleObj.height         = `${config.fixedHeights[0]['height']}px`;
+			const styleObj = {
+				background:     `no-repeat url('${config.fixedHeights[0]['backgroundUrl']}') top right`,
+				backgroundSize: `${config.fixedHeights[1]['backgroundSize'] ? config.fixedHeights[1]['backgroundSize'] : 'contain'}`,
+				height:         `${config.fixedHeights[1]['height']}px`,
+			};
 
-			classList.push(Constants.ClassName.BannerNoSkew);
-		} else {
-			classList.push(Constants.ClassName.Banner);
-		}
+			if (windowWidth < config.fixedHeights[1]['greaterThan']) {
+				styleObj.background     = `no-repeat url('${config.fixedHeights[1]['backgroundUrl']}') top right`;
+				styleObj.backgroundSize = `${config.fixedHeights[0]['backgroundSize'] ? config.fixedHeights[0]['backgroundSize'] : 'contain'}`;
+				styleObj.height         = `${config.fixedHeights[0]['height']}px`;
 
-		if (this.props.theme) {
-			classList.push('-theme-' + this.props.theme);
-		}
-
-		const childrenWithProps = React.Children.map(this.props.children,
-			(child) => {
-				return React.cloneElement(child, {
-					windowWidth: windowWidth,
-				});
+				classList.push(Constants.ClassName.BannerNoSkew);
+			} else {
+				classList.push(Constants.ClassName.Banner);
 			}
-		);
 
-		return (
-			<div className={classnames(classList)} style={styleObj} onClick={this.onBannerClick}>
-				{childrenWithProps}
-			</div>
-		);
+			if (theme) {
+				classList.push('-theme-' + theme);
+			}
 
+			const childrenWithProps = React.Children.map(children,
+				(child) => React.cloneElement(child, {
+					windowWidth: windowWidth,
+				})
+			);
+
+			return (
+				<div className={classnames(classList)} style={styleObj} onClick={this.onClickFn}>
+					{childrenWithProps}
+				</div>
+			);
+		} else {
+			return null;
+		}
 	}
 }
-
-Banner.propTypes = {
-	/** @ignore */
-	config:        PropTypes.object,
-	/** @ignore */
-	children:      PropTypes.node,
-	/** @ignore */
-	onBannerClick: PropTypes.func,
-	/** @ignore */
-	windowWidth:   PropTypes.number,
-};
-
-Banner.defaultProps = {
-	config:      {},
-	windowWidth: window.innerWidth,
-};

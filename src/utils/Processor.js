@@ -1,4 +1,3 @@
-import React          from 'react';
 import ElementFactory from './ElementFactory';
 
 if (typeof Object.assign !== 'function') {
@@ -12,7 +11,7 @@ if (typeof Object.assign !== 'function') {
 		for (let index = 1; index < arguments.length; index++) {
 			const source = arguments[index];
 			if (source != null) {
-				for (let key in source) {
+				for (const key in source) {
 					if (Object.prototype.hasOwnProperty.call(source, key)) {
 						target[key] = source[key];
 					}
@@ -23,32 +22,66 @@ if (typeof Object.assign !== 'function') {
 	};
 }
 
+/**
+ * If the key is numeric
+ * @param n
+ * @returns {boolean}
+ */
 function isNumeric(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+/**
+ * Render node
+ * @param args
+ * @returns {*}
+ */
 function renderNode({...args}) {
 	return ElementFactory.getForName.call(this, args);
 }
 
+/**
+ * Traverse recursively the object und process each node via fnc()
+ * @param o
+ * @param func
+ * @param config
+ * @param props
+ * @param counter
+ * @returns {Array}
+ */
 function traverse(o, func, config, props, counter = 0) {
 	const children = [];
 	let n          = 0;
 
-	for (let i in o) {
+	if (!config.stats) {
+		config.stats = {};
+	}
+
+	if (!config.stats[counter]) {
+		config.stats[counter] = [];
+	}
+
+	for (const i in o) {
 		n++;
 		if (o.hasOwnProperty(i)) {
 			let subchildren;
+
 			if (o[i] !== null && typeof o[i] === 'object' && i[0] !== '@') {
 				//going one step down in the object tree!!
-				subchildren = traverse(o[i], func, config, props, counter);
+				subchildren = traverse(o[i], func, config, props, !isNumeric(i) ? counter + 1 : counter);
 			}
 
 			if (!isNumeric(i) && i[0] !== '@') {
-				let child;
+				if (!config.stats[counter][i]) {
+					config.stats[counter][i] = 1;
+				} else {
+					config.stats[counter][i] += 1;
+				}
+
 				const params = {
 					attrs:        {key: 'vxk-' + n},
 					name:         i,
+					stats:        {nthOfType: config.stats[counter][i], level: counter},
 					renderNodeFn: renderNode,
 					config,
 					props,
@@ -61,7 +94,7 @@ function traverse(o, func, config, props, counter = 0) {
 					params.children = o[i];
 				}
 
-				child = func.call(this, params);
+				const child = func.call(this, params);
 				children.push(child);
 			}
 			else if (isNumeric(i)) {
@@ -74,9 +107,14 @@ function traverse(o, func, config, props, counter = 0) {
 }
 
 export default class Processor {
+	/**
+	 * Convert given JSON configuration into react elements tree
+	 * @param json
+	 * @param config
+	 * @param props
+	 * @param renderFn
+	 */
 	static processJSONToReact(json, config = {}, props = {}, renderFn = renderNode) {
-		const result = traverse(json, renderFn, config, props);
-
-		return result;
+		return traverse(json, renderFn, config, props);
 	}
 }

@@ -1,26 +1,36 @@
+# VXTeaser library
 
-# Development
+## Development
 
 npm run build
 
 npm run watch
 
-# Tests
+npm run test:watch
+
+## Tests
 
 npm run test
 
 npm run storybook
 
-# Docs
+<http://ph.vxteaser.x/storybook/>
 
-npm run build-storybook
+## Docs
+
+npm run storybook:build
 
 npm run styleguide:build 
 
-# Call
+<http://ph.vxteaser.x/styleguide/>
 
-- http://ph.vxteaser.x/?id=fc1f0601-ed80-4150-a561-d9376199edfb
+## Call
+With a specific element ID:
+- <http://ph.vxteaser.x/?id=fc1f0601-ed80-4150-a561-d9376199edfb>
 
-# TODO
-- support for real URLS in addition to abstract jump links
-- split bundle config: https://github.com/webpack/webpack/issues/731
+To show a demo:
+- <http://ph.vxteaser.x/>
+
+## TODO
+- panelskew for 2 or 3 panels
+- support for custom classes (margins, ...)

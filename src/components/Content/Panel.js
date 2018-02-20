@@ -1,11 +1,25 @@
-import React from 'react';
+import React     from 'react';
+import Constants from '../../utils/Constants';
+import PropTypes from 'prop-types';
 
+/**
+ * Standard panel element
+ */
 export default class Panel extends React.PureComponent {
+	static propTypes = {
+		/** @ignore */
+		config:   PropTypes.object,
+		/** @ignore */
+		children: PropTypes.node,
+		width:    PropTypes.string,
+	};
+
 	render() {
-		const styleObj = {
-			width: this.props.config.width ? this.props.config.width : this.props.width,
+		const {children, config, width} = this.props;
+		const styleObj                  = {
+			width: config.width ? config.width : width,
 		};
 
-		return <div className="vxteaser-panel" style={styleObj}>{this.props.children}</div>;
+		return <div className={Constants.ClassName.Panel} style={styleObj}>{children}</div>;
 	}
 }

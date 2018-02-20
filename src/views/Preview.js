@@ -5,7 +5,7 @@ import BannerSuite  from '../components/BannerSuite';
 import ProviderMock from '../components/ProviderMock';
 import Provider     from '../components/Provider';
 
-class PreviewView extends React.Component {
+class PreviewView extends React.PureComponent {
 	render() {
 		const config = this.props.config;
 		let content;

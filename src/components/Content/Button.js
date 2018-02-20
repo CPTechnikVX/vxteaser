@@ -1,38 +1,43 @@
-import React      from 'react';
-import PropTypes  from 'prop-types';
-import Constants  from '../../utils/Constants';
-import classnames from 'classnames';
+import React       from 'react';
+import PropTypes   from 'prop-types';
+import Constants   from '../../utils/Constants';
+import classnames  from 'classnames';
+import LinkHandler from '../LinkHandler';
 
 /**
- * Component is described here.
+ * General button element
  */
 export default class Button extends React.PureComponent {
 	static propTypes = {
+		/** @ignore */
+		children: PropTypes.node,
 		/**
 		 * Textual color definition
 		 */
-		color: PropTypes.oneOf(['primary']),
+		color:    PropTypes.oneOf(['primary']),
+		link:     PropTypes.string,
 	};
 
 	render() {
-		const classList = [];
-		let onClick;
+		const {children, color, link} = this.props;
+		const classList               = [];
+		let onClickFn;
 
 		classList.push(Constants.ClassName.Button);
 
-		if (this.props.color) {
-			classList.push(Constants.PrefixClassName.Color + this.props.color);
+		if (color) {
+			classList.push(Constants.PrefixClassName.Color + color);
 		}
 
-		if (typeof this.props.url !== 'undefined') {
-			onClick = (e) => {
+		if (link) {
+			onClickFn = (e) => {
 				e.preventDefault();
 				e.stopPropagation();
 
-				alert('Redirect to:' + this.props.url);
+				LinkHandler.handle(link);
 			};
 		}
 
-		return <a className={classnames(classList)} onClick={onClick}>{this.props.children}</a>;
+		return <a className={classnames(classList)} onClick={onClickFn}>{children}</a>;
 	}
 }

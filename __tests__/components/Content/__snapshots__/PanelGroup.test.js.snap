@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render panel skew fullhd 1`] = `
+<a
+  className="vxteaser-panel--skew first"
+  onClick={[Function]}
+  style={Object {}}
+>
+  <img
+    alt=""
+    className="vxteaser-panel--skew__image"
+    src="http://www.example.com/img/default.jpg"
+  />
+</a>
+`;
+
+exports[`render panel skew tablet 1`] = `
+<a
+  className="vxteaser-panel--skew first"
+  onClick={[Function]}
+  style={
+    Object {
+      "top": "-260px",
+    }
+  }
+>
+  <img
+    alt=""
+    className="vxteaser-panel--skew__image"
+    src="http://www.example.com/img/default.jpg"
+  />
+</a>
+`;

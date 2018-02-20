@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render row with one col 1`] = `
+<div
+  className="vxteaser-row"
+>
+  <Column
+    key=".0"
+    width={100}
+  >
+    Col1
+  </Column>
+</div>
+`;
+
+exports[`render row with two cols 1`] = `
+<div
+  className="vxteaser-row"
+>
+  <Column
+    key=".0"
+    width={50}
+  >
+    Col1
+  </Column>
+  <Column
+    key=".1"
+    width={50}
+  >
+    Col2
+  </Column>
+</div>
+`;

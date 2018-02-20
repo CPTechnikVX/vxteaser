@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render panel skew button desktop 1`] = `
+<a
+  className="vxteaser-skew-button first"
+  onClick={[Function]}
+  style={Object {}}
+>
+  Content
+</a>
+`;
+
+exports[`render panel skew button tablet 1`] = `
+<a
+  className="vxteaser-skew-button first"
+  onClick={[Function]}
+  style={
+    Object {
+      "top": "-95.9409594095941px",
+    }
+  }
+>
+  Content
+</a>
+`;

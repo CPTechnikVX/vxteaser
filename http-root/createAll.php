@@ -9,9 +9,9 @@ function getTeasers() {
 	/************ TEASER START *********/
 	$inputXML = /** @lang xml */
 		<<<EOT
-<banner url="link:SexyVany" theme="white">
+<banner theme="light" link="https://www.visit-x.net/de/magazin/aktuelle-ausgabe/">
    <content>
-      <skewpanelgroup skewWidth="55%" skewColor="#000000">
+      <skewpanelgroup skewWidth="55%">
          <panel width="45%">
             <row>
                <col><headline type="sub">Januar 2018 - Ausgabe</headline></col>
@@ -19,7 +19,7 @@ function getTeasers() {
             <row>
                 <col>
                <headline type="main">
-                  <text>VISIT-X Community Magazin</text>
+                  <text>VISIT-X  Magazin</text>
                </headline>
                </col>
             </row>
@@ -33,7 +33,7 @@ function getTeasers() {
             </row>
             <row>
                 <col>
-               <button color="primary" url="link:OnlineMag">Jetzt kostenlos online lesen</button>
+               <button color="primary">Jetzt online lesen</button>
                </col>
             </row>
          </panel>
@@ -63,30 +63,29 @@ EOT;
 	/************ TEASER START *********/
 	$inputXML = /** @lang xml */
 		<<<EOT
-<banner url="link:SexyVany" theme="white">
+<banner theme="special">
    <content>
-      <skewpanelgroup skewWidth="55%" skewColor="#000000">
+      <skewpanelgroup skewWidth="55%">
          <panel width="45%">
             <row>
-               <col><headline><text color="highlight">Überrasche Deine Favoritin!</text></headline></col>
+               <col><headline type="sub" modifier="-mb-10"><text>Überrasche Deine Favoritin!</text></headline></col>
             </row>
             <row>
                 <col>
-               <headline>
+               <headline type="main">
                   <text>HAPPY VALENTINES DAY!</text>
                </headline>
                </col>
             </row>
             <row>
                 <col>
-	               <headline size="1.6rem"><text>Verschenke am 14. Februar eine Rose per Nachricht oder im Chat und mit</text></headline>
-	               <headline size="1.6rem"><text>etwas Glück schickt VISIT-X Deiner Favoritin einen echten Strauß Rosen direkt</text></headline>
-	               <headline size="1.6rem"><text>nach Hause! Jede verschenkte Rose erhöht Deine Gewinnchancen!</text></headline>
+	               <headline><text>Verschenke am 14. Februar eine Rose per Nachricht oder im Chat und mit etwas Glück schickt VISIT-X Deiner Favoritin einen echten Strauß Rosen direkt
+	               nach Hause! Jede verschenkte Rose erhöht Deine Gewinnchancen!</text></headline>
                </col>
             </row>
             <row>
                 <col>
-               <button color="primary" url="link:OnlineMag">Jetzt Rose verschenken!</button>
+               <button color="white">Jetzt Rose verschenken!</button>
                </col>
             </row>
          </panel>
@@ -136,15 +135,15 @@ EOT;
             </row>
             <row>
                <col>
-                 <link url="News">
-                    <headline size="1.4rem"><text>Du hast</text></headline>
-                    <headline size="1.4rem"><text>51 neue Nachrichten</text></headline>
+                 <link>
+                    <headline><text>Du hast</text></headline>
+                    <headline><text>51 neue Nachrichten</text></headline>
                  </link>
                </col>
                <col>
-                 <link url="Balance">
-	                 <headline size="1.4rem"><text>Dein Guthaben 47,03€</text></headline>
-	                 <headline size="1.4rem"><text>Jetzt aufladen</text></headline>
+                 <link>
+	                 <headline><text>Dein Guthaben 47,03€</text></headline>
+	                 <headline><text>Jetzt aufladen</text></headline>
 	              </link>
                </col>
             </row>
@@ -173,21 +172,21 @@ EOT;
 	/************ TEASER START *********/
 	$inputXML = /** @lang xml */
 		<<<EOT
-<banner>
+<banner theme="transparent">
    <content color="#FFFFFF">
       <skewpanelgroup skewWidth="54%">
          <panel width="45%">
             <row>
                <col>
-                  <headline>
+                  <headline type="main">
                      <text>18 Jahre BiggiBardot</text>
                   </headline>
                </col>
             </row>
             <row>
             <col>
-               <headline size="2rem">
-                  <text color="highlight">Die Kultfigur im Erotikbusiness feiert ihr 18. Jubiläum!</text>
+               <headline type="sub">
+                  <text>Die Kultfigur im Erotikbusiness feiert ihr 18. Jubiläum!</text>
                </headline>
                </col>
             </row>
@@ -200,7 +199,7 @@ EOT;
             </row>
             <row>
             <col>
-               <button color="primary" url="link:PartyBiggi">Zur Party mit BiggiBardot</button>
+               <button color="primary">Zur Party mit BiggiBardot</button>
                </col>
             </row>
          </panel>
@@ -229,36 +228,79 @@ EOT;
 	$inputXML = /** @lang xml */
 		<<<EOT
 <banner>
+	<content color="#FFFFFF">
+		<skewpanelgroup skewWidth="54%">
+			<panel width="45%" valign="bottom">
+				<row>
+					<col>
+					<headline type="sub">
+						<text>Jetzt kennenlernen: Unsere</text>
+					</headline>
+					</col>
+				</row>
+				<row>
+					<col>
+					<headline type="main">
+						<text>KATEGORIEÜBERSICHT</text>
+					</headline>
+					</col>
+				</row>
+			</panel>
+			<panelskewbutton link="https://www.visit-x.net/de/kategorien/31-hotties/">Hotties</panelskewbutton>
+			<panelskewbutton link="https://www.visit-x.net/de/kategorien/74-tattoos/">Tattos</panelskewbutton>
+			<panelskewbutton link="https://www.visit-x.net/de/kategorien/18-reife-frauen/">Reife Frauen</panelskewbutton>
+
+			<panelskew src="https://www.visit-x.net/assets/img/teaser/teaser-existing-categories-01.jpg" link="https://www.visit-x.net/de/kategorien/31-hotties/"></panelskew>
+			<panelskew src="https://www.visit-x.net/assets/img/teaser/teaser-existing-categories-02.jpg" link="https://www.visit-x.net/de/kategorien/74-tattoos/"></panelskew>
+			<panelskew src="https://www.visit-x.net/assets/img/teaser/teaser-existing-categories-03.jpg" link="https://www.visit-x.net/de/kategorien/18-reife-frauen/"></panelskew>
+		</skewpanelgroup>
+	</content>
+</banner>
+EOT;
+
+	$arr = VXTeaserXMLContent::createArray($inputXML);
+
+	$result[] = [
+		'typeConfig' => [
+			'content'         => $arr,
+			'template'        => 'fixedHeight',
+			'height1'         => 260,
+			'backgroundUrl1'  => '',
+			'breakpoint1'     => 1200,
+			'backgroundUrl2'  => '',
+			'backgroundSize2' => 'auto',
+			'height2'         => 500,
+		],
+	];
+	/************ TEASER END *********/
+
+	/************ TEASER START *********/
+	$inputXML = /** @lang xml */
+		<<<EOT
+<banner>
    <content color="#FFFFFF">
       <skewpanelgroup skewWidth="54%">
          <panel width="45%" valign="bottom">
             <row>
                <col>
-                  <headline size="2.4rem">
+                  <headline type="sub">
                      <text>Jetzt kennenlernen: Unsere</text>
                   </headline>
                </col>
             </row>
             <row>
                 <col>
-	               <headline>
+	               <headline type="main">
 	                  <text>KATEGORIEÜBERSICHT</text>
 	               </headline>
                </col>
             </row>
          </panel>
-         <container valign="top">
-            <panelskewbutton>AAA</panelskewbutton>
-            <panelskewbutton>BBB</panelskewbutton>
-            <panelskewbutton>CCC</panelskewbutton>
-            
-	         <panelskew width="15%" src="https://www.visit-x.net/assets/img/teaser/teaser-existing-categories-01.jpg">    
-	         </panelskew>
-	         <panelskew width="15%" src="https://www.visit-x.net/assets/img/teaser/teaser-existing-categories-02.jpg">    
-	         </panelskew>
-	         <panelskew width="15%" src="https://www.visit-x.net/assets/img/teaser/teaser-existing-categories-03.jpg">    
-	         </panelskew>
-         </container>
+        <panelskewbutton link="https://www.visit-x.net/de/kategorien/31-hotties/">Hotties</panelskewbutton>
+        <panelskewbutton link="https://www.visit-x.net/de/kategorien/74-tattoos/">Tattos</panelskewbutton>
+        
+         <panelskew src="https://www.visit-x.net/assets/img/teaser/teaser-existing-categories-01.jpg" link="https://www.visit-x.net/de/kategorien/31-hotties/"></panelskew>
+         <panelskew src="https://www.visit-x.net/assets/img/teaser/teaser-existing-categories-02.jpg" link="https://www.visit-x.net/de/kategorien/74-tattoos/"></panelskew>
       </skewpanelgroup>
    </content>
 </banner>
@@ -283,9 +325,9 @@ EOT;
 	/************ TEASER START *********/
 	$inputXML = /** @lang xml */
 		<<<EOT
-<banner url="link:SexyVany" theme="white">
+<banner theme="light">
    <content>
-      <skewpanelgroup skewWidth="55%" skewColor="#000000">
+      <skewpanelgroup skewWidth="55%">
          <panel width="45%">
             <row>
                <col><headline>Täglich spielen und gewinnen!</headline></col>
@@ -305,7 +347,7 @@ EOT;
             </row>
             <row>
                 <col>
-               <button color="primary" url="link:OnlineMag">Jetzt spielen und gewinnen!</button>
+               <button color="primary">Jetzt spielen und gewinnen!</button>
                </col>
             </row>
          </panel>
@@ -325,6 +367,50 @@ EOT;
 			'color1'          => '#000000',
 			'breakpoint1'     => 1200,
 			'backgroundUrl2'  => 'https://www.visit-x.net/assets/img/teaser/slotmachine/teaser_slotmachine_2018.jpg',
+			'backgroundSize2' => 'auto',
+			'height2'         => 500,
+			'color2'          => '#000000',
+		],
+	];
+	/************ TEASER END *********/
+
+	/************ TEASER START *********/
+	$inputXML = /** @lang xml */
+		<<<EOT
+<banner theme="light">
+   <content>
+      <skewpanelgroup skewWidth="55%">
+         <panel width="45%">
+            <row>
+                <col>
+	               <headline type="sub"><text>Jetzt VIP Gratismonat starten und zusätzlich 20€ Startguthaben</text></headline>
+               </col>
+            </row>
+            <row>
+                <col>
+               <button color="green">Jetzt einlösen</button>
+               </col>
+                <col>
+               <countdown timer="120">Nur noch: 11:45:59</countdown>
+               </col>
+            </row>
+         </panel>
+      </skewpanelgroup>
+   </content>
+</banner>
+EOT;
+
+	$arr = VXTeaserXMLContent::createArray($inputXML);
+
+	$result[] = [
+		'typeConfig' => [
+			'content'         => $arr,
+			'template'        => 'fixedHeight',
+			'height1'         => 260,
+			'backgroundUrl1'  => 'https://www.visit-x.net/assets/img/teaser/teaser-trial-abo-bg.jpg',
+			'color1'          => '#000000',
+			'breakpoint1'     => 1200,
+			'backgroundUrl2'  => 'https://www.visit-x.net/assets/img/teaser/teaser-trial-abo-bg.jpg',
 			'backgroundSize2' => 'auto',
 			'height2'         => 500,
 			'color2'          => '#000000',
