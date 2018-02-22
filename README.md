@@ -32,5 +32,4 @@ To show a demo:
 - <http://ph.vxteaser.x/>
 
 ## TODO
-- panelskew for 2 or 3 panels
-- support for custom classes (margins, ...)
+- todo :)

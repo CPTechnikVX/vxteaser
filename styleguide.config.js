@@ -1,6 +1,6 @@
-var path             = require('path');
-var webpackConfigAll = require('./webpack.config.js');
-var webpackConfig    = webpackConfigAll[0];
+const path             = require('path');
+const webpackConfigAll = require('./webpack.config.js');
+const webpackConfig    = webpackConfigAll[0];
 
 
 module.exports = {
@@ -11,5 +11,5 @@ module.exports = {
 	],
 	styleguideDir: path.join(__dirname, 'http-root/styleguide'),
 	title:         'VXTeaser',
-	webpackConfig: webpackConfig
+	webpackConfig: webpackConfig,
 }
