@@ -26,6 +26,7 @@ const PrefixClassName = {
 
 const Element = {
 	Banner:          'banner',
+	Break:           'br',
 	Button:          'button',
 	Column:          'col',
 	Content:         'content',

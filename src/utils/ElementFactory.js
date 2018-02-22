@@ -30,6 +30,8 @@ export default class ElementFactory {
 		switch (name) {
 			case Constants.Element.Banner:
 				return <Banner {...attrs} config={config} {...props}>{children}</Banner>;
+			case Constants.Element.Break:
+				return <br />;
 			case Constants.Element.Button:
 				return <Button {...attrs}>{children}</Button>;
 			case Constants.Element.Column:

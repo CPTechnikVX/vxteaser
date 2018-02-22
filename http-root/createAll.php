@@ -241,7 +241,7 @@ EOT;
 				<row>
 					<col>
 					<headline type="main">
-						<text>KATEGORIEÜBERSICHT</text>
+						<text>KATEGORIE</text><br/><text>ÜBERSICHT</text>
 					</headline>
 					</col>
 				</row>
