@@ -4,7 +4,7 @@
 export default class LinkHandler {
 	static handle(link) {
 		if (link) {
-			window.open(link);
+			window.location.href = link;
 		}
 	}
 }

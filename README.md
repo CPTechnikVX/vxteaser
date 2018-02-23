@@ -8,6 +8,9 @@ npm run watch
 
 npm run test:watch
 
+# analyze package sizes
+node_modules/.bin/webpack --json | ./node_modules/.bin/webpack-bundle-size-analyzer
+
 ## Tests
 
 npm run test

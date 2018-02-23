@@ -85,7 +85,7 @@ EOT;
             </row>
             <row>
                 <col>
-               <button color="white">Jetzt Rose verschenken!</button>
+               <button color="white">Rose verschenken!</button>
                </col>
             </row>
          </panel>
@@ -121,30 +121,40 @@ EOT;
          <panel width="45%">
             <row>
             <col>
-              <headline>
+              <headline type="main" modifier="-mb-5 -text-align-left">
                  <text>Willkommen zurück,</text>
               </headline>
               </col>
             </row>
             <row>
             <col>
-              <headline>
+              <headline type="sub" modifier="-text-align-left">
                  <text>PETR001</text>
               </headline>
               </col>
             </row>
             <row>
                <col>
-                 <link>
-                    <headline><text>Du hast</text></headline>
-                    <headline><text>51 neue Nachrichten</text></headline>
-                 </link>
+	               <row>
+		               <col width="12%"><icon modifier="icon -icon-chat-flat h-vertical-align-top h-disp-block h-left -size-md teaser__text-icon" /></col>
+		               <col width="88%" modifier="-align-center">
+		                 <link>
+		                    <headline modifier="-mb-0 -text-align-left"><text>Du hast</text></headline>
+		                    <headline modifier="-text-align-left"><text color="description" modifier="-font-light">51 neue Nachrichten</text></headline>
+		                 </link>
+		               </col>
+	               </row>
                </col>
                <col>
-                 <link>
-	                 <headline><text>Dein Guthaben 47,03€</text></headline>
-	                 <headline><text>Jetzt aufladen</text></headline>
-	              </link>
+               <row>
+		               <col width="12%"><icon modifier="icon -icon-euro-line h-vertical-align-top h-disp-block h-left -size-md teaser__text-icon" /></col>
+		               <col width="88%">
+		                 <link>
+			                 <headline modifier="-mb-0 -text-align-left"><text>Dein Guthaben 47,03€</text></headline>
+			                 <headline modifier="-text-align-left"><text color="description" modifier="-font-light">Jetzt aufladen</text></headline>
+			              </link>
+		               </col>
+               </row>
                </col>
             </row>
          </panel>
@@ -199,7 +209,7 @@ EOT;
             </row>
             <row>
             <col>
-               <button color="primary">Zur Party mit BiggiBardot</button>
+               <button color="primary">Zur Party</button>
                </col>
             </row>
          </panel>
@@ -347,7 +357,7 @@ EOT;
             </row>
             <row>
                 <col>
-               <button color="primary">Jetzt spielen und gewinnen!</button>
+               <button color="primary">Jetzt spielen!</button>
                </col>
             </row>
          </panel>

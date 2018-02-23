@@ -7,6 +7,7 @@
 @color-transparent: transparent;
 
 @color-mood-1: #F1F1F1;
+@color-mood-2: #888888;
 @color-mood-5: #1D1E1F;
 @color-mood-6: #151617;
 
@@ -19,21 +20,15 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 
-/*********** COMMON ***************/
-
-html {
-	font-family: @font-family;
-	font-size:   10px;
-}
-
-body {
-	margin:  0;
-	padding: 0;
-}
-
-/******* END OF COMMON ************/
-
 /******* MODIFIER ********/
+
+.-mb-0 {
+	margin-bottom: 0 !important;
+}
+
+.-mb-5 {
+	margin-bottom: 5px !important;
+}
 
 .-mb-10 {
 	margin-bottom: 10px !important;
@@ -47,14 +42,24 @@ body {
 	margin-bottom: 20px !important;
 }
 
+.-font-light {
+	font-weight: @font-weight-light !important;
+}
+
+.-text-align-left {
+	text-align: left !important;
+}
+
 /******* END OF MODIFEIR ************/
 
 .vxteaser-suite {
-	position:  relative;
-	margin:    0;
-	padding:   0;
-	width:     100%;
-	max-width: 100%;
+	position:    relative;
+	margin:      0;
+	padding:     0;
+	width:       100%;
+	max-width:   100%;
+	font-family: @font-family;
+	font-weight: @font-weight-light;
 }
 
 .vxteaser-suite__item {
@@ -176,6 +181,10 @@ body {
 	color:            @color-white;
 	background-color: transparent;
 
+	.vxteaser--has-no-skew & {
+		background-color: @color-dark;
+	}
+
 	.-theme-light & {
 		color: @color-black;
 	}
@@ -242,6 +251,10 @@ body {
 }
 
 /****************** COLORS ******************/
+
+.vxteaser-color--description {
+	color: @color-mood-2;
+}
 
 .vxteaser-color--highlight {
 	color: @color-highlight;

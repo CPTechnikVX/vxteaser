@@ -10,7 +10,7 @@ describe('render row', () => {
 		);
 		expect(wrapper).toMatchSnapshot();
 
-		expect(wrapper.find('Column').prop('width')).toBe(100);
+		expect(wrapper.find('Column').prop('width')).toBe('100%');
 	});
 	test('with two cols', () => {
 		const wrapper = shallow(
@@ -18,6 +18,6 @@ describe('render row', () => {
 		);
 		expect(wrapper).toMatchSnapshot();
 
-		expect(wrapper.find('Column').first().prop('width')).toBe(50);
+		expect(wrapper.find('Column').first().prop('width')).toBe('50%');
 	});
 });

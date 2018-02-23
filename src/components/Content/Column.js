@@ -9,14 +9,14 @@ export default class Column extends React.PureComponent {
 	static propTypes = {
 		/** @ignore */
 		children: PropTypes.node,
-		width:    PropTypes.number,
+		width:    PropTypes.string,
 
 	};
 
 	render() {
 		const {children, width} = this.props;
 		const styleObj          = {
-			width: width ? width + '%' : 'auto',
+			width: width ? width : 'auto',
 			float: 'left',
 		};
 

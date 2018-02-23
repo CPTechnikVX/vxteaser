@@ -19,14 +19,14 @@ $isLinear = !empty($_GET['linear']) ? true : false;
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<style>
 		html {
-			font-family: Roboto;
+			font-family: 'Roboto Condensed';
 			font-size:   10px;
 		}
 
 		body {
-			margin:     0;
-			padding:    0;
-			background: #101112 url('https://www.visit-x.net/assets/img/bg_pattern.jpg');
+			background-color: #000000;
+			margin:           0;
+			padding:          0;
 		}
 	</style>
 	<link rel="stylesheet" href="lib/css/main.css" />

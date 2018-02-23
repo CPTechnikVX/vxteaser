@@ -11,16 +11,21 @@ export default class Text extends React.PureComponent {
 		/** @ignore */
 		children: PropTypes.node,
 		color:    PropTypes.string,
+		modifier: PropTypes.string,
 	};
 
 	render() {
-		const {children, color} = this.props;
-		const classList         = [];
+		const {children, color, modifier} = this.props;
+		const classList                   = [];
 
 		classList.push(Constants.ClassName.Text);
 
 		if (color) {
 			classList.push(Constants.PrefixClassName.Color + color);
+		}
+
+		if (modifier) {
+			classList.push(modifier);
 		}
 
 		return <span className={classnames(classList)}>{children}</span>;

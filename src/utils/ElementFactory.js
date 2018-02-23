@@ -64,7 +64,13 @@ export default class ElementFactory {
 				return <Text {...attrs}>{children}</Text>;
 			/* default handler for not supported elements */
 			default:
-				return <span {...attrs}>{children}</span>;
+				let className;
+
+				if (attrs.modifier) {
+					className = attrs.modifier;
+				}
+
+				return <span className={className} {...attrs}>{children}</span>;
 		}
 	}
 }

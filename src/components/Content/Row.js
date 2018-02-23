@@ -20,7 +20,7 @@ export default class Row extends React.PureComponent {
 		const childrenWithProps = React.Children.map(
 			children,
 			(child) => React.cloneElement(child, {
-				width: child.props.width ? child.props.width : width,
+				width: child.props.width ? child.props.width : width + '%',
 			})
 		);
 
