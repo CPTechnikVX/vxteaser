@@ -33,7 +33,9 @@ export default class Provider extends React.PureComponent {
 					id: config.id,
 				}
 			).then((data) => {
-				this.processData(data);
+				if (data) {
+					this.processData(data);
+				}
 			});
 		}
 	}
@@ -44,23 +46,7 @@ export default class Provider extends React.PureComponent {
 		if (config) {
 			try {
 				const origTypeConfig = JSON.parse(config.typeConfig);
-				const typeConfig     = {};
-
-				typeConfig.content      = origTypeConfig.content;
-				typeConfig.fixedHeights = [
-					{
-						greaterThan:   0,
-						height:        origTypeConfig.height2,
-						backgroundUrl: origTypeConfig.backgroundUrl1,
-					},
-					{
-						greaterThan:   origTypeConfig.breakpoint1,
-						height:        origTypeConfig.height1,
-						backgroundUrl: origTypeConfig.backgroundUrl2,
-					},
-				];
-				this.setState({configs: [typeConfig]});
-
+				this.setState({configs: [origTypeConfig]});
 			} catch (e) { /* nothing */
 			}
 		}

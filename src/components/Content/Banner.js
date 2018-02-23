@@ -36,7 +36,7 @@ export default class Banner extends React.PureComponent {
 
 			if (windowWidth < config.fixedHeights[1]['greaterThan']) {
 				styleObj.background     = `no-repeat url('${config.fixedHeights[1]['backgroundUrl']}') top right`;
-				styleObj.backgroundSize = `${config.fixedHeights[0]['backgroundSize'] ? config.fixedHeights[0]['backgroundSize'] : 'contain'}`;
+				styleObj.backgroundSize = `${config.fixedHeights[0]['backgroundSize'] ? config.fixedHeights[0]['backgroundSize'] : 'auto'}`;
 				styleObj.height         = `${config.fixedHeights[0]['height']}px`;
 
 				classList.push(Constants.ClassName.BannerNoSkew);

@@ -7,18 +7,37 @@ import Constants     from './../utils/Constants';
  * Top level banner suite component containing one or more banners
  */
 export default class BannerSuite extends React.PureComponent {
-
 	/**
-	 * initial state
-	 * @returns {Object}
+	 * Process data from provider to internal form
+	 * @param configs
+	 * @returns {Array}
 	 */
-	static getInitialState() {
-		return {
-			visibleIndex: 0,
-			mouseOver:    false,
-			windowWidth:  window.innerWidth,
-		};
+	static processConfigs(configs) {
+		if (!configs || configs.length === 0) {
+			return [];
+		}
+
+		return configs.map((origTypeConfig) => {
+			const typeConfig = {};
+
+			typeConfig.content      = origTypeConfig.content;
+			typeConfig.fixedHeights = [
+				{
+					greaterThan:   0,
+					height:        origTypeConfig.height2,
+					backgroundUrl: origTypeConfig.backgroundUrl1,
+				},
+				{
+					greaterThan:   origTypeConfig.breakpoint1,
+					height:        origTypeConfig.height1,
+					backgroundUrl: origTypeConfig.backgroundUrl2,
+				},
+			];
+
+			return typeConfig;
+		});
 	}
+
 
 	constructor(props) {
 		super(props);
@@ -36,7 +55,20 @@ export default class BannerSuite extends React.PureComponent {
 		this.onResize     = this.onResize.bind(this);
 
 		// state
-		this.state = BannerSuite.getInitialState();
+		this.state = this.getInitialState();
+	}
+
+	/**
+	 * initial state
+	 * @returns {Object}
+	 */
+	getInitialState() {
+		return {
+			visibleIndex: 0,
+			mouseOver:    false,
+			windowWidth:  window.innerWidth,
+			configs:      BannerSuite.processConfigs(this.props.configs),
+		};
 	}
 
 	componentDidMount() {
@@ -47,8 +79,16 @@ export default class BannerSuite extends React.PureComponent {
 		}
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.configs) {
+			this.setState({
+				configs: BannerSuite.processConfigs(nextProps.configs),
+			});
+		}
+	}
+
 	shouldComponentUpdate(nextProps, nextState) {
-		const breakpoint = this.props.configs && this.props.configs.length > 0 ? this.props.configs[0].fixedHeights[1]['greaterThan'] : null;
+		const breakpoint = this.state.configs && this.state.configs.length > 0 ? this.state.configs[0].fixedHeights[1]['greaterThan'] : null;
 		let retVal       = true;
 
 		if (nextState.visibleIndex !== this.state.visibleIndex) {
@@ -75,7 +115,7 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	needTimerInterval() {
-		return this.props.configs && this.props.configs.length > 1 && this.props.delay > 0;
+		return this.state.configs && this.state.configs.length > 1 && this.props.delay > 0;
 	}
 
 	/**
@@ -172,7 +212,7 @@ export default class BannerSuite extends React.PureComponent {
 		this.clearInterval();
 
 		this.timerInterval = window.setInterval(() => {
-			const cnt = this.props.configs.length;
+			const cnt = this.state.configs.length;
 
 			if (cnt > 0) {
 				this.setVisible((this.state.visibleIndex + 1) % cnt);
@@ -191,8 +231,9 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	render() {
-		const {className, configs} = this.props;
-		let content                = null;
+		const {className} = this.props;
+		const {configs}   = this.state;
+		let content       = null;
 
 		// is configuration provided?
 		if (configs && configs.length > 0) {

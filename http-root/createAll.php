@@ -45,18 +45,16 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
-		'typeConfig' => [
-			'content'         => $arr,
-			'template'        => 'fixedHeight',
-			'height1'         => 260,
-			'backgroundUrl1'  => 'https://www.visit-x.net/assets/img/teaser/vx-magazin/vxteaser_092magazin_desktop.jpg',
-			'color1'          => '#000000',
-			'breakpoint1'     => 1200,
-			'backgroundUrl2'  => 'https://www.visit-x.net/assets/img/teaser/vx-magazin/vxteaser_092magazin_desktop.jpg',
-			'backgroundSize2' => 'auto',
-			'height2'         => 500,
-			'color2'          => '#000000',
-		],
+		'content'         => $arr,
+		'template'        => 'fixedHeight',
+		'height1'         => 260,
+		'backgroundUrl1'  => 'https://www.visit-x.net/assets/img/teaser/vx-magazin/vxteaser_092magazin_desktop.jpg',
+		'color1'          => '#000000',
+		'breakpoint1'     => 1200,
+		'backgroundUrl2'  => 'https://www.visit-x.net/assets/img/teaser/vx-magazin/vxteaser_092magazin_desktop.jpg',
+		'backgroundSize2' => 'auto',
+		'height2'         => 500,
+		'color2'          => '#000000',
 	];
 	/************ TEASER END *********/
 
@@ -97,18 +95,16 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
-		'typeConfig' => [
-			'content'         => $arr,
-			'template'        => 'fixedHeight',
-			'height1'         => 260,
-			'backgroundUrl1'  => 'https://www.visit-x.net/assets/img/teaser/teaser_valentinesday2018.jpg',
-			'color1'          => '#000000',
-			'breakpoint1'     => 1200,
-			'backgroundUrl2'  => 'https://www.visit-x.net/assets/img/teaser/teaser_valentinesday2018.jpg',
-			'backgroundSize2' => 'auto',
-			'height2'         => 500,
-			'color2'          => '#000000',
-		],
+		'content'         => $arr,
+		'template'        => 'fixedHeight',
+		'height1'         => 260,
+		'backgroundUrl1'  => 'https://www.visit-x.net/assets/img/teaser/teaser_valentinesday2018.jpg',
+		'color1'          => '#000000',
+		'breakpoint1'     => 1200,
+		'backgroundUrl2'  => 'https://www.visit-x.net/assets/img/teaser/teaser_valentinesday2018.jpg',
+		'backgroundSize2' => 'auto',
+		'height2'         => 500,
+		'color2'          => '#000000',
 	];
 	/************ TEASER END *********/
 
@@ -166,16 +162,14 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
-		'typeConfig' => [
-			'content'          => $arr,
-			'template'         => 'fixedHeight',
-			'height1'          => 260,
-			'backgroundUrl1'   => 'https://www.visit-x.net/assets/img/teaser/teaser-all-welcome-bg.jpg',
-			'backgroundColor1' => '#262728',
-			'breakpoint1'      => 1200,
-			'backgroundUrl2'   => 'https://www.visit-x.net/assets/img/teaser/teaser-all-welcome-bg.jpg',
-			'height2'          => 500,
-		],
+		'content'          => $arr,
+		'template'         => 'fixedHeight',
+		'height1'          => 260,
+		'backgroundUrl1'   => 'https://www.visit-x.net/assets/img/teaser/teaser-all-welcome-bg.jpg',
+		'backgroundColor1' => '#262728',
+		'breakpoint1'      => 1200,
+		'backgroundUrl2'   => 'https://www.visit-x.net/assets/img/teaser/teaser-all-welcome-bg.jpg',
+		'height2'          => 500,
 	];
 	/************ TEASER END *********/
 
@@ -221,16 +215,14 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
-		'typeConfig' => [
-			'content'         => $arr,
-			'template'        => 'fixedHeight',
-			'height1'         => 260,
-			'backgroundUrl1'  => 'https://www.visit-x.net/assets/img/teaser/teaser-biggibardot-18-years.jpg',
-			'breakpoint1'     => 1200,
-			'backgroundUrl2'  => 'https://www.visit-x.net/assets/img/teaser/teaser-biggibardot-18-years.jpg',
-			'backgroundSize2' => 'auto',
-			'height2'         => 500,
-		],
+		'content'         => $arr,
+		'template'        => 'fixedHeight',
+		'height1'         => 260,
+		'backgroundUrl1'  => 'https://www.visit-x.net/assets/img/teaser/teaser-biggibardot-18-years.jpg',
+		'breakpoint1'     => 1200,
+		'backgroundUrl2'  => 'https://www.visit-x.net/assets/img/teaser/teaser-biggibardot-18-years.jpg',
+		'backgroundSize2' => 'auto',
+		'height2'         => 500,
 	];
 	/************ TEASER END *********/
 
@@ -271,16 +263,14 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
-		'typeConfig' => [
-			'content'         => $arr,
-			'template'        => 'fixedHeight',
-			'height1'         => 260,
-			'backgroundUrl1'  => '',
-			'breakpoint1'     => 1200,
-			'backgroundUrl2'  => '',
-			'backgroundSize2' => 'auto',
-			'height2'         => 500,
-		],
+		'content'         => $arr,
+		'template'        => 'fixedHeight',
+		'height1'         => 260,
+		'backgroundUrl1'  => '',
+		'breakpoint1'     => 1200,
+		'backgroundUrl2'  => '',
+		'backgroundSize2' => 'auto',
+		'height2'         => 500,
 	];
 	/************ TEASER END *********/
 
@@ -319,16 +309,14 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
-		'typeConfig' => [
-			'content'         => $arr,
-			'template'        => 'fixedHeight',
-			'height1'         => 260,
-			'backgroundUrl1'  => '',
-			'breakpoint1'     => 1200,
-			'backgroundUrl2'  => '',
-			'backgroundSize2' => 'auto',
-			'height2'         => 500,
-		],
+		'content'         => $arr,
+		'template'        => 'fixedHeight',
+		'height1'         => 260,
+		'backgroundUrl1'  => '',
+		'breakpoint1'     => 1200,
+		'backgroundUrl2'  => '',
+		'backgroundSize2' => 'auto',
+		'height2'         => 500,
 	];
 	/************ TEASER END *********/
 
@@ -369,18 +357,16 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
-		'typeConfig' => [
-			'content'         => $arr,
-			'template'        => 'fixedHeight',
-			'height1'         => 260,
-			'backgroundUrl1'  => 'https://www.visit-x.net/assets/img/teaser/slotmachine/teaser_slotmachine_2018.jpg',
-			'color1'          => '#000000',
-			'breakpoint1'     => 1200,
-			'backgroundUrl2'  => 'https://www.visit-x.net/assets/img/teaser/slotmachine/teaser_slotmachine_2018.jpg',
-			'backgroundSize2' => 'auto',
-			'height2'         => 500,
-			'color2'          => '#000000',
-		],
+		'content'         => $arr,
+		'template'        => 'fixedHeight',
+		'height1'         => 260,
+		'backgroundUrl1'  => 'https://www.visit-x.net/assets/img/teaser/slotmachine/teaser_slotmachine_2018.jpg',
+		'color1'          => '#000000',
+		'breakpoint1'     => 1200,
+		'backgroundUrl2'  => 'https://www.visit-x.net/assets/img/teaser/slotmachine/teaser_slotmachine_2018.jpg',
+		'backgroundSize2' => 'auto',
+		'height2'         => 500,
+		'color2'          => '#000000',
 	];
 	/************ TEASER END *********/
 
@@ -413,18 +399,16 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
-		'typeConfig' => [
-			'content'         => $arr,
-			'template'        => 'fixedHeight',
-			'height1'         => 260,
-			'backgroundUrl1'  => 'https://www.visit-x.net/assets/img/teaser/teaser-trial-abo-bg.jpg',
-			'color1'          => '#000000',
-			'breakpoint1'     => 1200,
-			'backgroundUrl2'  => 'https://www.visit-x.net/assets/img/teaser/teaser-trial-abo-bg.jpg',
-			'backgroundSize2' => 'auto',
-			'height2'         => 500,
-			'color2'          => '#000000',
-		],
+		'content'         => $arr,
+		'template'        => 'fixedHeight',
+		'height1'         => 260,
+		'backgroundUrl1'  => 'https://www.visit-x.net/assets/img/teaser/teaser-trial-abo-bg.jpg',
+		'color1'          => '#000000',
+		'breakpoint1'     => 1200,
+		'backgroundUrl2'  => 'https://www.visit-x.net/assets/img/teaser/teaser-trial-abo-bg.jpg',
+		'backgroundSize2' => 'auto',
+		'height2'         => 500,
+		'color2'          => '#000000',
 	];
 	/************ TEASER END *********/
 

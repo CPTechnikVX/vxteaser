@@ -5,7 +5,7 @@ import 'whatwg-fetch';
 /**
  * Mock Provider connection with dummy configs
  */
-export default class Provider extends React.PureComponent {
+export default class ProviderMock extends React.PureComponent {
 	constructor(props) {
 		super(props);
 
@@ -30,40 +30,8 @@ export default class Provider extends React.PureComponent {
 					method: 'get',
 				}
 			).then((res) => res.json())
-				.then((jsonRes) => {
-					const configs = [];
-					for (const configIndex in jsonRes) {
-						if (jsonRes.hasOwnProperty(configIndex)) {
-							const config = jsonRes[configIndex];
-
-							const typeConfig = config.typeConfig;
-							typeConfig.json  = config.json;
-
-							typeConfig.fixedHeights = [
-								{
-									greaterThan:     0,
-									height:          typeConfig.height2,
-									backgroundUrl:   typeConfig.backgroundUrl2,
-									backgroundColor: typeConfig.backgroundColor2,
-									backgroundSize:  typeConfig.backgroundSize2,
-									color:           typeConfig.color2,
-								},
-								{
-									greaterThan:     typeConfig.breakpoint1,
-									height:          typeConfig.height1,
-									backgroundUrl:   typeConfig.backgroundUrl1,
-									backgroundColor: typeConfig.backgroundColor1,
-									backgroundSize:  typeConfig.backgroundSize1,
-									color:           typeConfig.color1,
-								},
-							];
-
-							configs.push(typeConfig);
-						}
-					}
-
+				.then((configs) => {
 					this.setState({configs: configs});
-
 				});
 			/* end of dummy request */
 		} catch (e) { /* nothing */
@@ -86,7 +54,7 @@ export default class Provider extends React.PureComponent {
 	}
 }
 
-Provider.propTypes = {
+ProviderMock.propTypes = {
 	children: PropTypes.object,
 	config:   PropTypes.object,
 };

@@ -25,7 +25,7 @@ exports[`render banner banner content tablet 1`] = `
   style={
     Object {
       "background": "no-repeat url('url1') top right",
-      "backgroundSize": "contain",
+      "backgroundSize": "auto",
       "height": "500px",
     }
   }
