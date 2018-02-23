@@ -8,7 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 	}
 }
 
-$isLinear = !empty($_GET['linear']) ? true : false;
+$isLinear     = !empty($_GET['linear']) ? true : false;
+$vxqlEndpoint = !empty($_GET['vxqlEndpoint']) ? $_GET['vxqlEndpoint'] : '';
+$vxqlWebToken = !empty($_GET['vxqlWebToken']) ? $_GET['vxqlWebToken'] : '';
 ?>
 <!DOCTYPE html>
 <html>
@@ -77,8 +79,8 @@ $isLinear = !empty($_GET['linear']) ? true : false;
 	function renderPreview(id, isLinear) {
 		VXTeaser.Preview.render(document.querySelector('#banner'), {
 			bannerSuiteClassName: isLinear ? 'is-linear' : '',
-			vxqlEndpoint:         'https://pu.vxnextgen.x/vxql',
-			vxqlWebToken:         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXJ0bmVySWQiOjgyNzgsInByb2R1Y3RJZCI6MTAwMDN9.8B65L1KiQ4xhJlSNJGvcBInBx4CtlUV_KrLMz3AnLyk',
+			vxqlEndpoint:         <?php echo json_encode($vxqlEndpoint); ?>,
+			vxqlWebToken:         <?php echo json_encode($vxqlWebToken); ?>,
 			id:                   id
 		});
 	}
