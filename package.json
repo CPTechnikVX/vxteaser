@@ -1,8 +1,7 @@
 {
   "name": "vxteaser",
-  "version": "1.0.0",
   "description": "VX teaser components",
-  "main": "index.js",
+  "main": "src/lib.js",
   "scripts": {
     "build": "webpack",
     "build:all": "npm run build | npm run storybook:build | npm run styleguide:build",
