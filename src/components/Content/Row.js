@@ -6,12 +6,6 @@ import Constants from '../../utils/Constants';
  * Row for the grid
  */
 export default class Row extends React.PureComponent {
-
-	static propTypes = {
-		/** @ignore */
-		children: PropTypes.node,
-	};
-
 	render() {
 		const {children} = this.props;
 		const colCount   = React.Children.count(children);
@@ -27,3 +21,8 @@ export default class Row extends React.PureComponent {
 		return <div className={Constants.ClassName.Row}>{childrenWithProps}</div>;
 	}
 }
+
+Row.propTypes = {
+	/** @ignore */
+	children: PropTypes.node,
+};

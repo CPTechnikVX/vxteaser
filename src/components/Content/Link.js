@@ -8,13 +8,6 @@ import LinkHandler from '../LinkHandler';
  * General link component
  */
 export default class Link extends React.PureComponent {
-	static propTypes = {
-		/** @ignore */
-		children: PropTypes.node,
-		color:    PropTypes.string,
-		link:     PropTypes.string,
-	};
-
 	render() {
 		const {children, color, link} = this.props;
 		const classList               = [];
@@ -36,3 +29,10 @@ export default class Link extends React.PureComponent {
 		return <a className={classnames(classList)} onClick={onClickFn}>{children}</a>;
 	}
 }
+
+Link.propTypes = {
+	/** @ignore */
+	children: PropTypes.node,
+	color:    PropTypes.string,
+	link:     PropTypes.string,
+};

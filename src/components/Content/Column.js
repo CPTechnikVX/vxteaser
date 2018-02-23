@@ -6,13 +6,6 @@ import PropTypes from 'prop-types';
  * Column element for the grid
  */
 export default class Column extends React.PureComponent {
-	static propTypes = {
-		/** @ignore */
-		children: PropTypes.node,
-		width:    PropTypes.string,
-
-	};
-
 	render() {
 		const {children, width} = this.props;
 		const styleObj          = {
@@ -23,3 +16,10 @@ export default class Column extends React.PureComponent {
 		return <div className={Constants.ClassName.Column} style={styleObj}>{children}</div>;
 	}
 }
+
+Column.propTypes = {
+	/** @ignore */
+	children: PropTypes.node,
+	width:    PropTypes.string,
+
+};

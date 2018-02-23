@@ -7,13 +7,6 @@ import VXQL      from '../utils/Query';
  * Load configs via VXQL and pass it to the child element
  */
 export default class Provider extends React.PureComponent {
-
-	static propTypes = {
-		/** @ignore */
-		children: PropTypes.node,
-		config:   PropTypes.object,
-	};
-
 	constructor(props) {
 		super(props);
 
@@ -87,3 +80,9 @@ export default class Provider extends React.PureComponent {
 		);
 	}
 }
+
+Provider.propTypes = {
+	/** @ignore */
+	children: PropTypes.node,
+	config:   PropTypes.object,
+};

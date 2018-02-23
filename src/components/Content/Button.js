@@ -8,16 +8,6 @@ import LinkHandler from '../LinkHandler';
  * General button element
  */
 export default class Button extends React.PureComponent {
-	static propTypes = {
-		/** @ignore */
-		children: PropTypes.node,
-		/**
-		 * Textual color definition
-		 */
-		color:    PropTypes.oneOf(['primary']),
-		link:     PropTypes.string,
-	};
-
 	render() {
 		const {children, color, link} = this.props;
 		const classList               = [];
@@ -41,3 +31,13 @@ export default class Button extends React.PureComponent {
 		return <a className={classnames(classList)} onClick={onClickFn}>{children}</a>;
 	}
 }
+
+Button.propTypes = {
+	/** @ignore */
+	children: PropTypes.node,
+	/**
+	 * Textual color definition
+	 */
+	color:    PropTypes.oneOf(['primary']),
+	link:     PropTypes.string,
+};

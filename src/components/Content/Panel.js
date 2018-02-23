@@ -6,14 +6,6 @@ import PropTypes from 'prop-types';
  * Standard panel element
  */
 export default class Panel extends React.PureComponent {
-	static propTypes = {
-		/** @ignore */
-		config:   PropTypes.object,
-		/** @ignore */
-		children: PropTypes.node,
-		width:    PropTypes.string,
-	};
-
 	render() {
 		const {children, config, width} = this.props;
 		const styleObj                  = {
@@ -23,3 +15,11 @@ export default class Panel extends React.PureComponent {
 		return <div className={Constants.ClassName.Panel} style={styleObj}>{children}</div>;
 	}
 }
+
+Panel.propTypes = {
+	/** @ignore */
+	config:   PropTypes.object,
+	/** @ignore */
+	children: PropTypes.node,
+	width:    PropTypes.string,
+};

@@ -7,16 +7,6 @@ import classnames from 'classnames';
  * Group of skewed panels
  */
 export default class SkewPanelGroup extends React.PureComponent {
-	static propTypes = {
-		/** @ignore */
-		children:  PropTypes.node,
-		modifier:  PropTypes.string,
-		/**
-		 * width in per cent, like '45%'
-		 */
-		skewWidth: PropTypes.string,
-	};
-
 	render() {
 		const {children, modifier, skewWidth} = this.props;
 		const classList                       = [];
@@ -36,3 +26,13 @@ export default class SkewPanelGroup extends React.PureComponent {
 		</div>;
 	}
 }
+
+SkewPanelGroup.propTypes = {
+	/** @ignore */
+	children:  PropTypes.node,
+	modifier:  PropTypes.string,
+	/**
+	 * width in per cent, like '45%'
+	 */
+	skewWidth: PropTypes.string,
+};

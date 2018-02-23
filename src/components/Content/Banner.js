@@ -8,20 +8,6 @@ import LinkHandler from '../LinkHandler';
  * Main Banner component
  */
 export default class Banner extends React.PureComponent {
-
-	static propTypes = {
-		/** @ignore */
-		config:      PropTypes.object,
-		/** @ignore */
-		children:    PropTypes.node,
-		/** @ignore */
-		onClickFn:   PropTypes.func,
-		link:        PropTypes.string,
-		theme:       PropTypes.string,
-		/** @ignore */
-		windowWidth: PropTypes.number,
-	};
-
 	constructor(props) {
 		super(props);
 
@@ -78,3 +64,16 @@ export default class Banner extends React.PureComponent {
 		}
 	}
 }
+
+Banner.propTypes = {
+	/** @ignore */
+	config:      PropTypes.object,
+	/** @ignore */
+	children:    PropTypes.node,
+	/** @ignore */
+	onClickFn:   PropTypes.func,
+	link:        PropTypes.string,
+	theme:       PropTypes.string,
+	/** @ignore */
+	windowWidth: PropTypes.number,
+};

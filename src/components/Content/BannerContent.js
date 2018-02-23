@@ -7,15 +7,6 @@ import PropTypes  from 'prop-types';
  * Content of the banner
  */
 export default class BannerContent extends React.PureComponent {
-	static propTypes = {
-		/** @ignore */
-		config:      PropTypes.object,
-		/** @ignore */
-		children:    PropTypes.node,
-		/** @ignore */
-		windowWidth: PropTypes.number,
-	};
-
 	render() {
 		const {children, config, windowWidth} = this.props;
 		const classList                       = [];
@@ -34,3 +25,12 @@ export default class BannerContent extends React.PureComponent {
 		</div>;
 	}
 }
+
+BannerContent.propTypes = {
+	/** @ignore */
+	config:      PropTypes.object,
+	/** @ignore */
+	children:    PropTypes.node,
+	/** @ignore */
+	windowWidth: PropTypes.number,
+};

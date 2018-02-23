@@ -8,21 +8,6 @@ import LinkHandler from '../LinkHandler';
  * Skewed button for skewed panel
  */
 export default class PanelSkewButton extends React.PureComponent {
-	static propTypes = {
-		/** @ignore */
-		children:    PropTypes.node,
-		/** @ignore */
-		config:      PropTypes.object,
-		/**
-		 * Textual color definition
-		 */
-		color:       PropTypes.oneOf(['primary']),
-		link:        PropTypes.string,
-		modifier:    PropTypes.string,
-		/** @ignore */
-		windowWidth: PropTypes.number,
-	};
-
 	render() {
 		const {children, config, link, modifier, windowWidth} = this.props;
 		const classList                                       = [];
@@ -51,3 +36,18 @@ export default class PanelSkewButton extends React.PureComponent {
 		return <a className={classnames(classList)} onClick={onClickFn} style={styleObj}>{children}</a>;
 	}
 }
+
+PanelSkewButton.propTypes = {
+	/** @ignore */
+	children:    PropTypes.node,
+	/** @ignore */
+	config:      PropTypes.object,
+	/**
+	 * Textual color definition
+	 */
+	color:       PropTypes.oneOf(['primary']),
+	link:        PropTypes.string,
+	modifier:    PropTypes.string,
+	/** @ignore */
+	windowWidth: PropTypes.number,
+};

@@ -7,13 +7,6 @@ import PropTypes  from 'prop-types';
  * Default free text element
  */
 export default class Text extends React.PureComponent {
-	static propTypes = {
-		/** @ignore */
-		children: PropTypes.node,
-		color:    PropTypes.string,
-		modifier: PropTypes.string,
-	};
-
 	render() {
 		const {children, color, modifier} = this.props;
 		const classList                   = [];
@@ -31,3 +24,10 @@ export default class Text extends React.PureComponent {
 		return <span className={classnames(classList)}>{children}</span>;
 	}
 }
+
+Text.propTypes = {
+	/** @ignore */
+	children: PropTypes.node,
+	color:    PropTypes.string,
+	modifier: PropTypes.string,
+};

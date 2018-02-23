@@ -8,22 +8,6 @@ import LinkHandler from '../LinkHandler';
  * Skewed panel
  */
 export default class PanelSkew extends React.PureComponent {
-	static propTypes = {
-		/** @ignore */
-		config:      PropTypes.object,
-		/** @ignore */
-		children:    PropTypes.node,
-		/**
-		 * Textual color definition
-		 */
-		color:       PropTypes.oneOf(['primary']),
-		link:        PropTypes.string,
-		modifier:    PropTypes.string,
-		src:         PropTypes.string,
-		/** @ignore */
-		windowWidth: PropTypes.number,
-	};
-
 	render() {
 		const {config, link, modifier, src, windowWidth} = this.props;
 		const classList                                  = [];
@@ -54,3 +38,19 @@ export default class PanelSkew extends React.PureComponent {
 		</a>;
 	}
 }
+
+PanelSkew.propTypes = {
+	/** @ignore */
+	config:      PropTypes.object,
+	/** @ignore */
+	children:    PropTypes.node,
+	/**
+	 * Textual color definition
+	 */
+	color:       PropTypes.oneOf(['primary']),
+	link:        PropTypes.string,
+	modifier:    PropTypes.string,
+	src:         PropTypes.string,
+	/** @ignore */
+	windowWidth: PropTypes.number,
+};

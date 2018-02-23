@@ -6,11 +6,6 @@ import 'whatwg-fetch';
  * Mock Provider connection with dummy configs
  */
 export default class Provider extends React.PureComponent {
-	static propTypes = {
-		children: PropTypes.object,
-		config:   PropTypes.object,
-	};
-
 	constructor(props) {
 		super(props);
 
@@ -90,3 +85,8 @@ export default class Provider extends React.PureComponent {
 		);
 	}
 }
+
+Provider.propTypes = {
+	children: PropTypes.object,
+	config:   PropTypes.object,
+};

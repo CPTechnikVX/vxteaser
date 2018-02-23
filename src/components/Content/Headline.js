@@ -4,21 +4,6 @@ import Constants  from './../../utils/Constants';
 import classnames from 'classnames';
 
 export default class Headline extends React.PureComponent {
-
-	static propTypes = {
-		/** @ignore */
-		children: PropTypes.node,
-		/**
-		 * CSS modifier
-		 */
-		modifier: PropTypes.string,
-		type:     PropTypes.oneOf(['main', 'sub', 'text']),
-	};
-
-	static defaultProps = {
-		type: 'text',
-	};
-
 	render() {
 		const {children, modifier, type} = this.props;
 		const classList                  = [];
@@ -36,3 +21,17 @@ export default class Headline extends React.PureComponent {
 		return <div className={classnames(classList)}>{children}</div>;
 	}
 }
+
+Headline.propTypes = {
+	/** @ignore */
+	children: PropTypes.node,
+	/**
+	 * CSS modifier
+	 */
+	modifier: PropTypes.string,
+	type:     PropTypes.oneOf(['main', 'sub', 'text']),
+};
+
+Headline.defaultProps = {
+	type: 'text',
+};
