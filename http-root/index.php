@@ -20,6 +20,8 @@ $vxqlWebToken = !empty($_GET['vxqlWebToken']) ? $_GET['vxqlWebToken'] : '';
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<style>
+		@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
 		html {
 			font-family: 'Roboto Condensed';
 			font-size:   10px;
