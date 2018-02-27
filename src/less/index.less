@@ -1,21 +1,21 @@
-@color-white: #FFFFFF;
-@color-black: #000000;
-@color-primary: #1F93E9;
-@color-highlight: #FF4D3C;
-@color-dark: #1D1E1F;
-@color-special: #1f93e9;
-@color-transparent: transparent;
+@vxteaser-color-white: #FFFFFF;
+@vxteaser-color-black: #000000;
+@vxteaser-color-primary: #1F93E9;
+@vxteaser-color-highlight: #FF4D3C;
+@vxteaser-color-dark: #1D1E1F;
+@vxteaser-color-special: #1f93e9;
+@vxteaser-color-transparent: transparent;
 
-@color-mood-1: #F1F1F1;
-@color-mood-2: #888888;
-@color-mood-5: #1D1E1F;
-@color-mood-6: #151617;
+@vxteaser-color-mood-1: #F1F1F1;
+@vxteaser-color-mood-2: #888888;
+@vxteaser-color-mood-5: #1D1E1F;
+@vxteaser-color-mood-6: #151617;
 
-@font-family: 'Roboto Condensed';
+@vxteaser-font-family: 'Roboto Condensed';
 
-@font-weight-light: 300;
-@font-weight-normal: 400;
-@font-weight-bold: 700;
+@vxteaser-font-weight-light: 300;
+@vxteaser-font-weight-normal: 400;
+@vxteaser-font-weight-bold: 700;
 
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
@@ -43,7 +43,7 @@
 }
 
 .-font-light {
-	font-weight: @font-weight-light !important;
+	font-weight: @vxteaser-font-weight-light !important;
 }
 
 .-text-align-left {
@@ -58,8 +58,8 @@
 	padding:     0;
 	width:       100%;
 	max-width:   100%;
-	font-family: @font-family;
-	font-weight: @font-weight-light;
+	font-family: @vxteaser-font-family;
+	font-weight: @vxteaser-font-weight-light;
 }
 
 .vxteaser-suite__item {
@@ -91,36 +91,36 @@
 }
 
 .vxteaser-headline {
-	font-family: @font-family;
+	font-family: @vxteaser-font-family;
 
 	&.-type-sub {
 		font-size:   2.6rem;
-		font-weight: @font-weight-light;
+		font-weight: @vxteaser-font-weight-light;
 		line-height: 2.3rem;
 	}
 	&.-type-main {
 		margin-bottom:  1.5rem;
 		font-size:      4.6rem;
-		font-weight:    @font-weight-bold;
+		font-weight:    @vxteaser-font-weight-bold;
 		text-transform: uppercase;
 		line-height:    4rem;
 	}
 	&, &.-type-text {
 		margin-bottom: 2rem;
 		font-size:     1.7rem;
-		font-weight:   @font-weight-normal;
+		font-weight:   @vxteaser-font-weight-normal;
 		line-height:   2rem;
 	}
 }
 
 .vxteaser-button {
-	color:            @color-white;
+	color:            @vxteaser-color-white;
 	border-radius:    2px;
-	border:           1px solid @color-primary;
-	background-color: @color-primary;
+	border:           1px solid @vxteaser-color-primary;
+	background-color: @vxteaser-color-primary;
 	display:          inline-block;
 	font-size:        1.7rem;
-	font-weight:      @font-weight-light;
+	font-weight:      @vxteaser-font-weight-light;
 	padding:          0.7em 0 0.65em 0;
 	cursor:           pointer;
 	min-width:        180px;
@@ -132,8 +132,8 @@
 	vertical-align:   top;
 
 	&.vxteaser-color--white {
-		color:            @color-special;
-		background-color: @color-white
+		color:            @vxteaser-color-special;
+		background-color: @vxteaser-color-white
 	}
 }
 
@@ -155,19 +155,19 @@
 	content:          ' ';
 	top:              -120%;
 	left:             -9%;
-	background-color: @color-mood-5;
+	background-color: @vxteaser-color-mood-5;
 
 	.-theme-light.vxteaser--has-skew & {
-		color:            @color-black;
-		background-color: @color-white;
+		color:            @vxteaser-color-black;
+		background-color: @vxteaser-color-white;
 	}
 	.-theme-special.vxteaser--has-skew & {
-		color:            @color-white;
-		background-color: @color-special;
+		color:            @vxteaser-color-white;
+		background-color: @vxteaser-color-special;
 	}
 	.-theme-transparent.vxteaser--has-skew & {
-		color:            @color-white;
-		background-color: @color-transparent;
+		color:            @vxteaser-color-white;
+		background-color: @vxteaser-color-transparent;
 	}
 }
 
@@ -178,31 +178,31 @@
 .vxteaser-banner__content {
 	position:         relative;
 	height:           100%;
-	color:            @color-white;
+	color:            @vxteaser-color-white;
 	background-color: transparent;
 
 	.vxteaser--has-no-skew & {
-		background-color: @color-dark;
+		background-color: @vxteaser-color-dark;
 	}
 
 	.-theme-light & {
-		color: @color-black;
+		color: @vxteaser-color-black;
 	}
 	.-theme-special & {
-		color: @color-white;
+		color: @vxteaser-color-white;
 	}
 	.-theme-transparent & {
-		color: @color-white;
+		color: @vxteaser-color-white;
 	}
 
 	.-theme-light.vxteaser--has-no-skew & {
-		background-color: @color-white;
+		background-color: @vxteaser-color-white;
 	}
 	.-theme-special.vxteaser--has-no-skew & {
-		background-color: @color-special;
+		background-color: @vxteaser-color-special;
 	}
 	.-theme-transparent.vxteaser--has-no-skew & {
-		background-color: @color-transparent;
+		background-color: @vxteaser-color-transparent;
 	}
 }
 
@@ -219,7 +219,7 @@
 	transform: translateY(-50%);
 	cursor:    pointer;
 	font-size: 6rem;
-	color:     @color-mood-1;
+	color:     @vxteaser-color-mood-1;
 
 	.is-linear & {
 		display: none;
@@ -253,15 +253,15 @@
 /****************** COLORS ******************/
 
 .vxteaser-color--description {
-	color: @color-mood-2;
+	color: @vxteaser-color-mood-2;
 }
 
 .vxteaser-color--highlight {
-	color: @color-highlight;
+	color: @vxteaser-color-highlight;
 }
 
 .vxteaser-bg-color--white {
-	background-color: @color-white;
+	background-color: @vxteaser-color-white;
 }
 
 /****************** END COLORS ******************/
@@ -344,22 +344,22 @@
 	position:         absolute;
 	z-index:          2;
 	font-size:        2.4rem;
-	font-family:      @font-family;
+	font-family:      @vxteaser-font-family;
 	line-height:      1;
 	text-transform:   none;
-	color:            @color-white;
-	background-color: @color-mood-6;
+	color:            @vxteaser-color-white;
+	background-color: @vxteaser-color-mood-6;
 	padding:          .55em 1.5em .45em 1.45em;
 	border:           none;
 	transition:       none;
 	text-decoration:  none;
 
 	&:hover {
-		background-color: lighten(@color-mood-6, 15%);
+		background-color: lighten(@vxteaser-color-mood-6, 15%);
 	}
 	&:hover::before {
 		transition:   none;
-		border-color: transparent transparent lighten(@color-mood-6, 15%) transparent;
+		border-color: transparent transparent lighten(@vxteaser-color-mood-6, 15%) transparent;
 	}
 	&:before {
 		border-style: solid;
@@ -372,7 +372,7 @@
 		content:     ">";
 		display:     inline-block;
 		float:       left;
-		font-weight: @font-weight-normal;
+		font-weight: @vxteaser-font-weight-normal;
 	}
 
 	@media only screen and (min-width: (1199px)) {
@@ -388,7 +388,7 @@
 			top:          0;
 			border-style: solid;
 			border-width: 0 0 2em 1em;
-			border-color: transparent transparent @color-mood-6 transparent;
+			border-color: transparent transparent @vxteaser-color-mood-6 transparent;
 		}
 	}
 }
