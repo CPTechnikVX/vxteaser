@@ -10,7 +10,6 @@ function getTeasers() {
 	$inputXML = /** @lang xml */
 		<<<EOT
 <banner theme="light" link="https://www.visit-x.net/de/magazin/aktuelle-ausgabe/">
-   <content>
       <skewpanelgroup skewWidth="55%">
          <panel width="45%">
             <row>
@@ -38,7 +37,6 @@ function getTeasers() {
             </row>
          </panel>
       </skewpanelgroup>
-   </content>
 </banner>
 EOT;
 
@@ -62,7 +60,6 @@ EOT;
 	$inputXML = /** @lang xml */
 		<<<EOT
 <banner theme="special">
-   <content>
       <skewpanelgroup skewWidth="55%">
          <panel width="45%">
             <row>
@@ -88,7 +85,6 @@ EOT;
             </row>
          </panel>
       </skewpanelgroup>
-   </content>
 </banner>
 EOT;
 
@@ -112,7 +108,6 @@ EOT;
 	$inputXML = /** @lang xml */
 		<<<EOT
 <banner>
-   <content color="#FFFFFF">
       <skewpanelgroup skewWidth="50%">
          <panel width="45%">
             <row>
@@ -155,7 +150,6 @@ EOT;
             </row>
          </panel>
       </skewpanelgroup>
-   </content>
 </banner>
 EOT;
 
@@ -177,7 +171,6 @@ EOT;
 	$inputXML = /** @lang xml */
 		<<<EOT
 <banner theme="transparent">
-   <content color="#FFFFFF">
       <skewpanelgroup skewWidth="54%">
          <panel width="45%">
             <row>
@@ -208,7 +201,6 @@ EOT;
             </row>
          </panel>
       </skewpanelgroup>
-   </content>
 </banner>
 EOT;
 
@@ -230,7 +222,6 @@ EOT;
 	$inputXML = /** @lang xml */
 		<<<EOT
 <banner>
-	<content color="#FFFFFF">
 		<skewpanelgroup skewWidth="54%">
 			<panel width="45%" valign="bottom">
 				<row>
@@ -256,7 +247,6 @@ EOT;
 			<panelskew src="https://www.visit-x.net/assets/img/teaser/teaser-existing-categories-02.jpg" link="https://www.visit-x.net/de/kategorien/74-tattoos/"></panelskew>
 			<panelskew src="https://www.visit-x.net/assets/img/teaser/teaser-existing-categories-03.jpg" link="https://www.visit-x.net/de/kategorien/18-reife-frauen/"></panelskew>
 		</skewpanelgroup>
-	</content>
 </banner>
 EOT;
 
@@ -278,7 +268,6 @@ EOT;
 	$inputXML = /** @lang xml */
 		<<<EOT
 <banner>
-   <content color="#FFFFFF">
       <skewpanelgroup skewWidth="54%">
          <panel width="45%" valign="bottom">
             <row>
@@ -302,7 +291,6 @@ EOT;
          <panelskew src="https://www.visit-x.net/assets/img/teaser/teaser-existing-categories-01.jpg" link="https://www.visit-x.net/de/kategorien/31-hotties/"></panelskew>
          <panelskew src="https://www.visit-x.net/assets/img/teaser/teaser-existing-categories-02.jpg" link="https://www.visit-x.net/de/kategorien/74-tattoos/"></panelskew>
       </skewpanelgroup>
-   </content>
 </banner>
 EOT;
 
@@ -324,7 +312,6 @@ EOT;
 	$inputXML = /** @lang xml */
 		<<<EOT
 <banner theme="light">
-   <content>
       <skewpanelgroup skewWidth="55%">
          <panel width="45%">
             <row>
@@ -350,7 +337,6 @@ EOT;
             </row>
          </panel>
       </skewpanelgroup>
-   </content>
 </banner>
 EOT;
 
@@ -374,7 +360,6 @@ EOT;
 	$inputXML = /** @lang xml */
 		<<<EOT
 <banner theme="light">
-   <content>
       <skewpanelgroup skewWidth="55%">
          <panel width="45%">
             <row>
@@ -392,7 +377,6 @@ EOT;
             </row>
          </panel>
       </skewpanelgroup>
-   </content>
 </banner>
 EOT;
 

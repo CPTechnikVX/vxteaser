@@ -29,7 +29,6 @@ const Element = {
 	Break:           'br',
 	Button:          'button',
 	Column:          'col',
-	Content:         'content',
 	Headline:        'headline',
 	Link:            'link',
 	Panel:           'panel',

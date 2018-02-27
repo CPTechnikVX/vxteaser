@@ -1,6 +1,5 @@
 ```html
 <banner theme="light" link="https://www.visit-x.net/de/magazin/aktuelle-ausgabe/">
-  <content>
     <skewpanelgroup skewWidth="54%">
       <panel width="45%" valign="bottom">
         <row>
@@ -25,6 +24,5 @@
         </row>
       </panel>
     </skewpanelgroup>
-  </content>
 </banner>
 ```

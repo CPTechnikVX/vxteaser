@@ -9,7 +9,6 @@ import Row             from '../components/Content/Row';
 import Column          from '../components/Content/Column';
 import PanelGroup      from '../components/Content/PanelGroup';
 import SkewPanelGroup  from '../components/Content/SkewPanelGroup';
-import BannerContent   from '../components/Content/BannerContent';
 import Button          from '../components/Content/Button';
 import PanelSkewButton from '../components/Content/PanelSkewButton';
 import PanelSkew       from '../components/Content/PanelSkew';
@@ -36,8 +35,6 @@ export default class ElementFactory {
 				return <Button {...attrs}>{children}</Button>;
 			case Constants.Element.Column:
 				return <Column {...attrs}>{children}</Column>;
-			case Constants.Element.Content:
-				return <BannerContent {...attrs} config={config}>{children}</BannerContent>;
 			case Constants.Element.Headline:
 				return <Headline {...attrs}>{children}</Headline>;
 			case Constants.Element.Link:
