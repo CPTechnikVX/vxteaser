@@ -13,7 +13,21 @@ exports[`render banner banner content 1`] = `
   }
 >
   <BannerContent
-    key=".0"
+    config={
+      Object {
+        "fixedHeights": Array [
+          Object {
+            "backgroundUrl": "url0",
+            "height": 500,
+          },
+          Object {
+            "backgroundUrl": "url1",
+            "greaterThan": 1200,
+            "height": 260,
+          },
+        ],
+      }
+    }
   />
 </div>
 `;
@@ -31,7 +45,21 @@ exports[`render banner banner content tablet 1`] = `
   }
 >
   <BannerContent
-    key=".0"
+    config={
+      Object {
+        "fixedHeights": Array [
+          Object {
+            "backgroundUrl": "url0",
+            "height": 500,
+          },
+          Object {
+            "backgroundUrl": "url1",
+            "greaterThan": 1200,
+            "height": 260,
+          },
+        ],
+      }
+    }
     windowWidth={768}
   />
 </div>
@@ -50,7 +78,21 @@ exports[`render banner banner theme 1`] = `
   }
 >
   <BannerContent
-    key=".0"
+    config={
+      Object {
+        "fixedHeights": Array [
+          Object {
+            "backgroundUrl": "url0",
+            "height": 500,
+          },
+          Object {
+            "backgroundUrl": "url1",
+            "greaterThan": 1200,
+            "height": 260,
+          },
+        ],
+      }
+    }
   />
 </div>
 `;

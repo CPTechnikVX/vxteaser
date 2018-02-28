@@ -50,6 +50,7 @@ export default class BannerSuite extends React.PureComponent {
 		// bind
 		this.onBannerOver = this.onBannerOver.bind(this);
 		this.onBannerOut  = this.onBannerOut.bind(this);
+		this.onCloseClick = this.onCloseClick.bind(this);
 		this.onNextClick  = this.onNextClick.bind(this);
 		this.onPrevClick  = this.onPrevClick.bind(this);
 		this.onResize     = this.onResize.bind(this);
@@ -176,6 +177,18 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	/**
+	 * Click on close button
+	 */
+	onCloseClick(event) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		if (this.props.onCloseFn) {
+			this.props.onCloseFn();
+		}
+	}
+
+	/**
 	 * Set visible item via index
 	 * @param i
 	 */
@@ -275,6 +288,7 @@ export default class BannerSuite extends React.PureComponent {
 						{pointsDOM.length > 1 &&
 						<div className={'vxteaser-arrow--left'} onClick={this.onPrevClick} />}
 						{bannerDOM}
+						<div className={'vxteaser-control--close'} onClick={this.onCloseClick} />
 						{pointsDOM.length > 1 &&
 						<div className={'vxteaser-arrow--right'} onClick={this.onNextClick} />}
 					</div>
@@ -290,6 +304,7 @@ BannerSuite.propTypes = {
 	className: PropTypes.string,
 	configs:   PropTypes.array,
 	delay:     PropTypes.number,
+	onCloseFn: PropTypes.func,
 };
 
 BannerSuite.defaultProps = {

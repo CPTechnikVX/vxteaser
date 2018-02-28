@@ -83,6 +83,23 @@
 	}
 }
 
+.vxteaser-control--close {
+	position: absolute;
+	top:      10px;
+	right:    10px;
+	z-index:  3;
+	cursor:   pointer;
+
+	&:before {
+		content:     "\00d7";
+		text-shadow: 1px 1px 2px #4d4d4d;
+		font-size:   6rem;
+		font-weight: @vxteaser-font-weight-light;
+		line-height: 0.3;
+		color:       @vxteaser-color-white;
+	}
+}
+
 .vxteaser-panel {
 	position: relative;
 }

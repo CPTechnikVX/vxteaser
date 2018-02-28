@@ -6,17 +6,21 @@ import ProviderMock from '../components/ProviderMock';
 import Provider     from '../components/Provider';
 
 class PreviewView extends React.PureComponent {
+	static onClose() {
+		alert('close button clicked!');
+	}
+
 	render() {
-		const config = this.props.config;
+		const config  = this.props.config;
 		let content;
 
 		if (config.id) {
 			content = <Provider config={config}>
-				<BannerSuite className={config.bannerSuiteClassName ? config.bannerSuiteClassName : ''} />
+				<BannerSuite className={config.bannerSuiteClassName ? config.bannerSuiteClassName : ''} onCloseFn={PreviewView.onClose} />
 			</Provider>;
 		} else {
 			content = <ProviderMock config={config}>
-				<BannerSuite className={config.bannerSuiteClassName ? config.bannerSuiteClassName : ''} />
+				<BannerSuite className={config.bannerSuiteClassName ? config.bannerSuiteClassName : ''} onCloseFn={PreviewView.onClose} />
 			</ProviderMock>;
 		}
 

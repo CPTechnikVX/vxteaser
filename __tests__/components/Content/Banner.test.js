@@ -29,7 +29,7 @@ describe('render banner', () => {
 	});
 	test('banner content', () => {
 		const wrapper = shallow(
-			<Banner config={config}><BannerContent /></Banner>
+			<Banner config={config}></Banner>
 		);
 		const style   = wrapper.prop('style');
 
@@ -41,7 +41,7 @@ describe('render banner', () => {
 	});
 	test('banner content tablet', () => {
 		const wrapper = shallow(
-			<Banner config={config} windowWidth={768}><BannerContent /></Banner>
+			<Banner config={config} windowWidth={768}></Banner>
 		);
 		const style   = wrapper.prop('style');
 
@@ -53,13 +53,13 @@ describe('render banner', () => {
 	});
 	test('banner theme', () => {
 		const wrapper = shallow(
-			<Banner config={config} theme={'white'}><BannerContent /></Banner>
+			<Banner config={config} theme={'white'}></Banner>
 		);
 		expect(wrapper).toMatchSnapshot();
 	});
 	test('banner pass props to children', () => {
 		const wrapper = shallow(
-			<Banner config={config} theme={'white'} windowWidth={windowWidth}><BannerContent /></Banner>
+			<Banner config={config} theme={'white'} windowWidth={windowWidth}></Banner>
 		);
 		expect(wrapper.find('BannerContent').prop('windowWidth')).toBe(windowWidth);
 	});
