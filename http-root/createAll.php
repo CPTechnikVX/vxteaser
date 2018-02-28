@@ -32,7 +32,7 @@ function getTeasers() {
             </row>
             <row>
                 <col>
-               <button color="primary">Jetzt online lesen</button>
+               <button color="primary" link="https://www.visit-x.net/de/magazin/aktuelle-ausgabe/">Jetzt online lesen</button>
                </col>
             </row>
          </panel>

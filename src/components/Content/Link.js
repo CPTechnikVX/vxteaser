@@ -2,7 +2,6 @@ import React       from 'react';
 import PropTypes   from 'prop-types';
 import Constants   from '../../utils/Constants';
 import classnames  from 'classnames';
-import LinkHandler from '../LinkHandler';
 
 /**
  * General link component
@@ -22,7 +21,7 @@ export default class Link extends React.PureComponent {
 				e.preventDefault();
 				e.stopPropagation();
 
-				LinkHandler.handle(link);
+				this.props.onLinkFn(link);
 			};
 		}
 
@@ -35,4 +34,6 @@ Link.propTypes = {
 	children: PropTypes.node,
 	color:    PropTypes.string,
 	link:     PropTypes.string,
+	/** @ignore */
+	onLinkFn: PropTypes.func,
 };

@@ -1,8 +1,7 @@
-import React       from 'react';
-import PropTypes   from 'prop-types';
-import Constants   from '../../utils/Constants';
-import classnames  from 'classnames';
-import LinkHandler from '../LinkHandler';
+import React      from 'react';
+import PropTypes  from 'prop-types';
+import Constants  from '../../utils/Constants';
+import classnames from 'classnames';
 
 /**
  * General button element
@@ -24,7 +23,7 @@ export default class Button extends React.PureComponent {
 				e.preventDefault();
 				e.stopPropagation();
 
-				LinkHandler.handle(link);
+				this.props.onLinkFn(link);
 			};
 		}
 
@@ -40,4 +39,6 @@ Button.propTypes = {
 	 */
 	color:    PropTypes.oneOf(['primary']),
 	link:     PropTypes.string,
+	/** @ignore */
+	onLinkFn: PropTypes.func,
 };

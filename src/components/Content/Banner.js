@@ -2,7 +2,6 @@ import React         from 'react';
 import PropTypes     from 'prop-types';
 import classnames    from 'classnames';
 import Constants     from '../../utils/Constants';
-import LinkHandler   from '../LinkHandler';
 import BannerContent from './BannerContent';
 
 /**
@@ -20,7 +19,7 @@ export default class Banner extends React.PureComponent {
 		event.preventDefault();
 		event.stopPropagation();
 
-		LinkHandler.handle(this.props.link);
+		this.props.onLinkFn(this.props.link);
 	}
 
 	render() {
@@ -67,6 +66,8 @@ Banner.propTypes = {
 	children:    PropTypes.node,
 	/** @ignore */
 	onClickFn:   PropTypes.func,
+	/** @ignore */
+	onLinkFn:    PropTypes.func,
 	link:        PropTypes.string,
 	theme:       PropTypes.string,
 	/** @ignore */

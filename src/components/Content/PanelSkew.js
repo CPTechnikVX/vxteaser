@@ -2,7 +2,6 @@ import React       from 'react';
 import PropTypes   from 'prop-types';
 import Constants   from '../../utils/Constants';
 import classnames  from 'classnames';
-import LinkHandler from '../LinkHandler';
 
 /**
  * Skewed panel
@@ -21,7 +20,7 @@ export default class PanelSkew extends React.PureComponent {
 				e.preventDefault();
 				e.stopPropagation();
 
-				LinkHandler.handle(link);
+				this.props.onLinkFn(link);
 			};
 		}
 
@@ -50,6 +49,8 @@ PanelSkew.propTypes = {
 	color:       PropTypes.oneOf(['primary']),
 	link:        PropTypes.string,
 	modifier:    PropTypes.string,
+	/** @ignore */
+	onLinkFn:    PropTypes.func,
 	src:         PropTypes.string,
 	/** @ignore */
 	windowWidth: PropTypes.number,

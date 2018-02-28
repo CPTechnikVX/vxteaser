@@ -11,7 +11,7 @@ class PreviewView extends React.PureComponent {
 	}
 
 	render() {
-		const config  = this.props.config;
+		const config = this.props.config;
 		let content;
 
 		if (config.id) {

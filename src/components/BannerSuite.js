@@ -2,6 +2,7 @@ import React         from 'react';
 import PropTypes     from 'prop-types';
 import BannerBuilder from '../utils/Builder';
 import Constants     from './../utils/Constants';
+import LinkHandler   from './LinkHandler';
 
 /**
  * Top level banner suite component containing one or more banners
@@ -260,6 +261,9 @@ export default class BannerSuite extends React.PureComponent {
 					pointsDOM.push(i);
 				}
 
+				// assign handlers
+				config.onLinkFn = typeof this.props.onLinkFn === 'function' ? this.props.onLinkFn : LinkHandler.handle;
+
 				return <div key={i} className={Constants.ClassName.SuiteItem + (i === 0 ? ' is-active' : '')} ref={(ref) => {
 					if (ref) {
 						this.itemRefs[i] = ref;
@@ -305,6 +309,7 @@ BannerSuite.propTypes = {
 	configs:   PropTypes.array,
 	delay:     PropTypes.number,
 	onCloseFn: PropTypes.func,
+	onLinkFn: PropTypes.func,
 };
 
 BannerSuite.defaultProps = {
