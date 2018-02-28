@@ -1,19 +1,23 @@
-import React       from 'react';
-import PropTypes   from 'prop-types';
-import Constants   from '../../utils/Constants';
-import classnames  from 'classnames';
+import React      from 'react';
+import PropTypes  from 'prop-types';
+import Constants  from '../../utils/Constants';
+import classnames from 'classnames';
 
 /**
  * General link component
  */
 export default class Link extends React.PureComponent {
 	render() {
-		const {children, color, link} = this.props;
-		const classList               = [];
+		const {children, color, link, modifier} = this.props;
+		const classList                         = [];
 		let onClickFn;
 
 		if (color) {
 			classList.push(Constants.PrefixClassName.Color + color);
+		}
+
+		if (modifier) {
+			classList.push(modifier);
 		}
 
 		if (link) {
@@ -34,6 +38,7 @@ Link.propTypes = {
 	children: PropTypes.node,
 	color:    PropTypes.string,
 	link:     PropTypes.string,
+	modifier: PropTypes.string,
 	/** @ignore */
 	onLinkFn: PropTypes.func,
 };

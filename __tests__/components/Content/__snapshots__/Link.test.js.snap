@@ -2,7 +2,7 @@
 
 exports[`render link with content 1`] = `
 <a
-  className="vxteaser-color--highlight"
+  className="vxteaser-color--highlight js-link"
   onClick={[Function]}
 >
   Link content
