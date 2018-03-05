@@ -4,8 +4,9 @@
   "main": "src/lib.js",
   "scripts": {
     "build": "webpack",
-    "build:all": "npm run build | npm run storybook:build | npm run styleguide:build",
+    "build:all": "npm run build && npm run storybook:build && npm run styleguide:build",
     "watch": "webpack --watch",
+    "prepublish": "rm -rf ./dist && npm run build:all",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o http-root/storybook",
     "test": "jest",
@@ -62,19 +63,23 @@
     "less-loader": "^4.0.5",
     "path": "^0.12.7",
     "postcss-loader": "^2.1.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
     "react-test-renderer": "^15.6.2",
     "style-loader": "^0.20.1",
     "webpack": "^3.8.1",
     "webpack-bundle-size-analyzer": "^2.7.0"
   },
+  "peerDependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
   "dependencies": {
     "classnames": "^2.2.5",
     "exports-loader": "^0.6.4",
     "imports-loader": "^0.7.1",
     "prop-types": "^15.6.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
     "whatwg-fetch": "^2.0.3"
   }
 }

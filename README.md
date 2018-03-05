@@ -19,6 +19,12 @@ npm run storybook
 
 <http://ph.vxteaser.x/storybook/>
 
+## Release
+
+npm run prepublish
+
+git tag X.X.X
+
 ## Docs
 
 npm run storybook:build

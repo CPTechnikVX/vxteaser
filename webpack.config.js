@@ -29,7 +29,7 @@ function getConfig(type = '') {
 
 		output: {
 			filename:               'vxteaser-[name]' + (type ? '-' + type : '') + '.js',
-			path:                   path.resolve(__dirname, ".") + '/lib',
+			path:                   path.resolve(__dirname, ".") + '/dist',
 			hotUpdateChunkFilename: 'temp/hot/hot-update.js',
 			hotUpdateMainFilename:  'temp/hot/hot-update.json',
 			library:                'VXTeaser',
