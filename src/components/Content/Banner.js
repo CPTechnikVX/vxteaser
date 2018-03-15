@@ -3,6 +3,7 @@ import PropTypes     from 'prop-types';
 import classnames    from 'classnames';
 import Constants     from '../../utils/Constants';
 import BannerContent from './BannerContent';
+import ClickEvent    from '../../utils/ClickEvent';
 
 /**
  * Main Banner component
@@ -19,7 +20,9 @@ export default class Banner extends React.PureComponent {
 		event.preventDefault();
 		event.stopPropagation();
 
-		this.props.onLinkFn(this.props.link);
+		this.props.onClickFn(new ClickEvent(event, this, {
+			link: this.props.link,
+		}));
 	}
 
 	render() {
@@ -66,8 +69,6 @@ Banner.propTypes = {
 	children:    PropTypes.node,
 	/** @ignore */
 	onClickFn:   PropTypes.func,
-	/** @ignore */
-	onLinkFn:    PropTypes.func,
 	link:        PropTypes.string,
 	theme:       PropTypes.string,
 	/** @ignore */

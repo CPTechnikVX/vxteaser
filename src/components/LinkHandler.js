@@ -2,9 +2,9 @@
  * Default link handler
  */
 export default class LinkHandler {
-	static handle(link) {
-		if (link) {
-			window.location.href = link;
+	static handle(clickEvent) {
+		if (clickEvent.options.link) {
+			window.location.href = clickEvent.options.link;
 		}
 	}
 }

@@ -262,7 +262,7 @@ export default class BannerSuite extends React.PureComponent {
 				}
 
 				// assign handlers
-				config.onLinkFn = typeof this.props.onLinkFn === 'function' ? this.props.onLinkFn : LinkHandler.handle;
+				config.onClickFn = typeof this.props.onClickFn === 'function' ? this.props.onClickFn : LinkHandler.handle;
 
 				return <div key={i} className={Constants.ClassName.SuiteItem + (i === 0 ? ' is-active' : '')} ref={(ref) => {
 					if (ref) {
@@ -309,7 +309,7 @@ BannerSuite.propTypes = {
 	configs:   PropTypes.array,
 	delay:     PropTypes.number,
 	onCloseFn: PropTypes.func,
-	onLinkFn: PropTypes.func,
+	onClickFn: PropTypes.func,
 };
 
 BannerSuite.defaultProps = {

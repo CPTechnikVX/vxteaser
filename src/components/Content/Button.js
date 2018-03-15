@@ -2,6 +2,7 @@ import React      from 'react';
 import PropTypes  from 'prop-types';
 import Constants  from '../../utils/Constants';
 import classnames from 'classnames';
+import ClickEvent from '../../utils/ClickEvent';
 
 /**
  * General button element
@@ -23,7 +24,9 @@ export default class Button extends React.PureComponent {
 				e.preventDefault();
 				e.stopPropagation();
 
-				this.props.onLinkFn(link);
+				this.props.onClickFn(new ClickEvent(event, this, {
+					link: this.props.link,
+				}));
 			};
 		}
 
@@ -40,5 +43,5 @@ Button.propTypes = {
 	color:    PropTypes.oneOf(['primary']),
 	link:     PropTypes.string,
 	/** @ignore */
-	onLinkFn: PropTypes.func,
+	onClickFn: PropTypes.func,
 };

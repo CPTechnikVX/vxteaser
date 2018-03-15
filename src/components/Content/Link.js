@@ -2,6 +2,7 @@ import React      from 'react';
 import PropTypes  from 'prop-types';
 import Constants  from '../../utils/Constants';
 import classnames from 'classnames';
+import ClickEvent from '../../utils/ClickEvent';
 
 /**
  * General link component
@@ -25,7 +26,9 @@ export default class Link extends React.PureComponent {
 				e.preventDefault();
 				e.stopPropagation();
 
-				this.props.onLinkFn(link);
+				this.props.onClickFn(new ClickEvent(event, this, {
+					link: this.props.link,
+				}));
 			};
 		}
 
@@ -40,5 +43,5 @@ Link.propTypes = {
 	link:     PropTypes.string,
 	modifier: PropTypes.string,
 	/** @ignore */
-	onLinkFn: PropTypes.func,
+	onClickFn: PropTypes.func,
 };

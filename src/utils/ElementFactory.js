@@ -28,17 +28,17 @@ export default class ElementFactory {
 	static getForName({name, attrs, children, config, props, stats}) {
 		switch (name) {
 			case Constants.Element.Banner:
-				return <Banner {...attrs} config={config} {...props} onLinkFn={config.onLinkFn}>{children}</Banner>;
+				return <Banner {...attrs} config={config} {...props} onClickFn={config.onClickFn}>{children}</Banner>;
 			case Constants.Element.Break:
 				return <br />;
 			case Constants.Element.Button:
-				return <Button {...attrs} onLinkFn={config.onLinkFn}>{children}</Button>;
+				return <Button {...attrs} onClickFn={config.onClickFn}>{children}</Button>;
 			case Constants.Element.Column:
 				return <Column {...attrs}>{children}</Column>;
 			case Constants.Element.Headline:
 				return <Headline {...attrs}>{children}</Headline>;
 			case Constants.Element.Link:
-				return <Link {...attrs} onLinkFn={config.onLinkFn}>{children}</Link>;
+				return <Link {...attrs} onClickFn={config.onClickFn}>{children}</Link>;
 			case Constants.Element.Panel:
 				return <Panel {...attrs} config={config} {...props}>{children}</Panel>;
 			case Constants.Element.PanelGroup:
@@ -46,11 +46,11 @@ export default class ElementFactory {
 			case Constants.Element.PanelSkew:
 				attrs.modifier = (attrs.modifier ? attrs.modifier + ' ' : '') + Constants.PrefixClassName.NthOfClass + stats.nthOfType;
 
-				return <PanelSkew {...attrs} config={config} {...props} onLinkFn={config.onLinkFn}>{children}</PanelSkew>;
+				return <PanelSkew {...attrs} config={config} {...props} onClickFn={config.onClickFn}>{children}</PanelSkew>;
 			case Constants.Element.PanelSkewButton:
 				attrs.modifier = (attrs.modifier ? attrs.modifier + ' ' : '') + Constants.PrefixClassName.NthOfClass + stats.nthOfType;
 
-				return <PanelSkewButton {...attrs} config={config} {...props} onLinkFn={config.onLinkFn}>{children}</PanelSkewButton>;
+				return <PanelSkewButton {...attrs} config={config} {...props} onClickFn={config.onClickFn}>{children}</PanelSkewButton>;
 			case Constants.Element.Row:
 				return <Row {...attrs}>{children}</Row>;
 			case Constants.Element.SkewPanelGroup:
