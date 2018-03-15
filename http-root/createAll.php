@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 require_once __DIR__ . '/VXTeaserXMLContent.php';
 
 function getTeasers() {
+	$id     = 0;
 	$result = [];
 
 	/************ TEASER START *********/
@@ -43,6 +44,8 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
+		'id'              => ++$id,
+		'name'            => 'banner' . $id,
 		'content'         => $arr,
 		'template'        => 'fixedHeight',
 		'height1'         => 260,
@@ -91,6 +94,8 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
+		'id'              => ++$id,
+		'name'            => 'banner' . $id,
 		'content'         => $arr,
 		'template'        => 'fixedHeight',
 		'height1'         => 260,
@@ -156,6 +161,8 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
+		'id'               => ++$id,
+		'name'             => 'banner' . $id,
 		'content'          => $arr,
 		'template'         => 'fixedHeight',
 		'height1'          => 260,
@@ -207,6 +214,8 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
+		'id'              => ++$id,
+		'name'            => 'banner' . $id,
 		'content'         => $arr,
 		'template'        => 'fixedHeight',
 		'height1'         => 260,
@@ -253,6 +262,8 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
+		'id'              => ++$id,
+		'name'            => 'banner' . $id,
 		'content'         => $arr,
 		'template'        => 'fixedHeight',
 		'height1'         => 260,
@@ -297,6 +308,8 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
+		'id'              => ++$id,
+		'name'            => 'banner' . $id,
 		'content'         => $arr,
 		'template'        => 'fixedHeight',
 		'height1'         => 260,
@@ -343,6 +356,8 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
+		'id'              => ++$id,
+		'name'            => 'banner' . $id,
 		'content'         => $arr,
 		'template'        => 'fixedHeight',
 		'height1'         => 260,
@@ -383,6 +398,8 @@ EOT;
 	$arr = VXTeaserXMLContent::createArray($inputXML);
 
 	$result[] = [
+		'id'              => ++$id,
+		'name'            => 'banner' . $id,
 		'content'         => $arr,
 		'template'        => 'fixedHeight',
 		'height1'         => 260,
