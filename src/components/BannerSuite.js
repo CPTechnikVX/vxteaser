@@ -262,7 +262,11 @@ export default class BannerSuite extends React.PureComponent {
 				}
 
 				// assign handlers
-				config.onClickFn = typeof this.props.onClickFn === 'function' ? this.props.onClickFn : LinkHandler.handle;
+				config.onClickFn = typeof this.props.onClickFn === 'function' ? (clickEvent) => {
+					clickEvent.config = config;
+
+					this.props.onClickFn(clickEvent);
+				} : LinkHandler.handle;
 
 				return <div key={i} className={Constants.ClassName.SuiteItem + (i === 0 ? ' is-active' : '')} ref={(ref) => {
 					if (ref) {

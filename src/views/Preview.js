@@ -4,10 +4,15 @@ import PropTypes    from 'prop-types';
 import BannerSuite  from '../components/BannerSuite';
 import ProviderMock from '../components/ProviderMock';
 import Provider     from '../components/Provider';
+import LinkHandler  from '../components/LinkHandler';
 
 class PreviewView extends React.PureComponent {
 	static onClose() {
 		alert('close button clicked!');
+	}
+
+	static onClickFn(clickEvent) {
+		LinkHandler.handle(clickEvent);
 	}
 
 	render() {
@@ -20,7 +25,10 @@ class PreviewView extends React.PureComponent {
 			</Provider>;
 		} else {
 			content = <ProviderMock config={config}>
-				<BannerSuite className={config.bannerSuiteClassName ? config.bannerSuiteClassName : ''} onCloseFn={PreviewView.onClose} />
+				<BannerSuite className={config.bannerSuiteClassName ? config.bannerSuiteClassName : ''}
+				             onCloseFn={PreviewView.onClose}
+				             onClickFn={PreviewView.onClickFn}
+				/>
 			</ProviderMock>;
 		}
 
