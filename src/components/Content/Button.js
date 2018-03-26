@@ -9,8 +9,8 @@ import ClickEvent from '../../utils/ClickEvent';
  */
 export default class Button extends React.PureComponent {
 	render() {
-		const {children, color, link} = this.props;
-		const classList               = [];
+		const {children, color, link, modifier} = this.props;
+		const classList                         = [];
 		let onClickFn;
 
 		classList.push(Constants.ClassName.Button);
@@ -30,18 +30,23 @@ export default class Button extends React.PureComponent {
 			};
 		}
 
+		if (modifier) {
+			classList.push(modifier);
+		}
+
 		return <a className={classnames(classList)} onClick={onClickFn}>{children}</a>;
 	}
 }
 
 Button.propTypes = {
 	/** @ignore */
-	children: PropTypes.node,
+	children:  PropTypes.node,
 	/**
 	 * Textual color definition
 	 */
-	color:    PropTypes.oneOf(['primary']),
-	link:     PropTypes.string,
+	color:     PropTypes.oneOf(['primary']),
+	link:      PropTypes.string,
+	modifier:  PropTypes.string,
 	/** @ignore */
 	onClickFn: PropTypes.func,
 };
