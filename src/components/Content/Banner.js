@@ -26,7 +26,7 @@ export default class Banner extends React.PureComponent {
 	}
 
 	render() {
-		const {children, config, theme, windowWidth} = this.props;
+		const {children, config, modifier, theme, windowWidth} = this.props;
 
 		if (config) {
 			const classList = [];
@@ -51,6 +51,10 @@ export default class Banner extends React.PureComponent {
 				classList.push('-theme-' + theme);
 			}
 
+			if (modifier) {
+				classList.push(modifier);
+			}
+
 			return (
 				<div className={classnames(classList)} style={styleObj} onClick={this.onClickFn}>
 					<BannerContent config={config} windowWidth={windowWidth}>{children}</BannerContent>
@@ -67,6 +71,7 @@ Banner.propTypes = {
 	config:      PropTypes.object,
 	/** @ignore */
 	children:    PropTypes.node,
+	modifier:    PropTypes.string,
 	/** @ignore */
 	onClickFn:   PropTypes.func,
 	link:        PropTypes.string,

@@ -53,7 +53,7 @@ describe('render banner', () => {
 	});
 	test('banner theme', () => {
 		const wrapper = shallow(
-			<Banner config={config} theme={'white'}></Banner>
+			<Banner config={config} theme={'white'} modifier="-view2--bg-auto"></Banner>
 		);
 		expect(wrapper).toMatchSnapshot();
 	});
