@@ -185,9 +185,19 @@
 	overflow:            hidden;
 	width:               100%;
 	max-width:           100%;
-	background-position: top right;
 	font-weight:         300;
 	cursor:              pointer;
+	background-repeat:   no-repeat;
+	background-position: top right;
+	background-size:     auto;
+
+	&.-view2 {
+		background-size: contain;
+
+		&.-view2--bg-auto {
+			background-size: auto;
+		}
+	}
 }
 
 .vxteaser-skew {

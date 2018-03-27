@@ -34,7 +34,7 @@ describe('render banner', () => {
 		const style   = wrapper.prop('style');
 
 		expect(style.height).toBe(config.fixedHeights[1]['height'] + 'px');
-		expect(style.background).toContain(config.fixedHeights[0]['backgroundUrl']);
+		expect(style.backgroundImage).toContain(config.fixedHeights[0]['backgroundUrl']);
 		expect(wrapper).toMatchSnapshot();
 		expect(wrapper.find('BannerContent')).toHaveLength(1);
 		expect(wrapper.find('.' + classnames(Constants.ClassName.Banner).split(' ').join('.'))).toHaveLength(1);
@@ -46,7 +46,7 @@ describe('render banner', () => {
 		const style   = wrapper.prop('style');
 
 		expect(style.height).toBe(config.fixedHeights[0]['height'] + 'px');
-		expect(style.background).toContain(config.fixedHeights[1]['backgroundUrl']);
+		expect(style.backgroundImage).toContain(config.fixedHeights[1]['backgroundUrl']);
 		expect(wrapper.find('.' + classnames(Constants.ClassName.BannerNoSkew).split(' ').join('.'))).toHaveLength(1);
 		expect(wrapper).toMatchSnapshot();
 		expect(wrapper.find('BannerContent')).toHaveLength(1);

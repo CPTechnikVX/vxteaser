@@ -32,19 +32,19 @@ export default class Banner extends React.PureComponent {
 			const classList = [];
 
 			const styleObj = {
-				background:     `no-repeat url('${config.fixedHeights[0]['backgroundUrl']}') top right`,
-				backgroundSize: `${config.fixedHeights[1]['backgroundSize'] ? config.fixedHeights[1]['backgroundSize'] : 'contain'}`,
-				height:         `${config.fixedHeights[1]['height']}px`,
+				backgroundImage: `url('${config.fixedHeights[0]['backgroundUrl']}')`,
+				height:          `${config.fixedHeights[1]['height']}px`,
 			};
 
 			if (windowWidth < config.fixedHeights[1]['greaterThan']) {
-				styleObj.background     = `no-repeat url('${config.fixedHeights[1]['backgroundUrl']}') top right`;
-				styleObj.backgroundSize = `${config.fixedHeights[0]['backgroundSize'] ? config.fixedHeights[0]['backgroundSize'] : 'auto'}`;
-				styleObj.height         = `${config.fixedHeights[0]['height']}px`;
+				styleObj.backgroundImage = `url('${config.fixedHeights[1]['backgroundUrl']}')`;
+				styleObj.height          = `${config.fixedHeights[0]['height']}px`;
 
 				classList.push(Constants.ClassName.BannerNoSkew);
+				classList.push('-view2');
 			} else {
 				classList.push(Constants.ClassName.Banner);
+				classList.push('-view1');
 			}
 
 			if (theme) {

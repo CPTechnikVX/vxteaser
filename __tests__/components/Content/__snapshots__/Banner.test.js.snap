@@ -2,12 +2,11 @@
 
 exports[`render banner banner content 1`] = `
 <div
-  className="vxteaser-banner vxteaser--has-skew"
+  className="vxteaser-banner vxteaser--has-skew -view1"
   onClick={[Function]}
   style={
     Object {
-      "background": "no-repeat url('url0') top right",
-      "backgroundSize": "contain",
+      "backgroundImage": "url('url0')",
       "height": "260px",
     }
   }
@@ -34,12 +33,11 @@ exports[`render banner banner content 1`] = `
 
 exports[`render banner banner content tablet 1`] = `
 <div
-  className="vxteaser-banner vxteaser--has-no-skew"
+  className="vxteaser-banner vxteaser--has-no-skew -view2"
   onClick={[Function]}
   style={
     Object {
-      "background": "no-repeat url('url1') top right",
-      "backgroundSize": "auto",
+      "backgroundImage": "url('url1')",
       "height": "500px",
     }
   }
@@ -67,12 +65,11 @@ exports[`render banner banner content tablet 1`] = `
 
 exports[`render banner banner theme 1`] = `
 <div
-  className="vxteaser-banner vxteaser--has-skew -theme-white"
+  className="vxteaser-banner vxteaser--has-skew -view1 -theme-white"
   onClick={[Function]}
   style={
     Object {
-      "background": "no-repeat url('url0') top right",
-      "backgroundSize": "contain",
+      "backgroundImage": "url('url0')",
       "height": "260px",
     }
   }
