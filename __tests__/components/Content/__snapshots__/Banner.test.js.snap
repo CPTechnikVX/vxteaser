@@ -65,7 +65,7 @@ exports[`render banner banner content tablet 1`] = `
 
 exports[`render banner banner theme 1`] = `
 <div
-  className="vxteaser-banner vxteaser--has-skew -view1 -theme-white"
+  className="vxteaser-banner vxteaser--has-skew -view1 -theme-white -view2--bg-auto"
   onClick={[Function]}
   style={
     Object {
