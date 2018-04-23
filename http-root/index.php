@@ -76,7 +76,7 @@ $vxqlWebToken = !empty($_GET['vxqlWebToken']) ? $_GET['vxqlWebToken'] : '';
 		}
 	}, false);
 
-	renderPreview(id, <?=$isLinear?>);
+	renderPreview(id, <?=(int)$isLinear?>);
 
 	function renderPreview(id, isLinear) {
 		VXTeaser.Preview.render(document.querySelector('#banner'), {

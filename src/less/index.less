@@ -180,8 +180,17 @@
 	}
 }
 
+.vxteaser-panel-group {
+	height: 100%;
+}
+
 .vxteaser-panel {
 	position: relative;
+
+	&:not(.-no-auto-center) {
+		top:       50%;
+		transform: translateY(-50%);
+	}
 }
 
 .vxteaser-headline {

@@ -136,7 +136,7 @@ EOT;
 		               <col width="88%" modifier="-align-center">
 		                 <link>
 		                    <headline modifier="-mb-0 -text-align-left"><text>Du hast</text></headline>
-		                    <headline modifier="-text-align-left"><text color="description" modifier="-font-light">51 neue Nachrichten</text></headline>
+		                    <headline modifier="-mb-0 -text-align-left"><text color="description" modifier="-font-light">51 neue Nachrichten</text></headline>
 		                 </link>
 		               </col>
 	               </row>
@@ -147,7 +147,7 @@ EOT;
 		               <col width="88%">
 		                 <link>
 			                 <headline modifier="-mb-0 -text-align-left"><text>Dein Guthaben 47,03€</text></headline>
-			                 <headline modifier="-text-align-left"><text color="description" modifier="-font-light">Jetzt aufladen</text></headline>
+			                 <headline modifier="-mb-0 -text-align-left"><text color="description" modifier="-font-light">Jetzt aufladen</text></headline>
 			              </link>
 		               </col>
                </row>
