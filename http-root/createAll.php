@@ -183,7 +183,7 @@ EOT;
             <row>
                <col>
                   <headline type="main">
-                     <text>18 Jahre BiggiBardot</text>
+                     <img src="https://www.visit-x.net/assets/icons/icon_whatsapp_logo.svg" width="50" /><text>18 Jahre BiggiBardot</text>
                   </headline>
                </col>
             </row>

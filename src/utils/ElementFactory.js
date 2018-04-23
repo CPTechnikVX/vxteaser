@@ -12,6 +12,7 @@ import SkewPanelGroup  from '../components/Content/SkewPanelGroup';
 import Button          from '../components/Content/Button';
 import PanelSkewButton from '../components/Content/PanelSkewButton';
 import PanelSkew       from '../components/Content/PanelSkew';
+import Img             from '../components/Content/Img';
 
 export default class ElementFactory {
 
@@ -37,6 +38,8 @@ export default class ElementFactory {
 				return <Column {...attrs}>{children}</Column>;
 			case Constants.Element.Headline:
 				return <Headline {...attrs}>{children}</Headline>;
+			case Constants.Element.Image:
+				return <Img {...attrs} />;
 			case Constants.Element.Link:
 				return <Link {...attrs} onClickFn={config.onClickFn}>{children}</Link>;
 			case Constants.Element.Panel:
