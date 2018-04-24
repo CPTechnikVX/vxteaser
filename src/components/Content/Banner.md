@@ -26,3 +26,30 @@
     </skewpanelgroup>
 </banner>
 ```
+```html
+// banner has background position contain - for tablet (=> view2)
+<banner modifier="-view2--bg-contain">
+...
+</banner>
+```
+
+```html
+// banner with light theme
+<banner modifier="-theme-light">
+...
+</banner>
+```
+
+```html
+// banner with special theme
+<banner modifier="-theme-special">
+...
+</banner>
+```
+
+```html
+// banner with a transparent theme
+<banner modifier="-theme-transparent">
+...
+</banner>
+```
