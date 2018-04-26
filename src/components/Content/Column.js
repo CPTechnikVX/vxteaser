@@ -11,7 +11,6 @@ export default class Column extends React.PureComponent {
 		const {children, modifier, width} = this.props;
 		const styleObj                    = {
 			width: width ? width : 'auto',
-			float: 'left',
 		};
 		const classList                   = [Constants.ClassName.Column];
 

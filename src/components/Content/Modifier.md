@@ -93,6 +93,14 @@
 	padding-top: 5px;
 }
 
+.-pr-5 {
+	padding-right: 5px !important;
+}
+
+.-pr-7 {
+	padding-right: 7px !important;
+}
+
 .-pr-10 {
 	padding-right: 10px !important;
 }
