@@ -24,7 +24,7 @@ export default class Button extends React.PureComponent {
 				e.preventDefault();
 				e.stopPropagation();
 
-				this.props.onClickFn(new ClickEvent(event, this, {
+				this.props.onClickFn(new ClickEvent(e, this, {
 					link: this.props.link,
 				}));
 			};

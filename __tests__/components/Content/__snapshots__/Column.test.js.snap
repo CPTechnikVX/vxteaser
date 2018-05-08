@@ -5,7 +5,6 @@ exports[`render column empty 1`] = `
   className="vxteaser-col"
   style={
     Object {
-      "float": "left",
       "width": "33%",
     }
   }
@@ -17,7 +16,6 @@ exports[`render column with content 1`] = `
   className="vxteaser-col"
   style={
     Object {
-      "float": "left",
       "width": "33%",
     }
   }
