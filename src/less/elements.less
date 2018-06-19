@@ -126,6 +126,12 @@
 	background-position: top right;
 	background-size:     auto;
 
+	&.-view1 {
+		.vxteaser-visible--view2 {
+			display: none;
+		}
+	}
+
 	&.-view2 {
 		background-size: auto;
 
@@ -143,6 +149,10 @@
 		}
 		&.-view2--bg-right {
 			background-position: top right;
+		}
+
+		.vxteaser-visible--view1 {
+			display: none;
 		}
 	}
 }

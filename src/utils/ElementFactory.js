@@ -13,6 +13,7 @@ import Button          from '../components/Content/Button';
 import PanelSkewButton from '../components/Content/PanelSkewButton';
 import PanelSkew       from '../components/Content/PanelSkew';
 import Img             from '../components/Content/Img';
+import Span            from '../components/Content/Span';
 
 export default class ElementFactory {
 
@@ -64,13 +65,7 @@ export default class ElementFactory {
 				return <Text {...attrs}>{children}</Text>;
 			/* default handler for not supported elements */
 			default:
-				let className;
-
-				if (attrs.modifier) {
-					className = attrs.modifier;
-				}
-
-				return <span className={className} {...attrs}>{children}</span>;
+				return <Span {...attrs}>{children}</Span>;
 		}
 	}
 }
