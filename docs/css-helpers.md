@@ -1,4 +1,4 @@
-## Visible in desktop - view1
+### Visible in desktop - view1
 
 ```html
 <link modifier="vxteaser-visible--view1">
@@ -6,7 +6,7 @@
 </link>
 ```
 
-## Visible in tablet - view2
+### Visible in tablet - view2
 
 ```html
 <link modifier="vxteaser-visible--view2">
