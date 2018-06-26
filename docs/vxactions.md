@@ -7,3 +7,19 @@
 	<icon modifier="vxteaser-playbutton--big icon -icon-play-rounded-line" />
 </link>
 ```
+
+### 2. Start payment flow with custom texts and background image
+
+#### Syntax: `vx-action://payment?signupText=TEXT&amp;signupBackground=IMAGE_URL`
+
+```html
+<link link="vx-action://payment?signupText=Hey, let's signup!&amp;signupBackground=https://www.google.com/logos/doodles/2018/world-cup-2018-day-12-6225439109414912-5703128158568448-ssw.png">
+	<icon modifier="icon -icon-login" />
+</link>
+```
+
+```html
+<banner theme="dark" link="vx-action://payment?signupText=Hey, let's signup!&amp;signupBackground=https://www.google.com/logos/doodles/2018/world-cup-2018-day-12-6225439109414912-5703128158568448-ssw.png">
+...
+</banner>
+```
