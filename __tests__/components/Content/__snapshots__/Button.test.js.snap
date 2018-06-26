@@ -8,7 +8,7 @@ exports[`render button empty 1`] = `
 
 exports[`render button with props 1`] = `
 <a
-  className="vxteaser-button vxteaser-color--primary"
+  className="vxteaser-button vxteaser-bg-color--primary"
   onClick={[Function]}
 >
   This is button

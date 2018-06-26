@@ -157,5 +157,9 @@
 	background-color: @vxteaser-color-white;
 }
 
+.vxteaser-bg-color--primary {
+	background-color: @vxteaser-color-primary;
+}
+
 /****************** END COLORS ******************/
 ```

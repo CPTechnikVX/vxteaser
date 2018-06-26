@@ -16,7 +16,7 @@ export default class Button extends React.PureComponent {
 		classList.push(Constants.ClassName.Button);
 
 		if (color) {
-			classList.push(Constants.PrefixClassName.Color + color);
+			classList.push(Constants.PrefixClassName.BackgroundColor + color);
 		}
 
 		if (link) {
