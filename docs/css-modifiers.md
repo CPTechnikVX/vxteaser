@@ -118,4 +118,44 @@
 }
 
 /******* END OF MODIFIER ************/
+
+/****************** COLORS ******************/
+
+.vxteaser-color--white {
+	color: @vxteaser-color-white;
+}
+
+.vxteaser-color--black {
+	color: @vxteaser-color-black;
+}
+
+.vxteaser-color--primary {
+	color: @vxteaser-color-primary;
+}
+
+.vxteaser-color--highlight {
+	color: @vxteaser-color-highlight;
+}
+
+.vxteaser-color--dark {
+	color: @vxteaser-color-dark;
+}
+
+.vxteaser-color--special {
+	color: @vxteaser-color-special;
+}
+
+.vxteaser-color--transparent {
+	color: @vxteaser-color-transparent;
+}
+
+.vxteaser-color--description {
+	color: @vxteaser-color-mood-2;
+}
+
+.vxteaser-bg-color--white {
+	background-color: @vxteaser-color-white;
+}
+
+/****************** END COLORS ******************/
 ```

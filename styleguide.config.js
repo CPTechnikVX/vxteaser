@@ -17,6 +17,10 @@ module.exports = {
 				{
 					name:    'CSS Helpers',
 					content: 'docs/css-helpers.md',
+				},
+				{
+					name:    'CSS Modifiers',
+					content: 'docs/css-modifiers.md',
 				}
 			],
 		},

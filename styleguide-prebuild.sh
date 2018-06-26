@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MODIFIER_FILE=src/components/Content/Modifier.md
+MODIFIER_FILE=docs/css-modifiers.md
 
 echo "\`\`\`html" > $MODIFIER_FILE
 cat src/less/modifier.less >> $MODIFIER_FILE
