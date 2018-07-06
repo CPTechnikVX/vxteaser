@@ -119,7 +119,7 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	needTimerInterval() {
-		return this.state.configs && this.state.configs.length > 1 && this.props.delay > 0;
+		return this.state.configs && this.state.configs.length > 1 && this.props.autoplaySpeed > 0;
 	}
 
 	/**
@@ -162,7 +162,9 @@ export default class BannerSuite extends React.PureComponent {
 	 * Mouse out of banner
 	 */
 	onBannerOut() {
-		this.startInterval();
+		if (this.needTimerInterval()) {
+			this.startInterval();
+		}
 	}
 
 	/**
@@ -233,7 +235,7 @@ export default class BannerSuite extends React.PureComponent {
 			if (cnt > 0) {
 				this.setVisible((this.state.visibleIndex + 1) % cnt);
 			}
-		}, this.props.delay);
+		}, this.props.autoplaySpeed);
 	}
 
 	/**
@@ -311,14 +313,14 @@ export default class BannerSuite extends React.PureComponent {
 }
 
 BannerSuite.propTypes = {
-	className: PropTypes.string,
-	configs:   PropTypes.array,
-	delay:     PropTypes.number,
-	onCloseFn: PropTypes.func,
-	onClickFn: PropTypes.func,
+	className:     PropTypes.string,
+	configs:       PropTypes.array,
+	autoplaySpeed: PropTypes.number,
+	onCloseFn:     PropTypes.func,
+	onClickFn:     PropTypes.func,
 };
 
 BannerSuite.defaultProps = {
-	className: '',
-	delay:     10000,
+	className:     '',
+	autoplaySpeed: 10000,
 };
