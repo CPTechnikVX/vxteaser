@@ -8,6 +8,14 @@
 </link>
 ```
 
+#### Syntax: `vx-action://video?url=VIDEO_URL`
+
+```html
+<link link="vx-action://video?url=https://www.youtube.com/this-is-my-video.mp4">
+	<icon modifier="vxteaser-playbutton--big icon -icon-play-rounded-line" />
+</link>
+```
+
 ### 2. Start payment flow with custom texts and background image
 
 #### Syntax: `vx-action://payment?signupText=TEXT&amp;signupBackground=IMAGE_URL`
