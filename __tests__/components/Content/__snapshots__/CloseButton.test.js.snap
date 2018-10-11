@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render button empty 1`] = `
+<div
+  className="vxteaser-control--close"
+/>
+`;

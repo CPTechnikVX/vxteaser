@@ -14,6 +14,7 @@ import PanelSkewButton from '../components/Content/PanelSkewButton';
 import PanelSkew       from '../components/Content/PanelSkew';
 import Img             from '../components/Content/Img';
 import Span            from '../components/Content/Span';
+import Tile            from '../components/Content/Tile';
 
 export default class ElementFactory {
 
@@ -61,6 +62,8 @@ export default class ElementFactory {
 				const countPanelSkew = config.stats[stats.level + 1] ? config.stats[stats.level + 1]['panelskew'] : null;
 
 				return <SkewPanelGroup {...attrs} modifier={(countPanelSkew ? ' -has-panelskew-' + countPanelSkew : '')}>{children}</SkewPanelGroup>;
+			case Constants.Element.Tile:
+				return <Tile {...attrs} config={config} {...props} onClickFn={config.onClickFn}>{children}</Tile>;
 			case Constants.Element.Text:
 				return <Text {...attrs}>{children}</Text>;
 			/* default handler for not supported elements */

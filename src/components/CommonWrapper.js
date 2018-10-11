@@ -17,7 +17,7 @@ export default function CommonWrapper(props) {
 	}
 
 	// update style
-	props.children.props['style'] = styleObj;
+	const newProps = {...props.children.props, style: styleObj};
 
-	return React.cloneElement(props.children, props.children.props);
+	return React.cloneElement(props.children, newProps);
 }

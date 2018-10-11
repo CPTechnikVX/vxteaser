@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render tile empty tile 1`] = `""`;
+
+exports[`render tile tile content 1`] = `
+<div
+  className="vxteaser-tile"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundImage": "url('url0')",
+    }
+  }
+>
+  <TileContent
+    config={
+      Object {
+        "fixedHeights": Array [
+          Object {
+            "backgroundUrl": "url0",
+          },
+        ],
+      }
+    }
+  />
+</div>
+`;
+
+exports[`render tile tile theme 1`] = `
+<div
+  className="vxteaser-tile -theme-white"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundImage": "url('url0')",
+    }
+  }
+>
+  <TileContent
+    config={
+      Object {
+        "fixedHeights": Array [
+          Object {
+            "backgroundUrl": "url0",
+          },
+        ],
+      }
+    }
+  />
+</div>
+`;

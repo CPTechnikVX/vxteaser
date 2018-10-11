@@ -5,22 +5,28 @@
 	margin:      0;
 	padding:     0;
 	width:       100%;
+	height:      100%;
 	max-width:   100%;
-	font-family: @vxteaser-font-family;
+	font-family: @vxteaser-font-family-condensed;
 	font-weight: @vxteaser-font-weight-light;
 }
 
 .vxteaser-suite__item {
-	left:       0;
-	top:        0;
-	width:      100%;
-	position:   absolute;
-	z-index:    0;
-	transition: opacity 2s;
-	visibility: hidden;
-	opacity:    0;
+	position: relative;
+	width:    100%;
+	height:   100%;
 
-	&.is-active {
+	.vxteaser-suite & {
+		left:       0;
+		top:        0;
+		position:   absolute;
+		z-index:    0;
+		transition: opacity 2s;
+		visibility: hidden;
+		opacity:    0;
+	}
+
+	.vxteaser-suite &.is-active {
 		visibility: visible;
 		opacity:    1;
 		z-index:    1;
@@ -44,9 +50,9 @@
 	&:before {
 		content:     "\00d7";
 		text-shadow: 1px 1px 2px #4d4d4d;
+		line-height: 0.3;
 		font-size:   6rem;
 		font-weight: @vxteaser-font-weight-light;
-		line-height: 0.3;
 		color:       @vxteaser-color-white;
 	}
 }
@@ -62,32 +68,79 @@
 		top:       50%;
 		transform: translateY(-50%);
 	}
+
+	.vxteaser-tile & {
+		top:           initial;
+		padding:       10px;
+		transform:     none;
+		text-align:    center;
+		margin-bottom: 1.5em;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	/* panel themes */
+	&.-theme-dark {
+		color:            @vxteaser-color-white;
+		background-color: @vxteaser-color-dark;
+	}
+	&.-theme-light {
+		color:            @vxteaser-color-black;
+		background-color: @vxteaser-color-white;
+	}
+	&.-theme-special {
+		color:            @vxteaser-color-white;
+		background-color: @vxteaser-color-special;
+	}
+	&.-theme-transparent {
+		color:            @vxteaser-color-white;
+		background-color: @vxteaser-color-transparent;
+	}
 }
 
 .vxteaser-headline {
-	font-family: @vxteaser-font-family;
+	font-family: @vxteaser-font-family-condensed;
+
+	/* headline in tile default */
+	.vxteaser-tile &.-type-main {
+		margin-bottom:  0.5rem;
+		line-height:    2rem;
+		font-size:      2rem;
+		font-weight:    @vxteaser-font-weight-bold;
+		text-transform: uppercase;
+	}
+
+	.vxteaser-tile &, .vxteaser-tile &.-type-text {
+		margin-bottom: 0;
+		line-height:   1.4rem;
+		font-size:     1.4rem;
+		font-family:   @vxteaser-font-family-normal;
+		font-weight:   @vxteaser-font-weight-light;
+	}
 
 	&.-type-sub {
 		margin-bottom: 0.5rem;
+		line-height:   2.3rem;
 		font-size:     2.6rem;
 		font-weight:   @vxteaser-font-weight-light;
-		line-height:   2.3rem;
 	}
 	&.-type-main, &.-type-main.-size-md {
 		margin-bottom:  1.5rem;
+		line-height:    4rem;
 		font-size:      4.6rem;
 		font-weight:    @vxteaser-font-weight-bold;
 		text-transform: uppercase;
-		line-height:    4rem;
 	}
 	&.-type-main.-size-sm {
 		font-size: 4rem;
 	}
 	&, &.-type-text {
 		margin-bottom: 2rem;
+		line-height:   2rem;
 		font-size:     1.7rem;
 		font-weight:   @vxteaser-font-weight-normal;
-		line-height:   2rem;
 	}
 }
 
@@ -109,9 +162,33 @@
 	transition:       all 0.15s linear;
 	vertical-align:   top;
 
+	/* tile default */
+	.vxteaser-tile & {
+		min-width:     0;
+		padding:       1.3rem 2rem;
+		line-height:   1.4rem;
+		font-size:     1.4rem;
+		font-family:   @vxteaser-font-family-normal;
+		font-weight:   @vxteaser-font-weight-normal;
+		border-radius: 2px;
+	}
+
 	&.vxteaser-color--white {
 		color:            @vxteaser-color-special;
 		background-color: @vxteaser-color-white
+	}
+
+	/* themes */
+	&.-theme-light {
+		color:            @vxteaser-color-special;
+		background-color: @vxteaser-color-white;
+		border-color:     @vxteaser-color-white;
+	}
+
+	&.-theme-success {
+		color:            @vxteaser-color-white;
+		background-color: @vxteaser-color-success;
+		border-color:     @vxteaser-color-success;
 	}
 }
 
@@ -155,6 +232,19 @@
 			display: none;
 		}
 	}
+}
+
+.vxteaser-tile {
+	display:           flex;
+	flex-direction:    column-reverse;
+	background-size:   cover;
+	background-repeat: no-repeat;
+	height:            100%;
+}
+
+.vxteaser-points {
+	position: absolute;
+	bottom:   0;
 }
 
 .vxteaser-skew {
@@ -341,9 +431,9 @@
 .vxteaser-skew-button {
 	position:         absolute;
 	z-index:          2;
-	font-size:        2.4rem;
-	font-family:      @vxteaser-font-family;
 	line-height:      1;
+	font-size:        2.4rem;
+	font-family:      @vxteaser-font-family-condensed;
 	text-transform:   none;
 	color:            @vxteaser-color-white;
 	background-color: @vxteaser-color-mood-6;

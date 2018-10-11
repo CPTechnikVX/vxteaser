@@ -16,6 +16,8 @@ const ClassName = {
 	Suite:              'vxteaser-suite',
 	SuiteItem:          'vxteaser-suite__item',
 	Text:               'vxteaser-text',
+	Tile:               'vxteaser-tile',
+	TileContent:        'vxteaser-tile__content',
 };
 
 const PrefixClassName = {
@@ -39,6 +41,7 @@ const Element = {
 	PanelSkewButton: 'panelskewbutton',
 	Row:             'row',
 	SkewPanelGroup:  'skewpanelgroup',
+	Tile:            'tile',
 	Text:            'text',
 };
 

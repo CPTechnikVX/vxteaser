@@ -3,12 +3,13 @@ import PropTypes     from 'prop-types';
 import BannerBuilder from '../utils/Builder';
 import Constants     from './../utils/Constants';
 import LinkHandler   from './LinkHandler';
+import classnames    from 'classnames';
 import CloseButton   from './Content/CloseButton';
 
 /**
  * Top level banner suite component containing one or more banners
  */
-export default class BannerSuite extends React.PureComponent {
+export default class TileSuite extends React.PureComponent {
 	/**
 	 * Process data from provider to internal form
 	 * @param configs
@@ -27,14 +28,7 @@ export default class BannerSuite extends React.PureComponent {
 			typeConfig.content      = origTypeConfig.content;
 			typeConfig.fixedHeights = [
 				{
-					greaterThan:   0,
-					height:        origTypeConfig.height2,
 					backgroundUrl: origTypeConfig.backgroundUrl1,
-				},
-				{
-					greaterThan:   origTypeConfig.breakpoint1,
-					height:        origTypeConfig.height1,
-					backgroundUrl: origTypeConfig.backgroundUrl2,
 				},
 			];
 
@@ -72,7 +66,7 @@ export default class BannerSuite extends React.PureComponent {
 			visibleIndex: 0,
 			mouseOver:    false,
 			windowWidth:  window.innerWidth,
-			configs:      BannerSuite.processConfigs(this.props.configs),
+			configs:      TileSuite.processConfigs(this.props.configs),
 		};
 	}
 
@@ -87,21 +81,15 @@ export default class BannerSuite extends React.PureComponent {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.configs) {
 			this.setState({
-				configs: BannerSuite.processConfigs(nextProps.configs),
+				configs: TileSuite.processConfigs(nextProps.configs),
 			});
 		}
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		const breakpoint = this.state.configs && this.state.configs.length > 0 ? this.state.configs[0].fixedHeights[1]['greaterThan'] : null;
-		let retVal       = true;
+		let retVal = true;
 
 		if (nextState.visibleIndex !== this.state.visibleIndex) {
-			retVal = false;
-		} else if (breakpoint && nextState.windowWidth !== this.state.windowWidth
-			&& !(this.state.windowWidth < breakpoint && nextState.windowWidth >= breakpoint
-				|| this.state.windowWidth >= breakpoint && nextState.windowWidth < breakpoint)
-		) {
 			retVal = false;
 		}
 
@@ -250,22 +238,18 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	render() {
-		const {className} = this.props;
-		const {configs}   = this.state;
-		let content       = null;
+		const {className, customSuiteFn} = this.props;
+		const {configs}                  = this.state;
+		let content                      = null;
+		const suiteClassNames              = [
+			Constants.ClassName.Suite,
+			className,
+		];
 
 		// is configuration provided?
 		if (configs && configs.length > 0) {
-			const pointsDOM    = [];
-			const fixedHeights = configs[0].fixedHeights;
-
 			// generate banners from config array
 			const bannerDOM = configs.map((config, i) => {
-				if (configs.length > 1) {
-					// banner switch control
-					pointsDOM.push(i);
-				}
-
 				// assign handlers
 				config.onClickFn = typeof this.props.onClickFn === 'function' ? (clickEvent) => {
 					clickEvent.config = config;
@@ -278,34 +262,25 @@ export default class BannerSuite extends React.PureComponent {
 						this.itemRefs[i] = ref;
 					}
 				}}
-				       >{this.getBannerByConfig(config)}</div>;
+				       >{this.getBannerByConfig(config)}
+					{customSuiteFn && <CloseButton onCloseFn={this.onCloseClick} />}
+				</div>;
 			});
 
-			// define suite
-			const windowWidth = this.state.windowWidth;
-			const styleObj    = {
-				height: `${fixedHeights[1]['height']}px`,
-			};
-
-			if (windowWidth < fixedHeights[1]['greaterThan']) {
-				styleObj.height = `${fixedHeights[0]['height']}px`;
-			}
-
 			if (bannerDOM.length > 0) {
-				content = (
-					<div className={Constants.ClassName.Suite + ' ' + className}
-					     style={styleObj}
-					     onMouseEnter={this.onBannerOver}
-					     onMouseLeave={this.onBannerOut}
-					>
-						{pointsDOM.length > 1 &&
-						<div className={'vxteaser-arrow--left'} onClick={this.onPrevClick} />}
-						{bannerDOM}
-						<CloseButton onCloseFn={this.onCloseClick} />
-						{pointsDOM.length > 1 &&
-						<div className={'vxteaser-arrow--right'} onClick={this.onNextClick} />}
-					</div>
-				);
+				if (customSuiteFn) {
+					content = customSuiteFn(bannerDOM);
+				} else {
+					content = (
+						<div className={classnames(suiteClassNames)}
+						     onMouseEnter={this.onBannerOver}
+						     onMouseLeave={this.onBannerOut}
+						>
+							{bannerDOM}
+							<CloseButton onCloseFn={this.onCloseClick} />
+						</div>
+					);
+				}
 			}
 		}
 
@@ -313,15 +288,16 @@ export default class BannerSuite extends React.PureComponent {
 	}
 }
 
-BannerSuite.propTypes = {
+TileSuite.propTypes = {
 	className:     PropTypes.string,
 	configs:       PropTypes.array,
+	customSuiteFn: PropTypes.func,
 	autoplaySpeed: PropTypes.number,
 	onCloseFn:     PropTypes.func,
 	onClickFn:     PropTypes.func,
 };
 
-BannerSuite.defaultProps = {
+TileSuite.defaultProps = {
 	className:     '',
 	autoplaySpeed: 10000,
 };
