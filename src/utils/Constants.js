@@ -18,6 +18,7 @@ const ClassName = {
 	Text:               'vxteaser-text',
 	Tile:               'vxteaser-tile',
 	TileContent:        'vxteaser-tile__content',
+	TileContentInner:   'vxteaser-tile__content__inner',
 };
 
 const PrefixClassName = {

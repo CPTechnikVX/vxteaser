@@ -234,12 +234,36 @@
 	}
 }
 
+/* Tile */
 .vxteaser-tile {
 	display:           flex;
 	flex-direction:    column-reverse;
 	background-size:   cover;
 	background-repeat: no-repeat;
 	height:            100%;
+
+	/* panel themes */
+	&.-theme-dark {
+		color:            @vxteaser-color-white;
+		background-color: @vxteaser-color-dark;
+	}
+	&.-theme-light {
+		color:            @vxteaser-color-black;
+		background-color: @vxteaser-color-white;
+	}
+	&.-theme-special {
+		color:            @vxteaser-color-white;
+		background-color: @vxteaser-color-special;
+	}
+	&.-theme-transparent {
+		color:            @vxteaser-color-white;
+		background-color: @vxteaser-color-transparent;
+	}
+}
+
+.vxteaser-tile__content__inner {
+	height:     100%;
+	box-sizing: border-box;
 }
 
 .vxteaser-points {
