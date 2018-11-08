@@ -7,7 +7,8 @@ import ProviderMock    from '../src/components/ProviderMock';
 import TileSuite       from '../src/components/TileSuite';
 
 const desktopConfigs =
-	      [{"id":                1,
+	      [{
+		      "id":              1,
 		      "name":            "banner1",
 		      "content":         {
 			      "banner": {
@@ -61,7 +62,8 @@ const desktopConfigs =
 		      "backgroundSize2": "auto",
 		      "height2":         500,
 		      "color2":          "#000000"
-	      }, {"id":              2,
+	      }, {
+		      "id":              2,
 		      "name":            "banner2",
 		      "content":         {
 			      "banner": {
@@ -112,7 +114,8 @@ const desktopConfigs =
 		      "backgroundSize2": "auto",
 		      "height2":         500,
 		      "color2":          "#000000"
-	      }, {"id":               3,
+	      }, {
+		      "id":               3,
 		      "name":             "banner3",
 		      "content":          {
 			      "banner": {
@@ -210,7 +213,8 @@ const desktopConfigs =
 		      "breakpoint1":      1200,
 		      "backgroundUrl2":   "https:\/\/www.visit-x.net\/assets\/img\/teaser\/teaser-all-welcome-bg.jpg",
 		      "height2":          500
-	      }, {"id":              4,
+	      }, {
+		      "id":              4,
 		      "name":            "banner4",
 		      "content":         {
 			      "banner": {
@@ -268,7 +272,8 @@ const desktopConfigs =
 		      "backgroundUrl2":  "https:\/\/www.visit-x.net\/assets\/img\/teaser\/teaser-biggibardot-18-years.jpg",
 		      "backgroundSize2": "auto",
 		      "height2":         500
-	      }, {"id":              5,
+	      }, {
+		      "id":              5,
 		      "name":            "banner5",
 		      "content":         {
 			      "banner": {
@@ -356,7 +361,8 @@ const desktopConfigs =
 		      "backgroundUrl2":  "",
 		      "backgroundSize2": "auto",
 		      "height2":         500
-	      }, {"id":              6,
+	      }, {
+		      "id":              6,
 		      "name":            "banner6",
 		      "content":         {
 			      "banner": {
@@ -427,7 +433,8 @@ const desktopConfigs =
 		      "backgroundUrl2":  "",
 		      "backgroundSize2": "auto",
 		      "height2":         500
-	      }, {"id":              7,
+	      }, {
+		      "id":              7,
 		      "name":            "banner7",
 		      "content":         {
 			      "banner": {
@@ -471,7 +478,8 @@ const desktopConfigs =
 		      "backgroundSize2": "auto",
 		      "height2":         500,
 		      "color2":          "#000000"
-	      }, {"id":              8,
+	      }, {
+		      "id":              8,
 		      "name":            "banner8",
 		      "content":         {
 			      "banner": {
@@ -602,6 +610,117 @@ const mobileConfigs = [
 		name:           "banner1",
 		template:       "fixedHeight"
 	},
+	{
+		backgroundUrl1: "https://m.visit-x.net/assets/img/teaser_mobile/wiesn_gaudi_2018/wiesn-gaudi_mobile_login.jpg",
+		content:        {
+			"tile": [
+				{
+					"panel": {
+						"@attributes": {
+							"theme": "light",
+						},
+						"0":           {
+							"row": [
+								{
+									"headline": {
+										"@value":      "This is a headline",
+										"@attributes": {
+											"type":     "main",
+											"modifier": "-mb-0",
+										},
+									}
+								},
+							]
+						},
+					},
+				},
+			],
+		},
+		id:             1,
+		name:           "banner1",
+		template:       "fixedHeight"
+	},
+	{
+		content:  {
+			"tile": {
+				"@attributes": {
+					"theme": "special",
+				},
+				"panelgroup":  [
+					{
+						"panel": {
+							"@attributes": {
+								"modifier": "-mb-0",
+							},
+							"0":           [
+								{
+									"row": {
+										"headline": {
+											"@value":      "50% auf die erste Aufladung",
+											"@attributes": {
+												"type": "sub",
+											},
+										}
+									},
+
+								},
+								{
+									"row": {
+										"headline": {
+											"@value":      "Jetzt aufladen + bis zu",
+											"@attributes": {
+												"type": "main",
+											},
+										}
+									},
+								},
+								{
+									"row": {
+										"headline": {
+											"@value":      "75€ geschenkt",
+											"@attributes": {
+												"modifier": "-mb-5",
+											},
+										}
+									},
+								},
+								{
+									"row": {
+										"headline": {
+											"@value":      "bekommen",
+											"@attributes": {
+												"type": "main",
+											},
+										}
+									},
+								},
+							],
+						},
+					},
+					{
+						"panel": {
+							"@attributes": {},
+							"0":           {
+								"row": [
+									{
+										"button": {
+											"@value":      "Gutschein einlösen",
+											"@attributes": {
+												"theme": "light",
+											},
+										}
+									},
+								]
+							},
+						},
+					}
+				],
+			},
+		},
+		id:       1,
+		name:     "banner1",
+		template: "fixedHeight"
+	},
 ];
 
 function DesktopWrapper(children) {
@@ -656,8 +775,10 @@ storiesOf('BannerSuite', module)
 		};
 
 		return <div>
+			<TileSuite customSuiteFn={customSuiteFn} configs={mobileConfigs.slice(3, 4)} />
 			<TileSuite customSuiteFn={customSuiteFn} configs={mobileConfigs.slice(0, 1)} />
 			<TileSuite customSuiteFn={customSuiteFn} configs={mobileConfigs.slice(1, 2)} />
+			<TileSuite customSuiteFn={customSuiteFn} configs={mobileConfigs.slice(2, 3)} />
 		</div>;
 	})
 ;

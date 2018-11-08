@@ -8,14 +8,18 @@ import classnames from 'classnames';
  */
 export default class Panel extends React.PureComponent {
 	render() {
-		const classList                        = [Constants.ClassName.Panel];
-		const {children, config, theme, width} = this.props;
-		const styleObj                         = {
+		const classList                                  = [Constants.ClassName.Panel];
+		const {children, config, modifier, theme, width} = this.props;
+		const styleObj                                   = {
 			width: config.width ? config.width : width,
 		};
 
 		if (theme) {
 			classList.push('-theme-' + theme);
+		}
+
+		if (modifier) {
+			classList.push(modifier);
 		}
 
 		return <div className={classnames(classList)} style={styleObj}>{children}</div>;
@@ -27,6 +31,7 @@ Panel.propTypes = {
 	config:   PropTypes.object,
 	/** @ignore */
 	children: PropTypes.node,
+	modifier: PropTypes.string,
 	theme:    PropTypes.string,
 	width:    PropTypes.string,
 };

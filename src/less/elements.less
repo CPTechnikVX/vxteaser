@@ -59,6 +59,14 @@
 
 .vxteaser-panel-group {
 	height: 100%;
+
+	.vxteaser-tile & {
+		position:  absolute;
+		width:     100%;
+		height:    auto;
+		top:       50%;
+		transform: translateY(-50%);
+	}
 }
 
 .vxteaser-panel {
@@ -104,20 +112,29 @@
 	font-family: @vxteaser-font-family-condensed;
 
 	/* headline in tile default */
-	.vxteaser-tile &.-type-main {
-		margin-bottom:  0.5rem;
-		line-height:    2rem;
-		font-size:      2rem;
-		font-weight:    @vxteaser-font-weight-bold;
-		text-transform: uppercase;
-	}
-
 	.vxteaser-tile &, .vxteaser-tile &.-type-text {
 		margin-bottom: 0;
 		line-height:   1.4rem;
 		font-size:     1.4rem;
 		font-family:   @vxteaser-font-family-normal;
 		font-weight:   @vxteaser-font-weight-light;
+	}
+
+	.vxteaser-tile &.-type-main {
+		margin-bottom:  0.5rem;
+		line-height:    2rem;
+		font-size:      2rem;
+		font-family:    @vxteaser-font-family-condensed;
+		font-weight:    @vxteaser-font-weight-bold;
+		text-transform: uppercase;
+	}
+
+	.vxteaser-tile &.-type-sub {
+		margin-bottom:  0.5rem;
+		line-height:    1.9rem;
+		font-size:      1.9rem;
+		font-weight:    @vxteaser-font-weight-light;
+		text-transform: uppercase;
 	}
 
 	&.-type-sub {
@@ -237,6 +254,7 @@
 /* Tile */
 .vxteaser-tile {
 	display:           flex;
+	position:          relative;
 	flex-direction:    column-reverse;
 	background-size:   cover;
 	background-repeat: no-repeat;
