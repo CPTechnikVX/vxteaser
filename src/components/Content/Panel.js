@@ -22,6 +22,10 @@ export default class Panel extends React.PureComponent {
 			classList.push(modifier);
 		}
 
+		if (config && typeof config.aspectRatio !== 'undefined') {
+			classList.push(Constants.ClassName.Panel + '--' + Constants.Element.Tile);
+		}
+
 		return <div className={classnames(classList)} style={styleObj}>{children}</div>;
 	}
 }

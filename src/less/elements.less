@@ -59,35 +59,20 @@
 
 .vxteaser-panel-group {
 	height: 100%;
+}
 
-	.vxteaser-tile & {
-		position:  absolute;
-		width:     100%;
-		height:    auto;
-		top:       50%;
-		transform: translateY(-50%);
-	}
+.vxteaser-panel-group--tile {
+	position:  absolute;
+	width:     100%;
+	height:    auto;
+	top:       50%;
+	transform: translateY(-50%);
 }
 
 .vxteaser-panel {
-	position: relative;
-
-	&:not(.-no-auto-center) {
-		top:       50%;
-		transform: translateY(-50%);
-	}
-
-	.vxteaser-tile & {
-		top:           initial;
-		padding:       10px;
-		transform:     none;
-		text-align:    center;
-		margin-bottom: 1.5em;
-
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
+	position:  relative;
+	top:       50%;
+	transform: translateY(-50%);
 
 	/* panel themes */
 	&.-theme-dark {
@@ -108,34 +93,20 @@
 	}
 }
 
+.vxteaser-panel--tile {
+	top:           initial;
+	padding:       10px;
+	transform:     none;
+	text-align:    center;
+	margin-bottom: 1.5em;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
 .vxteaser-headline {
 	font-family: @vxteaser-font-family-condensed;
-
-	/* headline in tile default */
-	.vxteaser-tile &, .vxteaser-tile &.-type-text {
-		margin-bottom: 0;
-		line-height:   1.4rem;
-		font-size:     1.4rem;
-		font-family:   @vxteaser-font-family-normal;
-		font-weight:   @vxteaser-font-weight-light;
-	}
-
-	.vxteaser-tile &.-type-main {
-		margin-bottom:  0.5rem;
-		line-height:    2rem;
-		font-size:      2rem;
-		font-family:    @vxteaser-font-family-condensed;
-		font-weight:    @vxteaser-font-weight-bold;
-		text-transform: uppercase;
-	}
-
-	.vxteaser-tile &.-type-sub {
-		margin-bottom:  0.5rem;
-		line-height:    1.9rem;
-		font-size:      1.9rem;
-		font-weight:    @vxteaser-font-weight-light;
-		text-transform: uppercase;
-	}
 
 	&.-type-sub {
 		margin-bottom: 0.5rem;
@@ -161,6 +132,34 @@
 	}
 }
 
+.vxteaser-headline--tile {
+	/* headline in tile default */
+	&, &.-type-text {
+		margin-bottom: 0;
+		line-height:   1.4rem;
+		font-size:     1.4rem;
+		font-family:   @vxteaser-font-family-normal;
+		font-weight:   @vxteaser-font-weight-light;
+	}
+
+	&.-type-main {
+		margin-bottom:  0.5rem;
+		line-height:    2rem;
+		font-size:      2rem;
+		font-family:    @vxteaser-font-family-condensed;
+		font-weight:    @vxteaser-font-weight-bold;
+		text-transform: uppercase;
+	}
+
+	&.-type-sub {
+		margin-bottom:  0.5rem;
+		line-height:    1.9rem;
+		font-size:      1.9rem;
+		font-weight:    @vxteaser-font-weight-light;
+		text-transform: none;
+	}
+}
+
 .vxteaser-button {
 	color:            @vxteaser-color-white;
 	border-radius:    2px;
@@ -179,17 +178,6 @@
 	transition:       all 0.15s linear;
 	vertical-align:   top;
 
-	/* tile default */
-	.vxteaser-tile & {
-		min-width:     0;
-		padding:       1.3rem 2rem;
-		line-height:   1.4rem;
-		font-size:     1.4rem;
-		font-family:   @vxteaser-font-family-normal;
-		font-weight:   @vxteaser-font-weight-normal;
-		border-radius: 2px;
-	}
-
 	&.vxteaser-color--white {
 		color:            @vxteaser-color-special;
 		background-color: @vxteaser-color-white
@@ -207,6 +195,16 @@
 		background-color: @vxteaser-color-success;
 		border-color:     @vxteaser-color-success;
 	}
+}
+
+.vxteaser-button--tile {
+	min-width:     0;
+	padding:       1.3rem 2rem;
+	line-height:   1.4rem;
+	font-size:     1.4rem;
+	font-family:   @vxteaser-font-family-normal;
+	font-weight:   @vxteaser-font-weight-normal;
+	border-radius: 2px;
 }
 
 .vxteaser-banner {

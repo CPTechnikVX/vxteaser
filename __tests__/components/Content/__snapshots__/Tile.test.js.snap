@@ -15,7 +15,7 @@ exports[`render tile tile content 1`] = `
   <TileContent
     config={
       Object {
-        "fixedHeights": Array [
+        "aspectRatio": Array [
           Object {
             "backgroundUrl": "url0",
           },
@@ -39,7 +39,7 @@ exports[`render tile tile theme 1`] = `
   <TileContent
     config={
       Object {
-        "fixedHeights": Array [
+        "aspectRatio": Array [
           Object {
             "backgroundUrl": "url0",
           },

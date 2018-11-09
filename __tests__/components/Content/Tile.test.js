@@ -7,7 +7,7 @@ import classnames    from 'classnames';
 describe('render tile', () => {
 	const windowWidth = 1300;
 	const config      = {
-		fixedHeights: [
+		aspectRatio: [
 			{
 				backgroundUrl: 'url0',
 			},
@@ -26,7 +26,7 @@ describe('render tile', () => {
 		);
 		const style   = wrapper.prop('style');
 
-		expect(style.backgroundImage).toContain(config.fixedHeights[0]['backgroundUrl']);
+		expect(style.backgroundImage).toContain(config.aspectRatio[0]['backgroundUrl']);
 		expect(wrapper).toMatchSnapshot();
 		expect(wrapper.find('TileContent')).toHaveLength(1);
 		expect(wrapper.find('.' + classnames(Constants.ClassName.Tile).split(' ').join('.'))).toHaveLength(1);

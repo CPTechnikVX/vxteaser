@@ -35,11 +35,11 @@ export default class ElementFactory {
 			case Constants.Element.Break:
 				return <br />;
 			case Constants.Element.Button:
-				return <Button {...attrs} onClickFn={config.onClickFn}>{children}</Button>;
+				return <Button {...attrs} onClickFn={config.onClickFn} config={config}>{children}</Button>;
 			case Constants.Element.Column:
 				return <Column {...attrs}>{children}</Column>;
 			case Constants.Element.Headline:
-				return <Headline {...attrs}>{children}</Headline>;
+				return <Headline {...attrs} config={config}>{children}</Headline>;
 			case Constants.Element.Image:
 				return <Img {...attrs} />;
 			case Constants.Element.Link:
@@ -47,7 +47,7 @@ export default class ElementFactory {
 			case Constants.Element.Panel:
 				return <Panel {...attrs} config={config} {...props}>{children}</Panel>;
 			case Constants.Element.PanelGroup:
-				return <PanelGroup {...attrs}>{children}</PanelGroup>;
+				return <PanelGroup {...attrs} config={config}>{children}</PanelGroup>;
 			case Constants.Element.PanelSkew:
 				attrs.modifier = (attrs.modifier ? attrs.modifier + ' ' : '') + Constants.PrefixClassName.NthOfClass + stats.nthOfType;
 

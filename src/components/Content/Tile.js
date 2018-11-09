@@ -33,7 +33,7 @@ export default class Tile extends React.PureComponent {
 			classList.push(Constants.ClassName.Tile);
 
 			const styleObj = {
-				backgroundImage: `url('${config.fixedHeights[0]['backgroundUrl']}')`,
+				backgroundImage: `url('${config.aspectRatio[0]['backgroundUrl']}')`,
 			};
 
 			if (theme) {

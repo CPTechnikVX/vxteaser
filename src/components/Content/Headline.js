@@ -5,8 +5,8 @@ import classnames from 'classnames';
 
 export default class Headline extends React.PureComponent {
 	render() {
-		const {children, modifier, type} = this.props;
-		const classList                  = [];
+		const {children, config, modifier, type} = this.props;
+		const classList                          = [];
 
 		classList.push(Constants.ClassName.Headline);
 
@@ -18,6 +18,10 @@ export default class Headline extends React.PureComponent {
 			classList.push(modifier);
 		}
 
+		if (config && typeof config.aspectRatio !== 'undefined') {
+			classList.push(Constants.ClassName.Headline + '--' + Constants.Element.Tile);
+		}
+
 		return <div className={classnames(classList)}>{children}</div>;
 	}
 }
@@ -25,6 +29,8 @@ export default class Headline extends React.PureComponent {
 Headline.propTypes = {
 	/** @ignore */
 	children: PropTypes.node,
+	/** @ignore */
+	config:   PropTypes.object,
 	/**
 	 * CSS modifier
 	 */

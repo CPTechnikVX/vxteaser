@@ -9,11 +9,9 @@ import ClickEvent from '../../utils/ClickEvent';
  */
 export default class Button extends React.PureComponent {
 	render() {
-		const {children, color, link, modifier, theme} = this.props;
-		const classList                                = [];
+		const {children, color, config, link, modifier, theme} = this.props;
+		const classList                                        = [Constants.ClassName.Button];
 		let onClickFn;
-
-		classList.push(Constants.ClassName.Button);
 
 		if (color) {
 			classList.push(Constants.PrefixClassName.BackgroundColor + color);
@@ -38,6 +36,10 @@ export default class Button extends React.PureComponent {
 			classList.push(modifier);
 		}
 
+		if (config && typeof config.aspectRatio !== 'undefined') {
+			classList.push(Constants.ClassName.Button + '--' + Constants.Element.Tile);
+		}
+
 		return <a className={classnames(classList)} onClick={onClickFn}>{children}</a>;
 	}
 }
@@ -49,6 +51,8 @@ Button.propTypes = {
 	 * Textual color definition
 	 */
 	color:     PropTypes.oneOf(['green', 'primary', 'white']),
+	/** @ignore */
+	config:    PropTypes.object,
 	link:      PropTypes.string,
 	modifier:  PropTypes.string,
 	/** @ignore */

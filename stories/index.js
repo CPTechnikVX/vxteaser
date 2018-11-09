@@ -569,8 +569,8 @@ const mobileConfigs = [
 			],
 		},
 		id:             1,
-		name:           "banner1",
-		template:       "fixedHeight"
+		name:           "tile1",
+		template:       "aspectRatio"
 	},
 	{
 		backgroundUrl1: "https://m.visit-x.net/assets/img/teaser_mobile/wiesn_gaudi_2018/wiesn-gaudi_mobile_login.jpg",
@@ -606,9 +606,9 @@ const mobileConfigs = [
 				},
 			],
 		},
-		id:             1,
-		name:           "banner1",
-		template:       "fixedHeight"
+		id:             2,
+		name:           "tile2",
+		template:       "aspectRatio"
 	},
 	{
 		backgroundUrl1: "https://m.visit-x.net/assets/img/teaser_mobile/wiesn_gaudi_2018/wiesn-gaudi_mobile_login.jpg",
@@ -636,9 +636,9 @@ const mobileConfigs = [
 				},
 			],
 		},
-		id:             1,
-		name:           "banner1",
-		template:       "fixedHeight"
+		id:             3,
+		name:           "tile3",
+		template:       "aspectRatio"
 	},
 	{
 		content:  {
@@ -717,9 +717,9 @@ const mobileConfigs = [
 				],
 			},
 		},
-		id:       1,
-		name:     "banner1",
-		template: "fixedHeight"
+		id:       4,
+		name:     "tile4",
+		template: "aspectRatio"
 	},
 ];
 
