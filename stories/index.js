@@ -519,6 +519,48 @@ const desktopConfigs =
 		      "backgroundSize2": "auto",
 		      "height2":         500,
 		      "color2":          "#000000"
+	      }, {
+		      "id":              9,
+		      "name":            "banner9",
+		      "content":         {
+			      "banner": {
+				      "skewpanelgroup": {
+					      "panel":          {
+						      "0":           {
+							      "row": {
+								      "col": {
+									      "headline": {
+										      "text":        "Jetzt VIP Gratismonat starten und zus\u00e4tzlich 20\u20ac Startguthaben",
+										      "@attributes": {"type": "sub"}
+									      }
+								      }
+							      }
+						      },
+						      "1":           {
+							      "row": [{
+								      "col": {
+									      "button": {
+										      "@value":      "Jetzt einl\u00f6sen",
+										      "@attributes": {"color": "green"}
+									      }
+								      }
+							      }, {"col": {"countdown": {"@value": "Nur noch: 11:45:59", "@attributes": {"timer": "120"}}}}]
+						      },
+						      "@attributes": {"width": "45%"}
+					      }, "@attributes": {"skewWidth": "55%"}
+				      },
+				      "@attributes":    {"theme": "highlight"}
+			      }
+		      },
+		      "template":        "fixedHeight",
+		      "height1":         260,
+		      "backgroundUrl1":  "https:\/\/www.visit-x.net\/assets\/img\/teaser\/teaser-trial-abo-bg.jpg",
+		      "color1":          "#000000",
+		      "breakpoint1":     1200,
+		      "backgroundUrl2":  "https:\/\/www.visit-x.net\/assets\/img\/teaser\/teaser-trial-abo-bg.jpg",
+		      "backgroundSize2": "auto",
+		      "height2":         500,
+		      "color2":          "#000000"
 	      }];
 
 const mobileConfigs = [
