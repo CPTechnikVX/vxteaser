@@ -301,7 +301,7 @@ export default class BannerSuite extends React.PureComponent {
 						{pointsDOM.length > 1 &&
 						<div className={'vxteaser-arrow--left'} onClick={this.onPrevClick} />}
 						{bannerDOM}
-						<CloseButton onCloseFn={this.onCloseClick} />
+						{this.props.onCloseFn && <CloseButton onCloseFn={this.onCloseClick} />}
 						{pointsDOM.length > 1 &&
 						<div className={'vxteaser-arrow--right'} onClick={this.onNextClick} />}
 					</div>
