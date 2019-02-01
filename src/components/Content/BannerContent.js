@@ -14,8 +14,11 @@ export default class BannerContent extends React.PureComponent {
 		config.width                          = undefined;
 
 		if (windowWidth < config.fixedHeights[1]['greaterThan']) {
-			styleObj.height    = `${config.fixedHeights[1]['height'] - 10}px`;
-			styleObj.marginTop = `${config.fixedHeights[1]['height'] - 10}px`;
+			const newHeight    = Math.max(config.fixedHeights[0]['height'] / 2, config.fixedHeights[1]['height'] - 10);
+			const newMarginTop = Math.max(0, config.fixedHeights[0]['height'] - newHeight);
+
+			styleObj.height    = `${newHeight}px`;
+			styleObj.marginTop = `${newMarginTop}px`;
 			styleObj.textAlign = 'center';
 			config.width       = '100%';
 		}
