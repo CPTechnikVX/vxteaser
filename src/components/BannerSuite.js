@@ -250,9 +250,9 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	render() {
-		const {className} = this.props;
-		const {configs}   = this.state;
-		let content       = null;
+		const {className, customSuiteFn} = this.props;
+		const {configs}                  = this.state;
+		let content                      = null;
 
 		// is configuration provided?
 		if (configs && configs.length > 0) {
@@ -292,20 +292,24 @@ export default class BannerSuite extends React.PureComponent {
 			}
 
 			if (bannerDOM.length > 0) {
-				content = (
-					<div className={Constants.ClassName.Suite + ' ' + className}
-					     style={styleObj}
-					     onMouseEnter={this.onBannerOver}
-					     onMouseLeave={this.onBannerOut}
-					>
-						{pointsDOM.length > 1 &&
-						<div className={'vxteaser-arrow--left'} onClick={this.onPrevClick} />}
-						{bannerDOM}
-						{this.props.onCloseFn && <CloseButton onCloseFn={this.onCloseClick} />}
-						{pointsDOM.length > 1 &&
-						<div className={'vxteaser-arrow--right'} onClick={this.onNextClick} />}
-					</div>
-				);
+				if (customSuiteFn) {
+					content = customSuiteFn(bannerDOM);
+				} else {
+					content = (
+						<div className={Constants.ClassName.Suite + ' ' + className}
+						     style={styleObj}
+						     onMouseEnter={this.onBannerOver}
+						     onMouseLeave={this.onBannerOut}
+						>
+							{pointsDOM.length > 1 &&
+							<div className={'vxteaser-arrow--left'} onClick={this.onPrevClick} />}
+							{bannerDOM}
+							{this.props.onCloseFn && <CloseButton onCloseFn={this.onCloseClick} />}
+							{pointsDOM.length > 1 &&
+							<div className={'vxteaser-arrow--right'} onClick={this.onNextClick} />}
+						</div>
+					);
+				}
 			}
 		}
 
@@ -316,6 +320,7 @@ export default class BannerSuite extends React.PureComponent {
 BannerSuite.propTypes = {
 	className:     PropTypes.string,
 	configs:       PropTypes.array,
+	customSuiteFn: PropTypes.func,
 	autoplaySpeed: PropTypes.number,
 	onCloseFn:     PropTypes.func,
 	onClickFn:     PropTypes.func,
