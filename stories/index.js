@@ -806,7 +806,7 @@ storiesOf('BannerSuite', module)
 
 		const config = {};
 
-		return DesktopWrapper(<BannerSuite configs={desktopConfigs} className={config.bannerSuiteClassName ? config.bannerSuiteClassName : ''} />);
+		return DesktopWrapper(<BannerSuite configs={desktopConfigs} className={config.bannerSuiteClassName ? config.bannerSuiteClassName : ''} arrows={true} dots={true} />);
 	})
 	.add('tile', () => {
 		return MobileWrapper(<TileSuite configs={mobileConfigs} />);

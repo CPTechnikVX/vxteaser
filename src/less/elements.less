@@ -75,22 +75,27 @@
 	transform: translateY(-50%);
 
 	/* panel themes */
+
 	&.-theme-dark {
 		color:            @vxteaser-color-white;
 		background-color: @vxteaser-color-dark;
 	}
+
 	&.-theme-highlight {
 		color:            @vxteaser-color-white;
 		background-color: @vxteaser-color-highlight;
 	}
+
 	&.-theme-light {
 		color:            @vxteaser-color-black;
 		background-color: @vxteaser-color-white;
 	}
+
 	&.-theme-special {
 		color:            @vxteaser-color-white;
 		background-color: @vxteaser-color-special;
 	}
+
 	&.-theme-transparent {
 		color:            @vxteaser-color-white;
 		background-color: @vxteaser-color-transparent;
@@ -118,6 +123,7 @@
 		font-size:     2.6rem;
 		font-weight:   @vxteaser-font-weight-light;
 	}
+
 	&.-type-main, &.-type-main.-size-md {
 		margin-bottom:  1.5rem;
 		line-height:    4rem;
@@ -125,9 +131,11 @@
 		font-weight:    @vxteaser-font-weight-bold;
 		text-transform: uppercase;
 	}
+
 	&.-type-main.-size-sm {
 		font-size: 4rem;
 	}
+
 	&, &.-type-text {
 		margin-bottom: 2rem;
 		line-height:   2rem;
@@ -138,6 +146,7 @@
 
 .vxteaser-headline--tile {
 	/* headline in tile default */
+
 	&, &.-type-text {
 		margin-bottom: 0;
 		line-height:   1.4rem;
@@ -187,6 +196,7 @@
 	}
 
 	/* themes */
+
 	&.-theme-light {
 		color:            @vxteaser-color-special;
 		background-color: @vxteaser-color-white;
@@ -233,15 +243,19 @@
 		&.-view2--bg-auto {
 			background-size: auto;
 		}
+
 		&.-view2--bg-contain {
 			background-size: contain;
 		}
+
 		&.-view2--bg-center {
 			background-position: top center;
 		}
+
 		&.-view2--bg-left {
 			background-position: top left;
 		}
+
 		&.-view2--bg-right {
 			background-position: top right;
 		}
@@ -262,22 +276,27 @@
 	height:            100%;
 
 	/* panel themes */
+
 	&.-theme-dark {
 		color:            @vxteaser-color-white;
 		background-color: @vxteaser-color-dark;
 	}
+
 	&.-theme-highlight {
 		color:            @vxteaser-color-white;
 		background-color: @vxteaser-color-highlight;
 	}
+
 	&.-theme-light {
 		color:            @vxteaser-color-black;
 		background-color: @vxteaser-color-white;
 	}
+
 	&.-theme-special {
 		color:            @vxteaser-color-white;
 		background-color: @vxteaser-color-special;
 	}
+
 	&.-theme-transparent {
 		color:            @vxteaser-color-white;
 		background-color: @vxteaser-color-transparent;
@@ -290,8 +309,27 @@
 }
 
 .vxteaser-points {
-	position: absolute;
-	bottom:   0;
+	position:  absolute;
+	bottom:    5px;
+	z-index:   2;
+	left:      50%;
+	transform: translateX(-50%);
+}
+
+.vxteaser-points__item {
+	display:          inline-block;
+	margin:           0 2px;
+	transform:        rotate(-90deg);
+	border-radius:    50%;
+	height:           12px;
+	width:            12px;
+	opacity:          0.4;
+	background-color: @vxteaser-color-mood-9;
+	cursor:           pointer;
+
+	&.is-active {
+		opacity: 0.8;
+	}
 }
 
 .vxteaser-skew {
@@ -308,14 +346,17 @@
 		color:            @vxteaser-color-white;
 		background-color: @vxteaser-color-highlight;
 	}
+
 	.-theme-light.vxteaser--has-skew & {
 		color:            @vxteaser-color-black;
 		background-color: @vxteaser-color-white;
 	}
+
 	.-theme-special.vxteaser--has-skew & {
 		color:            @vxteaser-color-white;
 		background-color: @vxteaser-color-special;
 	}
+
 	.-theme-transparent.vxteaser--has-skew & {
 		color:            @vxteaser-color-white;
 		background-color: @vxteaser-color-transparent;
@@ -339,12 +380,15 @@
 	.-theme-highlight & {
 		color: @vxteaser-color-white;
 	}
+
 	.-theme-light & {
 		color: @vxteaser-color-black;
 	}
+
 	.-theme-special & {
 		color: @vxteaser-color-white;
 	}
+
 	.-theme-transparent & {
 		color: @vxteaser-color-white;
 	}
@@ -352,12 +396,15 @@
 	.-theme-highlight.vxteaser--has-no-skew & {
 		background-color: @vxteaser-color-highlight;
 	}
+
 	.-theme-light.vxteaser--has-no-skew & {
 		background-color: @vxteaser-color-white;
 	}
+
 	.-theme-special.vxteaser--has-no-skew & {
 		background-color: @vxteaser-color-special;
 	}
+
 	.-theme-transparent.vxteaser--has-no-skew & {
 		background-color: @vxteaser-color-transparent;
 	}
@@ -436,6 +483,7 @@
 			left: 39%;
 		}
 	}
+
 	&.-nth-of-class-2 {
 		left: 33.3%;
 
@@ -451,6 +499,7 @@
 			left: 61%;
 		}
 	}
+
 	&.-nth-of-class-3 {
 		left: 66.6%;
 
@@ -502,15 +551,18 @@
 	&:hover {
 		background-color: lighten(@vxteaser-color-mood-6, 15%);
 	}
+
 	&:hover::before {
 		transition:   none;
 		border-color: transparent transparent lighten(@vxteaser-color-mood-6, 15%) transparent;
 	}
+
 	&:before {
 		border-style: solid;
 		border-width: 0 0 2em 1em;
 		border-color: transparent transparent #151617 transparent;
 	}
+
 	&:after {
 		position:    absolute;
 		right:       0.4em;

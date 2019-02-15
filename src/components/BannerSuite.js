@@ -4,6 +4,7 @@ import BannerBuilder from '../utils/Builder';
 import Constants     from './../utils/Constants';
 import LinkHandler   from './LinkHandler';
 import CloseButton   from './Content/CloseButton';
+import Point         from './Content/Point';
 
 /**
  * Top level banner suite component containing one or more banners
@@ -48,14 +49,17 @@ export default class BannerSuite extends React.PureComponent {
 
 		this.banners       = {};
 		this.itemRefs      = [];
+		this.pointsRefs    = [];
 		this.timerInterval = null;
 		this.resizeTimeout = null;
 
 		// bind
 		this.onBannerOver = this.onBannerOver.bind(this);
 		this.onBannerOut  = this.onBannerOut.bind(this);
+		this.getPointRef  = this.getPointRef.bind(this);
 		this.onCloseClick = this.onCloseClick.bind(this);
 		this.onNextClick  = this.onNextClick.bind(this);
+		this.onPointClick = this.onPointClick.bind(this);
 		this.onPrevClick  = this.onPrevClick.bind(this);
 		this.onResize     = this.onResize.bind(this);
 
@@ -123,6 +127,12 @@ export default class BannerSuite extends React.PureComponent {
 		return this.state.configs && this.state.configs.length > 1 && this.props.autoplaySpeed > 0;
 	}
 
+	getPointRef(ref, index) {
+		if (ref) {
+			this.pointsRefs[index] = ref;
+		}
+	}
+
 	/**
 	 * Create or load banner via config
 	 * @param config
@@ -183,6 +193,14 @@ export default class BannerSuite extends React.PureComponent {
 	}
 
 	/**
+	 * Click slider point
+	 */
+	onPointClick(index) {
+		this.setVisible(index);
+		this.resetInterval();
+	}
+
+	/**
 	 * Click on close button
 	 */
 	onCloseClick(event) {
@@ -214,10 +232,18 @@ export default class BannerSuite extends React.PureComponent {
 						const el = this.itemRefs[oldIndex];
 						el.classList.remove('is-active');
 					}
+					if (typeof this.pointsRefs[oldIndex] !== 'undefined') {
+						const el = this.pointsRefs[oldIndex];
+						el.classList.remove('is-active');
+					}
 				}
 
 				if (typeof this.itemRefs[i] !== 'undefined') {
 					const el = this.itemRefs[i];
+					el.classList.add('is-active');
+				}
+				if (typeof this.pointsRefs[i] !== 'undefined') {
+					const el = this.pointsRefs[i];
 					el.classList.add('is-active');
 				}
 			});
@@ -249,10 +275,17 @@ export default class BannerSuite extends React.PureComponent {
 		}
 	}
 
+	resetInterval() {
+		if (this.needTimerInterval()) {
+			this.clearInterval();
+			this.startInterval();
+		}
+	}
+
 	render() {
-		const {className, customSuiteFn} = this.props;
-		const {configs}                  = this.state;
-		let content                      = null;
+		const {arrows, dots, className, customSuiteFn} = this.props;
+		const {configs}                                = this.state;
+		let content                                    = null;
 
 		// is configuration provided?
 		if (configs && configs.length > 0) {
@@ -263,7 +296,12 @@ export default class BannerSuite extends React.PureComponent {
 			const bannerDOM = configs.map((config, i) => {
 				if (configs.length > 1) {
 					// banner switch control
-					pointsDOM.push(i);
+					pointsDOM.push(<Point key={i}
+					                      index={i}
+					                      isActive={(this.state.visibleIndex === i)}
+					                      getRef={this.getPointRef}
+					                      onClickFn={this.onPointClick}
+					               />);
 				}
 
 				// assign handlers
@@ -301,12 +339,13 @@ export default class BannerSuite extends React.PureComponent {
 						     onMouseEnter={this.onBannerOver}
 						     onMouseLeave={this.onBannerOut}
 						>
-							{pointsDOM.length > 1 &&
+							{pointsDOM.length > 1 && arrows &&
 							<div className={'vxteaser-arrow--left'} onClick={this.onPrevClick} />}
 							{bannerDOM}
 							{this.props.onCloseFn && <CloseButton onCloseFn={this.onCloseClick} />}
-							{pointsDOM.length > 1 &&
+							{pointsDOM.length > 1 && arrows &&
 							<div className={'vxteaser-arrow--right'} onClick={this.onNextClick} />}
+							{dots && <div className={'vxteaser-points'}>{pointsDOM}</div>}
 						</div>
 					);
 				}
@@ -318,15 +357,19 @@ export default class BannerSuite extends React.PureComponent {
 }
 
 BannerSuite.propTypes = {
+	arrows:        PropTypes.bool,
+	autoplaySpeed: PropTypes.number,
 	className:     PropTypes.string,
 	configs:       PropTypes.array,
 	customSuiteFn: PropTypes.func,
-	autoplaySpeed: PropTypes.number,
-	onCloseFn:     PropTypes.func,
+	dots:          PropTypes.bool,
 	onClickFn:     PropTypes.func,
+	onCloseFn:     PropTypes.func,
 };
 
 BannerSuite.defaultProps = {
+	arrows:        true,
+	dots:          false,
 	className:     '',
 	autoplaySpeed: 10000,
 };
