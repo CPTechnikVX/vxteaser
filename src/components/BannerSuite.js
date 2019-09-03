@@ -140,9 +140,13 @@ export default class BannerSuite extends React.PureComponent {
 	 */
 	getBannerByConfig(config) {
 		let bannerDOM;
-		this.banners[config.id] = bannerDOM = BannerBuilder(config, {
-			windowWidth: window.innerWidth,
-		});
+		this.banners[config.id] = bannerDOM = BannerBuilder(
+			config,
+			{
+				windowWidth: window.innerWidth,
+			},
+			this.props.onRenderNode ? this.props.onRenderNode : undefined
+		);
 
 		return bannerDOM;
 	}
@@ -365,6 +369,7 @@ BannerSuite.propTypes = {
 	dots:          PropTypes.bool,
 	onClickFn:     PropTypes.func,
 	onCloseFn:     PropTypes.func,
+	onRenderNode:  PropTypes.func,
 };
 
 BannerSuite.defaultProps = {

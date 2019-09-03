@@ -14,7 +14,7 @@ function isNumeric(n) {
  * @param args
  * @returns {*}
  */
-function renderNode({...args}) {
+export function renderNode({...args}) {
 	return ElementFactory.getForName.call(this, args);
 }
 

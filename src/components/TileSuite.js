@@ -118,9 +118,13 @@ export default class TileSuite extends React.PureComponent {
 	 */
 	getBannerByConfig(config) {
 		let bannerDOM;
-		this.banners[config.id] = bannerDOM = BannerBuilder(config, {
-			windowWidth: window.innerWidth,
-		});
+		this.banners[config.id] = bannerDOM = BannerBuilder(
+			config,
+			{
+				windowWidth: window.innerWidth,
+			},
+			this.props.onRenderNode ? this.props.onRenderNode : undefined
+		);
 
 		return bannerDOM;
 	}
@@ -295,6 +299,7 @@ TileSuite.propTypes = {
 	autoplaySpeed: PropTypes.number,
 	onCloseFn:     PropTypes.func,
 	onClickFn:     PropTypes.func,
+	onRenderNode:  PropTypes.func,
 };
 
 TileSuite.defaultProps = {
