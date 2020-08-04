@@ -45,7 +45,7 @@ export default class Tile extends React.PureComponent {
 			}
 
 			return (
-				<div className={classnames(classList)} style={styleObj} onClick={this.onClickFn}>
+				<div className={classnames(classList)} style={styleObj} onClick={this.onClickFn} data-id={config.id}>
 					<TileContent config={config} windowWidth={windowWidth}>{children}</TileContent>
 				</div>
 			);

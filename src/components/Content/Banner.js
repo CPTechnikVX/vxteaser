@@ -56,7 +56,7 @@ export default class Banner extends React.PureComponent {
 			}
 
 			return (
-				<div className={classnames(classList)} style={styleObj} onClick={this.onClickFn}>
+				<div className={classnames(classList)} style={styleObj} onClick={this.onClickFn} data-id={config.id}>
 					<BannerContent config={config} windowWidth={windowWidth}>{children}</BannerContent>
 				</div>
 			);
