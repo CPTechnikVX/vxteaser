@@ -1,7 +1,7 @@
 {
   "name": "vxteaser",
   "description": "VX teaser components",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "src/lib.js",
   "scripts": {
     "build": "webpack",
@@ -65,7 +65,6 @@
     "path": "^0.12.7",
     "postcss-loader": "^2.1.0",
     "react": "^16.14.0",
-    "react-addons-test-utils": "^15.4.2",
     "react-dom": "^16.14.0",
     "react-styleguidist": "^7.0.17",
     "react-test-renderer": "^16.14.0",
@@ -74,8 +73,8 @@
     "webpack-bundle-size-analyzer": "^2.7.0"
   },
   "peerDependencies": {
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "dependencies": {
     "classnames": "^2.3.1",
@@ -83,7 +82,7 @@
     "exports-loader": "^0.6.4",
     "imports-loader": "^0.7.1",
     "promise-polyfill": "^8.2.0",
-    "prop-types": "^15.6.0",
+    "prop-types": "^15.7.2",
     "whatwg-fetch": "^2.0.4"
   }
 }
