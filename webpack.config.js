@@ -71,9 +71,21 @@ function getConfig(type = '') {
 			]
 		},
 
-		externals: type === 'standalone' ? {
-//			 Use external versions
-			"react": "React"
+		externals: type === 'standalone' ?  {
+			react: {
+				root: 'React',
+				commonjs2: 'react',
+				commonjs: 'react',
+				amd: 'react',
+				umd: 'react',
+			},
+			'react-dom': {
+				root: 'ReactDOM',
+				commonjs2: 'react-dom',
+				commonjs: 'react-dom',
+				amd: 'react-dom',
+				umd: 'react-dom',
+			},
 		} : {},
 		stats:     {
 			colors: true
