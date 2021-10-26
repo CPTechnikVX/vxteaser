@@ -39,7 +39,7 @@ function getConfig(type = '') {
 		module: {
 			rules: [
 				{
-					test:    /\.js$/,
+					test:    /\.jsx?$/,
 					use:     [
 						'babel-loader',
 					],
