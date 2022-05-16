@@ -7,7 +7,6 @@
     "build": "webpack",
     "build:all": "npm run build && npm run storybook:build && npm run styleguide:build",
     "watch": "webpack --watch",
-    "prepublish": "rm -rf ./dist && npm run build:all",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o http-root/storybook",
     "test": "jest",
