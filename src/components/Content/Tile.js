@@ -46,9 +46,7 @@ export default class Tile extends React.PureComponent {
 
 			return (
 				<div className={classnames(classList)} style={styleObj} onClick={this.onClickFn} data-id={config.id}>
-					{videoUrl && <video playsInline autoPlay muted loop style={{position: 'absolute', width: '100%', top: 0}}>
-						<source src={videoUrl} />
-					</video>}
+					{videoUrl && <video playsInline autoPlay muted loop style={{position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', top: 0}}><source src={videoUrl} /></video>}
 					<TileContent config={config} windowWidth={windowWidth}>{children}</TileContent>
 				</div>
 			);
@@ -60,14 +58,14 @@ export default class Tile extends React.PureComponent {
 
 Tile.propTypes = {
 	/** @ignore */
-	config: PropTypes.object,
+	config:      PropTypes.object,
 	/** @ignore */
-	children: PropTypes.node,
-	modifier: PropTypes.string,
+	children:    PropTypes.node,
+	modifier:    PropTypes.string,
 	/** @ignore */
-	onClickFn: PropTypes.func,
-	link:      PropTypes.string,
-	theme:     PropTypes.string,
+	onClickFn:   PropTypes.func,
+	link:        PropTypes.string,
+	theme:       PropTypes.string,
 	/** @ignore */
 	windowWidth: PropTypes.number,
 };

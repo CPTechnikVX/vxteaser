@@ -32,12 +32,12 @@ export default class Banner extends React.PureComponent {
 			const classList = [];
 			let videoUrl    = config.fixedHeights[0]['backgroundUrl'].endsWith('.mp4') ? config.fixedHeights[0]['backgroundUrl'] : '';
 			const styleObj  = {
-				backgroundImage: videoUrl ? "" : `url('${config.fixedHeights[0]['backgroundUrl']}')`,
+				backgroundImage: videoUrl ? "" : `url('${config.fixedHeights[0]['backgroundUrl']}')`, 
 				height:          `${config.fixedHeights[1]['height']}px`,
 			};
-
+			
 			if (windowWidth < config.fixedHeights[1]['greaterThan']) {
-				videoUrl                 = config.fixedHeights[1]['backgroundUrl'].endsWith('.mp4') ? config.fixedHeights[1]['backgroundUrl'] : '';
+				videoUrl = config.fixedHeights[1]['backgroundUrl'].endsWith('.mp4') ? config.fixedHeights[1]['backgroundUrl'] : '';
 				styleObj.backgroundImage = videoUrl ? "" : `url('${config.fixedHeights[1]['backgroundUrl']}')`;
 				styleObj.height          = `${config.fixedHeights[0]['height']}px`;
 
@@ -58,9 +58,7 @@ export default class Banner extends React.PureComponent {
 
 			return (
 				<div className={classnames(classList)} style={styleObj} onClick={this.onClickFn} data-id={config.id}>
-					{videoUrl && <video playsInline autoPlay muted loop style={{position: 'absolute', width: '100%'}}>
-						<source src={videoUrl} />
-					</video>}
+					{videoUrl && <video playsInline autoPlay muted loop style={{position: 'absolute', width: '100%', height: '100%', objectFit: 'cover'}}><source src={videoUrl} /></video>}
 					<BannerContent config={config} windowWidth={windowWidth}>{children}</BannerContent>
 				</div>
 			);
@@ -72,14 +70,14 @@ export default class Banner extends React.PureComponent {
 
 Banner.propTypes = {
 	/** @ignore */
-	config: PropTypes.object,
+	config:      PropTypes.object,
 	/** @ignore */
-	children: PropTypes.node,
-	modifier: PropTypes.string,
+	children:    PropTypes.node,
+	modifier:    PropTypes.string,
 	/** @ignore */
-	onClickFn: PropTypes.func,
-	link:      PropTypes.string,
-	theme:     PropTypes.string,
+	onClickFn:   PropTypes.func,
+	link:        PropTypes.string,
+	theme:       PropTypes.string,
 	/** @ignore */
 	windowWidth: PropTypes.number,
 };
