@@ -27,19 +27,18 @@ export default class Banner extends React.PureComponent {
 
 	render() {
 		const {children, config, modifier, theme, windowWidth} = this.props;
-
 		if (config) {
 			const classList = [];
-			let videoUrl    = config.fixedHeights[0]['backgroundUrl'].endsWith('.mp4') ? config.fixedHeights[0]['backgroundUrl'] : '';
-			const styleObj  = {
-				backgroundImage: videoUrl ? "" : `url('${config.fixedHeights[0]['backgroundUrl']}')`, 
-				height:          `${config.fixedHeights[1]['height']}px`,
-			};
-			
-			if (windowWidth < config.fixedHeights[1]['greaterThan']) {
+			let videoUrl = config.fixedHeights[0]['backgroundUrl'].endsWith('.mp4') ? config.fixedHeights[0]['backgroundUrl'] : '';
+			let imageUrl = videoUrl ? "" : config.fixedHeights[0]['backgroundUrl'];
+			let height   =  "100%";
+			let wrapperHeight = config.fixedHeights[1]['height'] + "px";
+		
+			if (windowWidth < 1200) {
 				videoUrl = config.fixedHeights[1]['backgroundUrl'].endsWith('.mp4') ? config.fixedHeights[1]['backgroundUrl'] : '';
-				styleObj.backgroundImage = videoUrl ? "" : `url('${config.fixedHeights[1]['backgroundUrl']}')`;
-				styleObj.height          = `${config.fixedHeights[0]['height']}px`;
+				imageUrl = videoUrl ? "" : config.fixedHeights[1]['backgroundUrl'];
+				height   = videoUrl ? "100%" : config.fixedHeights[1]['height'] + "px";
+				wrapperHeight = config.fixedHeights[0]['height'] + "px";
 
 				classList.push(Constants.ClassName.BannerNoSkew);
 				classList.push('-view2');
@@ -56,9 +55,18 @@ export default class Banner extends React.PureComponent {
 				classList.push(modifier);
 			}
 
+			const style = {
+				width: '100%',
+				height: height,
+				objectFit: 'cover',
+				position: 'absolute',
+				top: 0,
+			};
+
 			return (
-				<div className={classnames(classList)} style={styleObj} onClick={this.onClickFn} data-id={config.id}>
-					{videoUrl && <video playsInline autoPlay muted loop style={{position: 'absolute', width: '100%', height: '100%', objectFit: 'cover'}}><source src={videoUrl} /></video>}
+				<div className={classnames(classList)} onClick={this.onClickFn} data-id={config.id} style={{height: wrapperHeight}}>
+					{videoUrl && <video playsInline autoPlay muted loop style={style}><source src={videoUrl} /></video>}
+					{imageUrl && <img src={imageUrl} loading="lazy" style={style} />}
 					<BannerContent config={config} windowWidth={windowWidth}>{children}</BannerContent>
 				</div>
 			);

@@ -32,9 +32,8 @@ export default class Tile extends React.PureComponent {
 			const classList = [];
 			classList.push(Constants.ClassName.Tile);
 			const videoUrl = config.aspectRatio[0]['backgroundUrl'].endsWith('.mp4') ? config.aspectRatio[0]['backgroundUrl'] : '';
-			const styleObj = {
-				backgroundImage: videoUrl ? "" : `url('${config.aspectRatio[0]['backgroundUrl']}')`,
-			};
+			const imgUrl   = videoUrl ? "" : config.aspectRatio[0]['backgroundUrl'];
+
 
 			if (theme) {
 				classList.push('-theme-' + theme);
@@ -44,9 +43,18 @@ export default class Tile extends React.PureComponent {
 				classList.push(modifier);
 			}
 
+			const style = {
+				position: 'absolute', 
+				width: '100%', 
+				height: '100%', 
+				objectFit: 'cover', 
+				top: 0,
+			};
+
 			return (
-				<div className={classnames(classList)} style={styleObj} onClick={this.onClickFn} data-id={config.id}>
-					{videoUrl && <video playsInline autoPlay muted loop style={{position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', top: 0}}><source src={videoUrl} /></video>}
+				<div className={classnames(classList)} onClick={this.onClickFn} data-id={config.id}>
+					{videoUrl && <video playsInline autoPlay muted loop style={style}><source src={videoUrl} /></video>}
+					{imgUrl && <img style={style} src={imgUrl} loading='lazy' />}
 					<TileContent config={config} windowWidth={windowWidth}>{children}</TileContent>
 				</div>
 			);
