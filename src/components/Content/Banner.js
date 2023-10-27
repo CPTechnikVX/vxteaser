@@ -27,15 +27,16 @@ export default class Banner extends React.PureComponent {
 
 	render() {
 		const {children, config, modifier, theme, windowWidth} = this.props;
+		const isVideo = config.fixedHeights[0]['backgroundUrl'].endsWith('.mp4') || config.fixedHeights[0]['backgroundUrl'].endsWith('.webm');
 		if (config) {
 			const classList = [];
-			let videoUrl = config.fixedHeights[0]['backgroundUrl'].endsWith('.mp4') ? config.fixedHeights[0]['backgroundUrl'] : '';
+			let videoUrl = isVideo ? config.fixedHeights[0]['backgroundUrl'] : '';
 			let imageUrl = videoUrl ? "" : config.fixedHeights[0]['backgroundUrl'];
 			let height   =  "100%";
 			let wrapperHeight = config.fixedHeights[1]['height'] + "px";
 		
 			if (windowWidth < 1200) {
-				videoUrl = config.fixedHeights[1]['backgroundUrl'].endsWith('.mp4') ? config.fixedHeights[1]['backgroundUrl'] : '';
+				videoUrl = isVideo ? config.fixedHeights[1]['backgroundUrl'] : '';
 				imageUrl = videoUrl ? "" : config.fixedHeights[1]['backgroundUrl'];
 				height   = videoUrl ? "100%" : config.fixedHeights[1]['height'] + "px";
 				wrapperHeight = config.fixedHeights[0]['height'] + "px";
