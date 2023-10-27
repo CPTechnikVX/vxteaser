@@ -27,11 +27,12 @@ export default class Tile extends React.PureComponent {
 
 	render() {
 		const {children, config, modifier, theme, windowWidth} = this.props;
+		const isVideo = config.fixedHeights[0]['backgroundUrl'].endsWith('.mp4') || config.fixedHeights[0]['backgroundUrl'].endsWith('.webm');
 
 		if (config) {
 			const classList = [];
 			classList.push(Constants.ClassName.Tile);
-			const videoUrl = config.aspectRatio[0]['backgroundUrl'].endsWith('.mp4') ? config.aspectRatio[0]['backgroundUrl'] : '';
+			const videoUrl = isVideo ? config.aspectRatio[0]['backgroundUrl'] : '';
 			const imgUrl   = videoUrl ? "" : config.aspectRatio[0]['backgroundUrl'];
 
 
