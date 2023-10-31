@@ -242,18 +242,37 @@
 
 		&.-view1--bg-contain {
 			background-size: contain;
+			img {
+				object-fit: contain;
+			}
+		}
+
+		&.-view1--bg-cover {
+			background-size: cover;
+			img {
+				object-fit: cover;
+			}
 		}
 
 		&.-view1--bg-center {
 			background-position: top center;
+			img, video {
+				object-position: left;
+			}
 		}
 
 		&.-view1--bg-left {
 			background-position: top left;
+			img, video {
+				object-position: left;
+			}
 		}
 
 		&.-view1--bg-right {
 			background-position: top right;
+			img, video {
+				object-position: right;
+			}
 		}
 
 		.vxteaser-visible--view2 {
@@ -268,24 +287,82 @@
 			background-size: auto;
 		}
 
+		&.-view2--bg-cover {
+			background-size: cover;
+			img {
+				object-fit: cover;
+			}
+		}
+
 		&.-view2--bg-contain {
 			background-size: contain;
+			img {
+				object-fit: contain;
+			}
 		}
 
 		&.-view2--bg-center {
 			background-position: top center;
+			img, video {
+				object-position: center;
+			}
 		}
 
 		&.-view2--bg-left {
 			background-position: top left;
+			img, video {
+				object-position: left;
+			}
 		}
 
 		&.-view2--bg-right {
 			background-position: top right;
+			img, video {
+				object-position: right;
+			}
 		}
 
 		.vxteaser-visible--view1 {
 			display: none;
+		}
+	}
+
+	&.-both--bg-auto {
+		background-size: auto;
+	}
+
+	&.-both--bg-cover {
+		background-size: cover;
+		img {
+			object-fit: cover;
+		}
+	}
+
+	&.-both--bg-contain {
+		background-size: contain;
+		img {
+			object-fit: contain;
+		}
+	}
+
+	&.-both--bg-center {
+		background-position: top center;
+		img {
+			object-position: center;
+		}
+	}
+
+	&.-both--bg-left {
+		background-position: top left;
+		img {
+			object-position: left;
+		}
+	}
+
+	&.-both--bg-right {
+		background-position: top right;
+		img {
+			object-position: right;
 		}
 	}
 }
