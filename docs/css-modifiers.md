@@ -117,6 +117,14 @@
 	text-align: left !important;
 }
 
+.-text-align-right {
+	text-align: right !important;
+}
+
+.-text-align-center {
+	text-align: center !important;
+}
+
 /******* END OF MODIFIER ************/
 
 /****************** COLORS ******************/
