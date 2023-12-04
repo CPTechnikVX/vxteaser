@@ -23,10 +23,11 @@ export default class TileSuite extends React.PureComponent {
 		return configs.map((origTypeConfig) => {
 			const typeConfig = {};
 
-			typeConfig.id          = origTypeConfig.id;
-			typeConfig.name        = origTypeConfig.name;
-			typeConfig.content     = origTypeConfig.content;
-			typeConfig.aspectRatio = [
+			typeConfig.id            = origTypeConfig.id;
+			typeConfig.name          = origTypeConfig.name;
+			typeConfig.content       = origTypeConfig.content;
+			typeConfig.teaserContext = origTypeConfig.teaserContext;
+			typeConfig.aspectRatio   = [
 				{
 					backgroundUrl: origTypeConfig.backgroundUrl1,
 				},

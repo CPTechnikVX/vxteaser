@@ -52,10 +52,15 @@ export default class Tile extends React.PureComponent {
 				top: 0,
 			};
 
+			let loading = 'lazy';
+			if (this.props.teaserContext === 'default') {
+				loading = 'auto';
+			}
+
 			return (
 				<div className={classnames(classList)} onClick={this.onClickFn} data-id={config.id}>
 					{videoUrl && <video playsInline autoPlay muted loop style={style}><source src={videoUrl} /></video>}
-					{imgUrl && <img style={style} src={imgUrl} loading='lazy' />}
+					{imgUrl && <img style={style} src={imgUrl} loading={loading} />}
 					<TileContent config={config} windowWidth={windowWidth}>{children}</TileContent>
 				</div>
 			);
@@ -77,4 +82,9 @@ Tile.propTypes = {
 	theme:       PropTypes.string,
 	/** @ignore */
 	windowWidth: PropTypes.number,
+	teaserContext: PropTypes.string,
+};
+
+Tile.defaultProps = {
+	teaserContext: '',
 };
