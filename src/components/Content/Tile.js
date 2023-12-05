@@ -53,7 +53,7 @@ export default class Tile extends React.PureComponent {
 			};
 
 			let loading = 'lazy';
-			if (this.props.teaserContext === 'default') {
+			if (config.teaserContext === 'default') {
 				loading = 'auto';
 			}
 
@@ -82,9 +82,4 @@ Tile.propTypes = {
 	theme:       PropTypes.string,
 	/** @ignore */
 	windowWidth: PropTypes.number,
-	teaserContext: PropTypes.string,
-};
-
-Tile.defaultProps = {
-	teaserContext: '',
 };
