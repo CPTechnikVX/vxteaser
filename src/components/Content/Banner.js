@@ -66,7 +66,7 @@ export default class Banner extends React.PureComponent {
 
 			return (
 				<div className={classnames(classList)} onClick={this.onClickFn} data-id={config.id} style={{height: wrapperHeight}}>
-					{videoUrl && <video playsInline autoPlay muted loop style={style}><source src={videoUrl} /></video>}
+					{videoUrl && <video playsInline autoPlay muted loop style={style} key={videoUrl}><source src={videoUrl} /></video>}
 					{imageUrl && <img src={imageUrl} loading="lazy" style={style} />}
 					<BannerContent config={config} windowWidth={windowWidth}>{children}</BannerContent>
 				</div>
