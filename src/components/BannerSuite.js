@@ -9,7 +9,7 @@ import Point         from './Content/Point';
 /**
  * Top level banner suite component containing one or more banners
  */
-export default class BannerSuite extends React.PureComponent {
+export default class BannerSuite extends React.Component {
 	/**
 	 * Process data from provider to internal form
 	 * @param configs

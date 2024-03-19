@@ -9,7 +9,7 @@ import CloseButton   from './Content/CloseButton';
 /**
  * Top level banner suite component containing one or more banners
  */
-export default class TileSuite extends React.PureComponent {
+export default class TileSuite extends React.Component {
 	/**
 	 * Process data from provider to internal form
 	 * @param configs
