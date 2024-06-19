@@ -4,6 +4,7 @@ import classnames    from 'classnames';
 import Constants     from '../../utils/Constants';
 import BannerContent from './BannerContent';
 import ClickEvent    from '../../utils/ClickEvent';
+import {isVideoUrl}  from '../../utils/Helper';
 
 /**
  * Main Banner component
@@ -28,7 +29,7 @@ export default class Banner extends React.PureComponent {
 	render() {
 		const {children, config, modifier, theme, windowWidth} = this.props;
 		if (config) {
-			const isVideo = config.fixedHeights[0]['backgroundUrl'].endsWith('.mp4') || config.fixedHeights[0]['backgroundUrl'].endsWith('.webm');
+			const isVideo = isVideoUrl(config.fixedHeights[0]['backgroundUrl']);
 			const classList = [];
 			let videoUrl = isVideo ? config.fixedHeights[0]['backgroundUrl'] : '';
 			let imageUrl = videoUrl ? "" : config.fixedHeights[0]['backgroundUrl'];

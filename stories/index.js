@@ -1,15 +1,72 @@
 import React           from 'react';
 import {storiesOf}     from '@storybook/react';
-import {action}        from '@storybook/addon-actions';
 import BannerSuite     from '../src/components/BannerSuite';
 import {BannerBuilder} from '../src/utils/Builder';
-import ProviderMock    from '../src/components/ProviderMock';
 import TileSuite       from '../src/components/TileSuite';
 
+let desktopId = 0;
+let mobileId  = 0;
+
 const desktopConfigs =
-	      [{
-		      "id":              1,
-		      "name":            "banner1",
+	      [
+		      {
+			      "id":              ++desktopId,
+			      "name":            "banner1",
+			      "content":         {
+				      "banner": {
+					      "skewpanelgroup": {
+						      "panel":          {
+							      "0":           {
+								      "row": {
+									      "col": {
+										      "headline": {
+											      "@value":      "Januar 2018 - Ausgabe",
+											      "@attributes": {"type": "sub"}
+										      }
+									      }
+								      }
+							      },
+							      "1":           {
+								      "row": {
+									      "col": {
+										      "headline": {
+											      "text":        "VISIT-X  Magazin",
+											      "@attributes": {"type": "main"}
+										      }
+									      }
+								      }
+							      },
+							      "2":           {"row": {"col": {"headline": {"text": "Alles NEU macht 2018 - so auch das VISIT-X-Magazin! Wir haben coole Reviews\n    der Essen Motor Show und der legend\u00e4ren Night of the Nights f\u00fcr Dich uvm."}}}},
+							      "3":           {
+								      "row": {
+									      "col": {
+										      "button": {
+											      "@value":      "Jetzt online lesen",
+											      "@attributes": {
+												      "color": "primary",
+												      "link":  "https:\/\/www.visit-x.net\/de\/magazin\/aktuelle-ausgabe\/"
+											      }
+										      }
+									      }
+								      }
+							      },
+							      "@attributes": {"width": "45%"}
+						      }, "@attributes": {"skewWidth": "55%"}
+					      }, "@attributes": {"theme": "light", "link": "https:\/\/www.visit-x.net\/de\/magazin\/aktuelle-ausgabe\/"}
+				      }
+			      },
+			      "template":        "fixedHeight",
+			      "height1":         260,
+			      "backgroundUrl1":  "https:\/\/www.visit-x.net\/assets\/img\/teaser\/vx-magazin\/vxteaser_092magazin_desktop.jpg",
+			      "color1":          "#000000",
+			      "breakpoint1":     1200,
+			      "backgroundUrl2":  "https:\/\/www.visit-x.net\/assets\/img\/teaser\/vx-magazin\/vxteaser_092magazin_desktop.jpg",
+			      "backgroundSize2": "auto",
+			      "height2":         500,
+			      "color2":          "#000000"
+		      }, {
+		      "id":              ++desktopId,
+		      "name":            "banner1a",
 		      "content":         {
 			      "banner": {
 				      "skewpanelgroup": {
@@ -55,15 +112,15 @@ const desktopConfigs =
 		      },
 		      "template":        "fixedHeight",
 		      "height1":         260,
-		      "backgroundUrl1":  "https:\/\/www.visit-x.net\/assets\/img\/teaser\/vx-magazin\/vxteaser_092magazin_desktop.jpg",
+		      "backgroundUrl1":  "https://vx.vxcdn.org/public/vxteaser/2024/Desktop/000618/vx-teaserbanner-fussball-tablet4_2.m4v",
 		      "color1":          "#000000",
 		      "breakpoint1":     1200,
-		      "backgroundUrl2":  "https:\/\/www.visit-x.net\/assets\/img\/teaser\/vx-magazin\/vxteaser_092magazin_desktop.jpg",
+		      "backgroundUrl2":  "https://vx.vxcdn.org/public/vxteaser/2024/Desktop/000618/vx-teaserbanner-fussball-tablet4_2.m4v",
 		      "backgroundSize2": "auto",
 		      "height2":         500,
 		      "color2":          "#000000"
 	      }, {
-		      "id":              2,
+		      "id":              ++desktopId,
 		      "name":            "banner2",
 		      "content":         {
 			      "banner": {
@@ -115,7 +172,7 @@ const desktopConfigs =
 		      "height2":         500,
 		      "color2":          "#000000"
 	      }, {
-		      "id":               3,
+		      "id":               ++desktopId,
 		      "name":             "banner3",
 		      "content":          {
 			      "banner": {
@@ -214,7 +271,7 @@ const desktopConfigs =
 		      "backgroundUrl2":   "https:\/\/www.visit-x.net\/assets\/img\/teaser\/teaser-all-welcome-bg.jpg",
 		      "height2":          500
 	      }, {
-		      "id":              4,
+		      "id":              ++desktopId,
 		      "name":            "banner4",
 		      "content":         {
 			      "banner": {
@@ -273,7 +330,7 @@ const desktopConfigs =
 		      "backgroundSize2": "auto",
 		      "height2":         500
 	      }, {
-		      "id":              5,
+		      "id":              ++desktopId,
 		      "name":            "banner5",
 		      "content":         {
 			      "banner": {
@@ -362,7 +419,7 @@ const desktopConfigs =
 		      "backgroundSize2": "auto",
 		      "height2":         500
 	      }, {
-		      "id":              6,
+		      "id":              ++desktopId,
 		      "name":            "banner6",
 		      "content":         {
 			      "banner": {
@@ -434,7 +491,7 @@ const desktopConfigs =
 		      "backgroundSize2": "auto",
 		      "height2":         500
 	      }, {
-		      "id":              7,
+		      "id":              ++desktopId,
 		      "name":            "banner7",
 		      "content":         {
 			      "banner": {
@@ -479,7 +536,7 @@ const desktopConfigs =
 		      "height2":         500,
 		      "color2":          "#000000"
 	      }, {
-		      "id":              8,
+		      "id":              ++desktopId,
 		      "name":            "banner8",
 		      "content":         {
 			      "banner": {
@@ -520,7 +577,7 @@ const desktopConfigs =
 		      "height2":         500,
 		      "color2":          "#000000"
 	      }, {
-		      "id":              9,
+		      "id":              ++desktopId,
 		      "name":            "banner9",
 		      "content":         {
 			      "banner": {
@@ -610,7 +667,57 @@ const mobileConfigs = [
 				},
 			],
 		},
-		id:             1,
+		id:             ++mobileId,
+		name:           "tile1",
+		template:       "aspectRatio"
+	},
+	{
+		backgroundUrl1: "https://vx.vxcdn.org/public/vxteaser/2024/Desktop/000618/vx-teaserbanner-fussball-tablet4_2.m4v",
+		content:        {
+			"tile": [
+				{
+					"panel": {
+						"@attributes": {
+							"theme": "transparent",
+						},
+						"row":         {
+							"button": {
+								"@value": "Zum Profil",
+							}
+						},
+					}
+				},
+				{
+					"panel": {
+						"@attributes": {
+							"theme": "light",
+						},
+						"0":           {
+							"row": [
+								{
+									"headline": {
+										"@value":      "Promo Aktion - bis 10.12.2018",
+										"@attributes": {
+											"type": "main",
+										},
+									}
+								},
+							]
+						},
+						"1":           {
+							"row": [
+								{
+									"headline": {
+										"@value": "This is a subtext",
+									}
+								},
+							]
+						},
+					},
+				},
+			],
+		},
+		id:             ++mobileId,
 		name:           "tile1",
 		template:       "aspectRatio"
 	},
@@ -648,7 +755,7 @@ const mobileConfigs = [
 				},
 			],
 		},
-		id:             2,
+		id:             ++mobileId,
 		name:           "tile2",
 		template:       "aspectRatio"
 	},
@@ -678,7 +785,7 @@ const mobileConfigs = [
 				},
 			],
 		},
-		id:             3,
+		id:             ++mobileId,
 		name:           "tile3",
 		template:       "aspectRatio"
 	},
@@ -759,7 +866,7 @@ const mobileConfigs = [
 				],
 			},
 		},
-		id:       4,
+		id:       ++mobileId,
 		name:     "tile4",
 		template: "aspectRatio"
 	},
@@ -806,7 +913,10 @@ storiesOf('BannerSuite', module)
 
 		const config = {};
 
-		return DesktopWrapper(<BannerSuite configs={desktopConfigs} className={config.bannerSuiteClassName ? config.bannerSuiteClassName : ''} arrows={true} dots={true} />);
+		return DesktopWrapper(<BannerSuite configs={desktopConfigs}
+		                                   className={config.bannerSuiteClassName ? config.bannerSuiteClassName : ''}
+		                                   arrows={true}
+		                                   dots={true} />);
 	})
 	.add('tile', () => {
 		return MobileWrapper(<TileSuite configs={mobileConfigs} />);

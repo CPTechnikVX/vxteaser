@@ -1,7 +1,7 @@
 {
   "name": "vxteaser",
   "description": "VX teaser components",
-  "version": "0.2.23",
+  "version": "0.2.24",
   "main": "dist/vxteaser-lib-standalone.js",
   "scripts": {
     "build": "webpack",

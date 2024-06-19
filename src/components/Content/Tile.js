@@ -4,6 +4,7 @@ import classnames  from 'classnames';
 import Constants   from '../../utils/Constants';
 import TileContent from './TileContent';
 import ClickEvent  from '../../utils/ClickEvent';
+import {isVideoUrl} from '../../utils/Helper';
 
 /**
  * Main Tile component
@@ -27,9 +28,9 @@ export default class Tile extends React.PureComponent {
 
 	render() {
 		const {children, config, modifier, theme, windowWidth} = this.props;
-		
+
 		if (config) {
-			const isVideo = config.aspectRatio[0]['backgroundUrl'].endsWith('.mp4') || config.aspectRatio[0]['backgroundUrl'].endsWith('.webm');
+			const isVideo = isVideoUrl(config.aspectRatio[0]['backgroundUrl']);
 			const classList = [];
 			classList.push(Constants.ClassName.Tile);
 			const videoUrl = isVideo ? config.aspectRatio[0]['backgroundUrl'] : '';
@@ -45,10 +46,10 @@ export default class Tile extends React.PureComponent {
 			}
 
 			const style = {
-				position: 'absolute', 
-				width: '100%', 
-				height: '100%', 
-				objectFit: 'cover', 
+				position: 'absolute',
+				width: '100%',
+				height: '100%',
+				objectFit: 'cover',
 				top: 0,
 			};
 
