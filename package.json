@@ -1,7 +1,7 @@
 {
   "name": "vxteaser",
   "description": "VX teaser components",
-  "version": "0.2.24",
+  "version": "0.2.25",
   "main": "dist/vxteaser-lib-standalone.js",
   "scripts": {
     "build": "webpack",
@@ -36,7 +36,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@storybook/react": "^3.2.16",
+    "@storybook/react": "^6.5.16",
     "autoprefixer": "^8.0.0",
     "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.26.0",
@@ -76,6 +76,7 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
+    "body-parser": "^1.20.3",
     "classnames": "^2.3.1",
     "enzyme-adapter-react-16": "^1.15.6",
     "exports-loader": "^0.6.4",
