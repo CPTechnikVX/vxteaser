@@ -1,133 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render banner banner content 1`] = `
+exports[`render banner Banner renders correctly 1`] = `
 <div
-  className="vxteaser-banner vxteaser--has-skew -view1"
-  onClick={[Function]}
-  style={
-    Object {
-      "height": "260px",
-    }
-  }
+  class="vxteaser-banner vxteaser--has-skew -view1"
+  data-testid="banner"
+  style="height: 200px;"
 >
   <img
     loading="lazy"
-    src="url0"
-    style={
-      Object {
-        "height": "100%",
-        "objectFit": "cover",
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-      }
-    }
+    src="test-url.jpg"
+    style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0px;"
   />
-  <BannerContent
-    config={
-      Object {
-        "fixedHeights": Array [
-          Object {
-            "backgroundUrl": "url0",
-            "height": 500,
-          },
-          Object {
-            "backgroundUrl": "url1",
-            "greaterThan": 1200,
-            "height": 260,
-          },
-        ],
-      }
-    }
-  />
+  <div
+    class="vxteaser-banner__content"
+    data-testid="banner-content"
+  >
+    <div
+      class="vxteaser-banner__content__inner"
+    />
+  </div>
 </div>
 `;
 
 exports[`render banner banner content tablet 1`] = `
 <div
-  className="vxteaser-banner vxteaser--has-no-skew -view2"
-  onClick={[Function]}
-  style={
-    Object {
-      "height": "500px",
-    }
-  }
+  class="vxteaser-banner vxteaser--has-no-skew -view2"
+  data-testid="banner"
+  style="height: 500px;"
 >
   <img
     loading="lazy"
     src="url1"
-    style={
-      Object {
-        "height": "260px",
-        "objectFit": "cover",
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-      }
-    }
+    style="width: 100%; height: 260px; object-fit: cover; position: absolute; top: 0px;"
   />
-  <BannerContent
-    config={
-      Object {
-        "fixedHeights": Array [
-          Object {
-            "backgroundUrl": "url0",
-            "height": 500,
-          },
-          Object {
-            "backgroundUrl": "url1",
-            "greaterThan": 1200,
-            "height": 260,
-          },
-        ],
-      }
-    }
-    windowWidth={768}
-  />
+  <div
+    class="vxteaser-banner__content"
+    data-testid="banner-content"
+    style="height: 250px; margin-top: 250px; text-align: center;"
+  >
+    <div
+      class="vxteaser-banner__content__inner"
+    />
+  </div>
 </div>
 `;
 
 exports[`render banner banner theme 1`] = `
 <div
-  className="vxteaser-banner vxteaser--has-skew -view1 -theme-white -view2--bg-auto"
-  onClick={[Function]}
-  style={
-    Object {
-      "height": "260px",
-    }
-  }
+  class="vxteaser-banner vxteaser--has-skew -view1 -theme-white -view2--bg-auto"
+  data-testid="banner"
+  style="height: 260px;"
 >
   <img
     loading="lazy"
     src="url0"
-    style={
-      Object {
-        "height": "100%",
-        "objectFit": "cover",
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-      }
-    }
+    style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0px;"
   />
-  <BannerContent
-    config={
-      Object {
-        "fixedHeights": Array [
-          Object {
-            "backgroundUrl": "url0",
-            "height": 500,
-          },
-          Object {
-            "backgroundUrl": "url1",
-            "greaterThan": 1200,
-            "height": 260,
-          },
-        ],
-      }
-    }
-  />
+  <div
+    class="vxteaser-banner__content"
+    data-testid="banner-content"
+  >
+    <div
+      class="vxteaser-banner__content__inner"
+    />
+  </div>
 </div>
 `;
 
-exports[`render banner empty banner 1`] = `""`;
+exports[`render banner empty banner 1`] = `null`;

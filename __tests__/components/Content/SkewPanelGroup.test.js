@@ -1,14 +1,15 @@
 import React          from 'react';
-import {shallow}      from 'enzyme';
+import {render}       from '@testing-library/react';
 import SkewPanelGroup from '../../../src/components/Content/SkewPanelGroup';
 
 describe('render skew panel group', () => {
-	test('with content', () => {
-		const wrapper = shallow(
-			<SkewPanelGroup modifier="first" skewWidth="55%">Content</SkewPanelGroup>
-		);
-		expect(wrapper).toMatchSnapshot();
+    test('with content', () => {
+        const {container} = render(
+                <SkewPanelGroup modifier="first" skewWidth="55%">Content</SkewPanelGroup>
+        );
+        expect(container).toMatchSnapshot();
 
-		expect(wrapper.find('.vxteaser-skew').prop('style').width).toBe('55%');
-	});
+        const skew = container.querySelector('.vxteaser-skew');
+        expect(skew).toHaveStyle({width: '55%'});
+    });
 });

@@ -7,25 +7,25 @@ import classnames from 'classnames';
  * Column element for the grid
  */
 export default class Column extends React.PureComponent {
-	render() {
-		const {children, modifier, width} = this.props;
-		const styleObj                    = {
-			width: width ? width : 'auto',
-		};
-		const classList                   = [Constants.ClassName.Column];
+    render() {
+        const {children, modifier, width} = this.props;
+        const styleObj                    = {
+            width: width ? width : 'auto',
+        };
+        const classList                   = [Constants.ClassName.Column];
 
-		if (modifier) {
-			classList.push(modifier);
-		}
+        if (modifier) {
+            classList.push(modifier);
+        }
 
-		return <div className={classnames(classList)} style={styleObj}>{children}</div>;
-	}
+        return <div className={classnames(classList)} style={styleObj} data-testid="column">{children}</div>;
+    }
 }
 
 Column.propTypes = {
-	/** @ignore */
-	children: PropTypes.node,
-	modifier: PropTypes.string,
-	width:    PropTypes.string,
+    /** @ignore */
+    children: PropTypes.node,
+    modifier: PropTypes.string,
+    width:    PropTypes.string,
 
 };

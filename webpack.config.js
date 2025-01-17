@@ -1,114 +1,85 @@
-const path    = require('path');
+const path = require('path');
 const webpack = require('webpack');
-require('imports-loader');
-require('exports-loader');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-module.exports = [
-	getConfig(),
-	getConfig('standalone')
-];
+module.exports = (env, argv) => {
+    const isProduction = argv.mode === 'production';
+    const type = env.type || '';
 
-/**
- * Load specific configuration
- * @param type
- * @returns {{entry: {lib: string, playground: string}, output: {filename: string, path: string, hotUpdateChunkFilename: string, hotUpdateMainFilename: string, library: string, libraryTarget: string}, module: {rules: *[]}, externals: *, stats: {colors: boolean}, resolve: {extensions: string[]}, plugins: *[]}}
- */
-function getConfig(type = '') {
-	const entries = {
-		lib:        __dirname + '/src/lib.js',
-		playground: __dirname + '/src/playground.js',
-	};
+    const entries = {
+        lib: './src/lib.js',
+        playground: './src/playground.js',
+    };
 
-	if (type !== 'standalone') {
-		entries.main = __dirname + '/src/less/index.less';
-	}
+    if (type !== 'standalone') {
+        entries.main = './src/less/index.less';
+    }
 
-	return {
-		entry: entries,
-
-		output: {
-			filename:               'vxteaser-[name]' + (type ? '-' + type : '') + '.js',
-			path:                   path.resolve(__dirname, ".") + '/dist',
-			hotUpdateChunkFilename: 'temp/hot/hot-update.js',
-			hotUpdateMainFilename:  'temp/hot/hot-update.json',
-			library:                'VXTeaser',
-			libraryTarget:          'umd'
-		},
-
-		module: {
-			rules: [
-				{
-					test:    /\.js$/,
-					use:     [
-						'babel-loader',
-					],
-					exclude: /(node_modules|bower_components)/
-				},
-				{
-					test: /\.less/,
-					use:  ExtractTextPlugin.extract({
-						fallback: 'style-loader',
-						use:      [
-							'css-loader',
-							{
-								loader:  'clean-css-loader',
-								options: {
-									compatibility: 'ie9',
-									level:         2,
-									inline:        ['remote']
-								}
-							},
-							'postcss-loader',
-							'less-loader'
-						]
-					})
-				},
-				{
-					test: /\.css$/,
-					use:  ['style-loader', 'css-loader']
-				}
-			]
-		},
-
-		externals: type === 'standalone' ?  {
-			react: {
-				root: 'React',
-				commonjs2: 'react',
-				commonjs: 'react',
-				amd: 'react',
-				umd: 'react',
-			},
-			'react-dom': {
-				root: 'ReactDOM',
-				commonjs2: 'react-dom',
-				commonjs: 'react-dom',
-				amd: 'react-dom',
-				umd: 'react-dom',
-			},
-		} : {},
-		stats:     {
-			colors: true
-		},
-		resolve:   {
-			extensions: ['.js', '.jsx']
-		},
-		plugins:   [
-			new webpack.HotModuleReplacementPlugin(),
-			new webpack.ProvidePlugin({
-				'Promise': 'promise-polyfill',
-				'fetch':   'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
-			}),
-			new webpack.optimize.UglifyJsPlugin({
-				compress: {
-					warnings: false
-				}
-			}),
-			new ExtractTextPlugin({
-				filename: (getPath) => {
-					return getPath('css/[name]' + (type ? '-' + type : '') + '.css').replace('css/js', 'css');
-				},
-			})
-		]
-	};
-}
+    return {
+        mode: 'production',
+        entry: entries,
+        output: {
+            filename: `vxteaser-[name]${type ? '-' + type : ''}.js`,
+            path: path.resolve(__dirname, 'dist'),
+            library: {
+                name: 'VXTeaser',
+                type: 'umd',
+            },
+            clean: true,
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.js$/,
+                    use: 'babel-loader',
+                    exclude: /node_modules/,
+                },
+                {
+                    test: /\.less$/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        'postcss-loader',
+                        'less-loader',
+                    ],
+                },
+                {
+                    test: /\.css$/,
+                    use: ['style-loader', 'css-loader'],
+                },
+            ],
+        },
+        externals: type === 'standalone' ? {
+            react: {
+                root: 'React',
+                commonjs2: 'react',
+                commonjs: 'react',
+                amd: 'react',
+                umd: 'react',
+            },
+            'react-dom': {
+                root: 'ReactDOM',
+                commonjs2: 'react-dom',
+                commonjs: 'react-dom',
+                amd: 'react-dom',
+                umd: 'react-dom',
+            },
+        } : {},
+        resolve: {
+            extensions: ['.js', '.jsx'],
+        },
+        plugins: [
+            new MiniCssExtractPlugin({
+                filename: `css/[name]${type ? '-' + type : ''}.css`,
+            }),
+        ],
+        optimization: {
+            minimizer: [
+                '...',
+                new CssMinimizerPlugin(),
+            ],
+        },
+        target: ['web', 'es5'],
+    };
+};

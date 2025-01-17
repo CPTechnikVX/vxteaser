@@ -33,7 +33,7 @@ export default class BannerContent extends React.PureComponent {
 			}
 		}
 
-		return <div className={classnames(Constants.ClassName.BannerContent, classList)} style={styleObj}>
+		return <div className={classnames(Constants.ClassName.BannerContent, classList)} style={styleObj} data-testid="banner-content">
 			<div className={Constants.ClassName.BannerContentInner}>{children}</div>
 			{addonBlock}
 		</div>;

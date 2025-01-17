@@ -1,17 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render skew panel group with content 1`] = `
-<div
-  className="vxteaser-panel-group first"
->
+<div>
   <div
-    className="vxteaser-skew"
-    style={
-      Object {
-        "width": "55%",
-      }
-    }
-  />
-  Content
+    class="vxteaser-panel-group first"
+  >
+    <div
+      class="vxteaser-skew"
+      style="width: 55%;"
+    />
+    Content
+  </div>
 </div>
 `;

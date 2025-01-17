@@ -1,18 +1,25 @@
-/* eslint-disable */
 module.exports = {
 	"env": {
 		"browser": true,
-		"es6": true,
+		"es2021": true,
 		"jquery": true
 	},
-	"extends": "eslint:recommended",
-	"parser": "babel-eslint",
+	"extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:storybook/recommended"
+    ],
+	"parser": "@babel/eslint-parser",
 	"parserOptions": {
 		"ecmaFeatures": {
-			"experimentalObjectRestSpread": true,
 			"jsx": true
 		},
-		"sourceType": "module"
+		"ecmaVersion": 12,
+		"sourceType": "module",
+		"requireConfigFile": false,
+		"babelOptions": {
+			"presets": ["@babel/preset-react"]
+		}
 	},
 	"plugins": [
 		"react"
@@ -81,11 +88,15 @@ module.exports = {
 			{
 				"ignoreRefs": true
 			}
-
 		],
 		"react/jsx-uses-vars": "error",
 		"react/jsx-uses-react": "error",
 		"react/prop-types": "error",
 		"react/sort-comp": "warn"
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
 	}
 };

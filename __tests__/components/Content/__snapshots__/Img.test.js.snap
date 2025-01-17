@@ -2,6 +2,6 @@
 
 exports[`render picture default 1`] = `
 <img
-  className="vxteaser-image -big-pic"
+  class="vxteaser-image -big-pic"
 />
 `;

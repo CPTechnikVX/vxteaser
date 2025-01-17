@@ -29,16 +29,16 @@ git tag X.X.X
 
 npm run storybook:build
 
-npm run styleguide:build 
+npm run styleguide:build
 
 <http://ph.vxteaser.x/styleguide/>
 
 ## Call
 With a specific element ID:
-- <http://ph.vxteaser.x/?id=fc1f0601-ed80-4150-a561-d9376199edfb>
+- <http://ph.vxteaser.wecode.xxx/?id=fc1f0601-ed80-4150-a561-d9376199edfb>
 
 To show a demo:
-- <http://ph.vxteaser.x/>
+- <http://ph.vxteaser.wecode.xxx/>
 
 ## TODO
 - todo :)

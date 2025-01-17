@@ -2,13 +2,11 @@
 
 exports[`render panel skew fullhd 1`] = `
 <a
-  className="vxteaser-panel--skew first"
-  onClick={[Function]}
-  style={Object {}}
+  class="vxteaser-panel--skew first"
 >
   <img
     alt=""
-    className="vxteaser-panel--skew__image"
+    class="vxteaser-panel--skew__image"
     src="http://www.example.com/img/default.jpg"
   />
 </a>
@@ -16,17 +14,12 @@ exports[`render panel skew fullhd 1`] = `
 
 exports[`render panel skew tablet 1`] = `
 <a
-  className="vxteaser-panel--skew first"
-  onClick={[Function]}
-  style={
-    Object {
-      "top": "-260px",
-    }
-  }
+  class="vxteaser-panel--skew first"
+  style="top: -260px;"
 >
   <img
     alt=""
-    className="vxteaser-panel--skew__image"
+    class="vxteaser-panel--skew__image"
     src="http://www.example.com/img/default.jpg"
   />
 </a>
