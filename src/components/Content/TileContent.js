@@ -22,7 +22,7 @@ export default class TileContent extends React.PureComponent {
 			childrenBlock.splice(children.length - 1, 0, <div className="vxteaser-hook__bottom-right">{bottomRight}</div>);
 		}
 
-		return <div className={classnames(Constants.ClassName.TileContent, classList)} style={styleObj}>
+		return <div className={classnames(Constants.ClassName.TileContent, classList)} style={styleObj} data-testid="tile-content">
 			<div className={Constants.ClassName.TileContentInner}>{childrenBlock}</div>
 		</div>;
 	}

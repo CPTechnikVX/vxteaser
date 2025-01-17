@@ -2,23 +2,17 @@
 
 exports[`render column empty 1`] = `
 <div
-  className="vxteaser-col"
-  style={
-    Object {
-      "width": "33%",
-    }
-  }
+  class="vxteaser-col"
+  data-testid="column"
+  style="width: 33%;"
 />
 `;
 
 exports[`render column with content 1`] = `
 <div
-  className="vxteaser-col"
-  style={
-    Object {
-      "width": "33%",
-    }
-  }
+  class="vxteaser-col"
+  data-testid="column"
+  style="width: 33%;"
 >
   Column content
 </div>

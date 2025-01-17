@@ -2,6 +2,6 @@
 
 exports[`render button empty 1`] = `
 <div
-  className="vxteaser-control--close"
+  class="vxteaser-control--close"
 />
 `;

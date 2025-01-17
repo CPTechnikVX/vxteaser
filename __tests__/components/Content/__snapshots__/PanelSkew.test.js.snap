@@ -2,7 +2,7 @@
 
 exports[`render panel group with content 1`] = `
 <div
-  className="vxteaser-panel-group"
+  class="vxteaser-panel-group"
 >
   Content
 </div>

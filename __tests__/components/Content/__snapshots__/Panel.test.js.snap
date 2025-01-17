@@ -2,12 +2,9 @@
 
 exports[`render panel with content 1`] = `
 <div
-  className="vxteaser-panel"
-  style={
-    Object {
-      "width": "50%",
-    }
-  }
+  class="vxteaser-panel"
+  data-testid="panel"
+  style="width: 50%;"
 >
   Panel content
 </div>
@@ -15,12 +12,9 @@ exports[`render panel with content 1`] = `
 
 exports[`render panel with content and modifier 1`] = `
 <div
-  className="vxteaser-panel -mb-5"
-  style={
-    Object {
-      "width": "50%",
-    }
-  }
+  class="vxteaser-panel -mb-5"
+  data-testid="panel"
+  style="width: 50%;"
 >
   Panel content
 </div>

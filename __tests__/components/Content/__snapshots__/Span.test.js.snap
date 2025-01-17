@@ -1,20 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render common span with content 1`] = `
-<CommonWrapper
-  childProps={
-    Object {
-      "children": "This is the text!",
-      "left": "20%",
-      "modifier": "testclass",
-      "top": "10%",
-    }
-  }
+<span
+  class="testclass"
+  style="position: absolute; top: 10%; left: 20%;"
 >
-  <span
-    className="testclass"
-  >
-    This is the text!
-  </span>
-</CommonWrapper>
+  This is the text!
+</span>
 `;

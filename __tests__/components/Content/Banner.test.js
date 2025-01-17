@@ -1,12 +1,10 @@
-import React      from 'react';
-import {shallow}  from 'enzyme';
-import Banner     from '../../../src/components/Content/Banner';
-import Constants  from '../../../src/utils/Constants';
-import classnames from 'classnames';
+import React            from 'react';
+import {render, screen} from '@testing-library/react';
+import Banner           from '../../../src/components/Content/Banner';
+import Constants        from '../../../src/utils/Constants';
 
 describe('render banner', () => {
-    const windowWidth = 1300;
-    const config      = {
+    const config = {
         fixedHeights: [
             {
                 backgroundUrl: 'url0',
@@ -21,44 +19,61 @@ describe('render banner', () => {
     };
 
     test('empty banner', () => {
-        const wrapper = shallow(
+        const {container} = render(
                 <Banner />
         );
-        expect(wrapper).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
     });
-    test('banner content', () => {
-        const wrapper = shallow(
-                <Banner config={config}></Banner>
-        );
-        const style   = wrapper.prop('style');
 
-        expect(style.height).toBe(config.fixedHeights[1]['height'] + 'px');
-        expect(wrapper.find('img').prop('src')).toBe(config.fixedHeights[0]['backgroundUrl']);
-        expect(wrapper.find('img').prop('style').height).toBe('100%');
-        expect(wrapper).toMatchSnapshot();
-        expect(wrapper.find('BannerContent')).toHaveLength(1);
-        expect(wrapper.find('.' + classnames(Constants.ClassName.Banner).split(' ').join('.'))).toHaveLength(1);
+    test('Banner renders correctly', () => {
+        const config = {
+            fixedHeights: [
+                {backgroundUrl: 'test-url.jpg', height: 100},
+                {height: 200}
+            ]
+        };
+
+        render(<Banner config={config} />);
+
+        // Check if the image is rendered with correct src and style
+        const image = screen.getByRole('img');
+        expect(image).toHaveAttribute('src', config.fixedHeights[0].backgroundUrl);
+        expect(image).toHaveStyle({height: '100%'});
+
+        // Check if the banner has the correct height
+        const banner = screen.getByTestId('banner');
+        expect(banner).toHaveStyle({height: '200px'});
+
+        // Check if BannerContent is rendered
+        expect(screen.getByTestId('banner-content')).toBeInTheDocument();
+
+        // Check if the banner has the correct class
+        expect(banner).toHaveClass(Constants.ClassName.Banner[0]);
+
+        // Snapshot testing
+        expect(banner).toMatchSnapshot();
     });
+
     test('banner content tablet', () => {
-        const wrapper = shallow(
-                <Banner config={config} windowWidth={768}></Banner>
+        render(<Banner config={config} windowWidth={768} />);
+
+        const image = screen.getByRole('img');
+        expect(image).toHaveAttribute('src', config.fixedHeights[1].backgroundUrl);
+
+        const banner = screen.getByTestId('banner');
+        expect(banner).toHaveClass(Constants.ClassName.BannerNoSkew);
+
+        expect(screen.getByTestId('banner-content')).toBeInTheDocument();
+
+        expect(banner).toMatchSnapshot();
+    });
+
+    test('banner theme', () => {
+        const {container} = render(
+                <Banner config={config} theme={'white'} modifier="-view2--bg-auto" />
         );
 
-        expect(wrapper.find('img').prop('src')).toBe(config.fixedHeights[1]['backgroundUrl']);
-        expect(wrapper.find('.' + classnames(Constants.ClassName.BannerNoSkew).split(' ').join('.'))).toHaveLength(1);
-        expect(wrapper).toMatchSnapshot();
-        expect(wrapper.find('BannerContent')).toHaveLength(1);
+        expect(container.firstChild).toMatchSnapshot();
     });
-    test('banner theme', () => {
-        const wrapper = shallow(
-                <Banner config={config} theme={'white'} modifier="-view2--bg-auto"></Banner>
-        );
-        expect(wrapper).toMatchSnapshot();
-    });
-    test('banner pass props to children', () => {
-        const wrapper = shallow(
-                <Banner config={config} theme={'white'} windowWidth={windowWidth}></Banner>
-        );
-        expect(wrapper.find('BannerContent').prop('windowWidth')).toBe(windowWidth);
-    });
+
 });

@@ -2,7 +2,7 @@
 
 exports[`render text with color 1`] = `
 <span
-  className="vxteaser-text vxteaser-color--highlight"
+  class="vxteaser-text vxteaser-color--highlight"
 >
   This is the text with highlight color!
 </span>
@@ -10,7 +10,7 @@ exports[`render text with color 1`] = `
 
 exports[`render text with content 1`] = `
 <span
-  className="vxteaser-text"
+  class="vxteaser-text"
 >
   This is the text!
 </span>

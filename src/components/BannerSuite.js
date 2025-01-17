@@ -88,7 +88,7 @@ export default class BannerSuite extends React.Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.configs) {
             this.setState({
                 configs: BannerSuite.processConfigs(nextProps.configs),

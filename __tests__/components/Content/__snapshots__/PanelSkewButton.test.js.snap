@@ -2,9 +2,7 @@
 
 exports[`render panel skew button desktop 1`] = `
 <a
-  className="vxteaser-skew-button first"
-  onClick={[Function]}
-  style={Object {}}
+  class="vxteaser-skew-button first"
 >
   Content
 </a>
@@ -12,13 +10,8 @@ exports[`render panel skew button desktop 1`] = `
 
 exports[`render panel skew button tablet 1`] = `
 <a
-  className="vxteaser-skew-button first"
-  onClick={[Function]}
-  style={
-    Object {
-      "top": "-95.9409594095941px",
-    }
-  }
+  class="vxteaser-skew-button first"
+  style="top: -95.9409594095941px;"
 >
   Content
 </a>

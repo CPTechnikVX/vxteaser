@@ -26,7 +26,7 @@ export default class Panel extends React.PureComponent {
 			classList.push(Constants.ClassName.Panel + '--' + Constants.Element.Tile);
 		}
 
-		return <div className={classnames(classList)} style={styleObj}>{children}</div>;
+		return <div className={classnames(classList)} style={styleObj} data-testid="panel">{children}</div>;
 	}
 }
 

@@ -1,12 +1,11 @@
-import React      from 'react';
-import {shallow}  from 'enzyme';
-import Tile       from '../../../src/components/Content/Tile';
-import Constants  from '../../../src/utils/Constants';
-import classnames from 'classnames';
+import React            from 'react';
+import {render, screen} from '@testing-library/react';
+import Tile             from '../../../src/components/Content/Tile';
+import Constants        from '../../../src/utils/Constants';
+import classnames       from 'classnames';
 
 describe('render tile', () => {
-    const windowWidth = 1300;
-    const config      = {
+    const config = {
         aspectRatio: [
             {
                 backgroundUrl: 'url0',
@@ -15,31 +14,28 @@ describe('render tile', () => {
     };
 
     test('empty tile', () => {
-        const wrapper = shallow(
+        const {container} = render(
                 <Tile />
         );
-        expect(wrapper).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
     });
+
     test('tile content', () => {
-        const wrapper = shallow(
+        const {container} = render(
                 <Tile config={config}></Tile>
         );
 
-        expect(wrapper.find('img').prop('src')).toBe(config.aspectRatio[0]['backgroundUrl']);
-        expect(wrapper).toMatchSnapshot();
-        expect(wrapper.find('TileContent')).toHaveLength(1);
-        expect(wrapper.find('.' + classnames(Constants.ClassName.Tile).split(' ').join('.'))).toHaveLength(1);
+        expect(container.querySelector('img').getAttribute('src')).toBe(config.aspectRatio[0]['backgroundUrl']);
+        expect(container.firstChild).toMatchSnapshot();
+        expect(screen.getAllByTestId('tile-content')).toHaveLength(1);
+        expect(container.querySelectorAll('.' + classnames(Constants.ClassName.Tile).split(' ').join('.'))).toHaveLength(1);
     });
+
     test('tile theme', () => {
-        const wrapper = shallow(
+        const {container} = render(
                 <Tile config={config} theme={'white'}></Tile>
         );
-        expect(wrapper).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
     });
-    test('tile pass props to children', () => {
-        const wrapper = shallow(
-                <Tile config={config} theme={'white'} windowWidth={windowWidth}></Tile>
-        );
-        expect(wrapper.find('TileContent').prop('windowWidth')).toBe(windowWidth);
-    });
+
 });

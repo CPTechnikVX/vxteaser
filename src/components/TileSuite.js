@@ -79,7 +79,7 @@ export default class TileSuite extends React.Component {
 		}
 	}
 
-	componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
 		if (nextProps.configs) {
 			this.setState({
 				configs: TileSuite.processConfigs(nextProps.configs),

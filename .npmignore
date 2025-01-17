@@ -1,4 +1,4 @@
-webpack.local.config.js
-    webpack.production.config.js
+webpack.local.xconfig.js
+    webpack.production.xconfig.js
     .eslintrc
     .gitignore
