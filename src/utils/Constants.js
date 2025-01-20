@@ -46,8 +46,13 @@ const Element = {
 	Text:            'text',
 };
 
+const HookType = {
+	RenderBottomRight: 'render-bottom-right',
+};
+
 export default {
 	ClassName,
 	Element,
+	HookType,
 	PrefixClassName,
 };

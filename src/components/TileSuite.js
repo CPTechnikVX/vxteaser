@@ -261,6 +261,7 @@ export default class TileSuite extends React.Component {
 
 					this.props.onClickFn(clickEvent);
 				} : LinkHandler.handle;
+				config.onHook = typeof this.props.onHook === 'function' ? this.props.onHook : undefined;
 
 				return <div key={i} className={Constants.ClassName.SuiteItem + (i === 0 ? ' is-active' : '')} ref={(ref) => {
 					if (ref) {
@@ -300,6 +301,7 @@ TileSuite.propTypes = {
 	autoplaySpeed: PropTypes.number,
 	onCloseFn:     PropTypes.func,
 	onClickFn:     PropTypes.func,
+	onHook:        PropTypes.func,
 	onRenderNode:  PropTypes.func,
 };
 

@@ -6,11 +6,23 @@ exports[`render banner banner content 1`] = `
   onClick={[Function]}
   style={
     Object {
-      "backgroundImage": "url('url0')",
       "height": "260px",
     }
   }
 >
+  <img
+    loading="lazy"
+    src="url0"
+    style={
+      Object {
+        "height": "100%",
+        "objectFit": "cover",
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+  />
   <BannerContent
     config={
       Object {
@@ -37,11 +49,23 @@ exports[`render banner banner content tablet 1`] = `
   onClick={[Function]}
   style={
     Object {
-      "backgroundImage": "url('url1')",
       "height": "500px",
     }
   }
 >
+  <img
+    loading="lazy"
+    src="url1"
+    style={
+      Object {
+        "height": "260px",
+        "objectFit": "cover",
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+  />
   <BannerContent
     config={
       Object {
@@ -69,11 +93,23 @@ exports[`render banner banner theme 1`] = `
   onClick={[Function]}
   style={
     Object {
-      "backgroundImage": "url('url0')",
       "height": "260px",
     }
   }
 >
+  <img
+    loading="lazy"
+    src="url0"
+    style={
+      Object {
+        "height": "100%",
+        "objectFit": "cover",
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+  />
   <BannerContent
     config={
       Object {
