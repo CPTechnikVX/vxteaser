@@ -16,7 +16,7 @@ export default class TileContent extends React.PureComponent {
 		const childrenBlock = Array.isArray(children) ? children : [children];
 
 		// addon bottom right
-		const bottomRight = config.onHook ? config.onHook({type: Constants.HookType.RenderBottomRight}) : null;
+		const bottomRight = config.onHook ? config.onHook({type: Constants.HookType.RenderBottomRight, config}) : null;
 		// insert before last element
 		if (bottomRight) {
 			childrenBlock.splice(children.length - 1, 0, <div style={{position: 'relative', justifySelf: 'right'}}>{bottomRight}</div>);

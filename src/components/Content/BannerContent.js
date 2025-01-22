@@ -27,7 +27,7 @@ export default class BannerContent extends React.PureComponent {
 		// addon bottom right?
 		let addonBlock = null;
 		if (config.onHook) {
-			const bottomRight = config.onHook ? config.onHook({type: Constants.HookType.RenderBottomRight}) : null;
+			const bottomRight = config.onHook ? config.onHook({type: Constants.HookType.RenderBottomRight, config}) : null;
 			if (bottomRight) {
 				addonBlock = <div style={{position: 'absolute', right: 0, bottom: newMarginTop}}>{bottomRight}</div>;
 			}
