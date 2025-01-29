@@ -380,6 +380,13 @@
       object-position: right;
     }
   }
+
+  /* hooks */
+
+  .vxteaser-hook__bottom-right {
+    position: absolute;
+    right:    0;
+  }
 }
 
 /* Tile */
@@ -417,11 +424,19 @@
     color:            @vxteaser-color-white;
     background-color: @vxteaser-color-transparent;
   }
+
+  /* hooks */
+
+  .vxteaser-hook__bottom-right {
+    position: relative;
+  }
 }
 
 .vxteaser-tile__content__inner {
-  height:     100%;
-  box-sizing: border-box;
+  display:        flex;
+  flex-direction: column;
+  height:         100%;
+  box-sizing:     border-box;
 }
 
 .vxteaser-points {

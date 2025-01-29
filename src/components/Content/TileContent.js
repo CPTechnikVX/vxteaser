@@ -19,7 +19,7 @@ export default class TileContent extends React.PureComponent {
 		const bottomRight = config.onHook ? config.onHook({type: Constants.HookType.RenderBottomRight, config}) : null;
 		// insert before last element
 		if (bottomRight) {
-			childrenBlock.splice(children.length - 1, 0, <div style={{position: 'relative', justifySelf: 'right'}}>{bottomRight}</div>);
+			childrenBlock.splice(children.length - 1, 0, <div className="vxteaser-hook__bottom-right">{bottomRight}</div>);
 		}
 
 		return <div className={classnames(Constants.ClassName.TileContent, classList)} style={styleObj}>
