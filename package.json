@@ -1,7 +1,7 @@
 {
   "name": "vxteaser",
   "description": "VX teaser components",
-  "version": "0.2.29",
+  "version": "0.2.30",
   "main": "dist/vxteaser-lib-standalone.js",
   "scripts": {
     "build": "webpack",
@@ -73,8 +73,8 @@
     "webpack-bundle-size-analyzer": "^2.7.0"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.0.0 || ^17.0.0",
+    "react-dom": "^16.0.0 || ^17.0.0"
   },
   "dependencies": {
     "classnames": "^2.3.1",
