@@ -54,14 +54,16 @@ export default class Tile extends React.PureComponent {
 			};
 
 			let loading = 'lazy';
+            let fetchPriority = 'auto';
 			if (config.teaserContext === 'default') {
 				loading = 'auto';
+                fetchPriority = 'high';
 			}
 
 			return (
 				<div className={classnames(classList)} onClick={this.onClickFn} data-id={config.id}>
 					{videoUrl && <video playsInline autoPlay muted loop style={style}><source src={videoUrl} /></video>}
-					{imgUrl && <img style={style} src={imgUrl} loading={loading} />}
+					{imgUrl && <img style={style} src={imgUrl} loading={loading} fetchpriority={fetchPriority}/>}
 					<TileContent config={config} windowWidth={windowWidth}>{children}</TileContent>
 				</div>
 			);

@@ -23,10 +23,11 @@ export default class BannerSuite extends React.Component {
         return configs.map((origTypeConfig) => {
             const typeConfig = {};
 
-            typeConfig.id           = origTypeConfig.id;
-            typeConfig.name         = origTypeConfig.name;
-            typeConfig.content      = origTypeConfig.content;
-            typeConfig.fixedHeights = [
+            typeConfig.id            = origTypeConfig.id;
+            typeConfig.name          = origTypeConfig.name;
+            typeConfig.content       = origTypeConfig.content;
+            typeConfig.teaserContext = origTypeConfig.teaserContext;
+            typeConfig.fixedHeights  = [
                 {
                     greaterThan:   0,
                     height:        origTypeConfig.height2,
