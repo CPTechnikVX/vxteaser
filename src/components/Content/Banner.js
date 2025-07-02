@@ -35,7 +35,7 @@ export default class Banner extends React.PureComponent {
 			let imageUrl = videoUrl ? "" : config.fixedHeights[0]['backgroundUrl'];
 			let height   =  "100%";
 			let wrapperHeight = config.fixedHeights[1]['height'] + "px";
-		
+
 			if (windowWidth < 1200) {
 				videoUrl = isVideo ? config.fixedHeights[1]['backgroundUrl'] : '';
 				imageUrl = videoUrl ? "" : config.fixedHeights[1]['backgroundUrl'];
@@ -65,10 +65,17 @@ export default class Banner extends React.PureComponent {
 				top: 0,
 			};
 
+            let loading = 'lazy';
+            let fetchPriority = 'auto';
+            if (config.teaserContext === 'default') {
+                loading = 'auto';
+                fetchPriority = 'high';
+            }
+
 			return (
 				<div className={classnames(classList)} onClick={this.onClickFn} data-id={config.id} style={{height: wrapperHeight}}>
 					{videoUrl && <video playsInline autoPlay muted loop style={style} key={videoUrl}><source src={videoUrl} /></video>}
-					{imageUrl && <img src={imageUrl} loading="lazy" style={style} />}
+					{imageUrl && <img src={imageUrl} loading={loading} fetchpriority={fetchPriority} style={style} />}
 					<BannerContent config={config} windowWidth={windowWidth}>{children}</BannerContent>
 				</div>
 			);
