@@ -17,7 +17,7 @@ module.exports = (env = {}, argv = {}) => {
     }
 
     return {
-        mode: 'production',
+        mode: argv.mode || 'production',
         entry: entries,
         output: {
             filename: `vxteaser-[name]${type ? '-' + type : ''}.js`,

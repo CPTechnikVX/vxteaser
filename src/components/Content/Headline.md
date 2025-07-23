@@ -1,7 +1,5 @@
 ```js
-<Headline type="main">
-  <Text>VISIT-X Community Magazin</Text>
-</Headline>
+<Headline type="main">VISIT-X Community Magazin</Headline>
 ```
 ```js
 <Headline type="sub">Januar 2018 - Ausgabe</Headline>
