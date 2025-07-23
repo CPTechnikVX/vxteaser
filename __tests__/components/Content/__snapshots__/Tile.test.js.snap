@@ -7,6 +7,7 @@ exports[`render tile tile content 1`] = `
   class="vxteaser-tile"
 >
   <img
+    fetchpriority="auto"
     loading="lazy"
     src="url0"
     style="position: absolute; width: 100%; height: 100%; object-fit: cover; top: 0px;"
@@ -27,6 +28,7 @@ exports[`render tile tile theme 1`] = `
   class="vxteaser-tile -theme-white"
 >
   <img
+    fetchpriority="auto"
     loading="lazy"
     src="url0"
     style="position: absolute; width: 100%; height: 100%; object-fit: cover; top: 0px;"

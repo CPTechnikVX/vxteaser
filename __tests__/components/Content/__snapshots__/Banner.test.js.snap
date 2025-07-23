@@ -7,6 +7,7 @@ exports[`render banner Banner renders correctly 1`] = `
   style="height: 200px;"
 >
   <img
+    fetchpriority="auto"
     loading="lazy"
     src="test-url.jpg"
     style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0px;"
@@ -29,6 +30,7 @@ exports[`render banner banner content tablet 1`] = `
   style="height: 500px;"
 >
   <img
+    fetchpriority="auto"
     loading="lazy"
     src="url1"
     style="width: 100%; height: 260px; object-fit: cover; position: absolute; top: 0px;"
@@ -52,6 +54,7 @@ exports[`render banner banner theme 1`] = `
   style="height: 260px;"
 >
   <img
+    fetchpriority="auto"
     loading="lazy"
     src="url0"
     style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0px;"

@@ -6,3 +6,4 @@ npm-debug.log
 temp
 .env
 *storybook.log
+http-root/storybook/
