@@ -37,6 +37,14 @@ export default class TileSuite extends React.Component {
 		});
 	}
 
+	static getDerivedStateFromProps(nextProps) {
+		if (nextProps.configs) {
+			return {
+				configs: TileSuite.processConfigs(nextProps.configs),
+			};
+		}
+		return null;
+	}
 
 	constructor(props) {
 		super(props);
@@ -76,14 +84,6 @@ export default class TileSuite extends React.Component {
 
 		if (this.needTimerInterval()) {
 			this.startInterval();
-		}
-	}
-
-    UNSAFE_componentWillReceiveProps(nextProps) {
-		if (nextProps.configs) {
-			this.setState({
-				configs: TileSuite.processConfigs(nextProps.configs),
-			});
 		}
 	}
 

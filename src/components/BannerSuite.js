@@ -44,6 +44,14 @@ export default class BannerSuite extends React.Component {
         });
     }
 
+    static getDerivedStateFromProps(nextProps) {
+        if (nextProps.configs) {
+            return {
+                configs: BannerSuite.processConfigs(nextProps.configs),
+            };
+        }
+        return null;
+    }
 
     constructor(props) {
         super(props);
@@ -86,14 +94,6 @@ export default class BannerSuite extends React.Component {
 
         if (this.needTimerInterval()) {
             this.startInterval();
-        }
-    }
-
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        if (nextProps.configs) {
-            this.setState({
-                configs: BannerSuite.processConfigs(nextProps.configs),
-            });
         }
     }
 
