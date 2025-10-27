@@ -1,4 +1,4 @@
-import {configure} from '@storybook/react';
+import {configure} from '@storybook/react-webpack5';
 import './../http-root/lib/css/main.css';
 
 function loadStories() {
