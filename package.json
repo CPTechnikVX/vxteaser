@@ -1,7 +1,7 @@
 {
   "name": "vxteaser",
   "description": "VX teaser components",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "src/lib.js",
   "scripts": {
     "build": "webpack",
