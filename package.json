@@ -1,7 +1,7 @@
 {
   "name": "vxteaser",
   "description": "VX teaser components",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "main": "src/lib.js",
   "scripts": {
     "build": "webpack",
@@ -76,6 +76,10 @@
   "overrides": {
     "node-forge": "^1.3.2",
     "svgo": "^4.0.1",
-    "serialize-javascript": "^7.0.3"
+    "serialize-javascript": "^7.0.3",
+    "minimatch": "^3.1.3",
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "^9.0.7"
+    }
   }
 }

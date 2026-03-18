@@ -1,3 +1,5 @@
+const path = require('path');
+
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
 const config = {
     stories:    ["../stories/index.stories.js"],
@@ -29,6 +31,15 @@ const config = {
 		open: false,
 	},
 
-    docs: {}
+    docs: {},
+
+    webpackFinal: async (config) => {
+        const projectRoot = path.resolve(__dirname, '..').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        config.watchOptions = {
+            ...config.watchOptions,
+            ignored: new RegExp(`node_modules|^(?!${projectRoot})`),
+        };
+        return config;
+    },
 };
 export default config;

@@ -5,6 +5,7 @@ npm-debug.log
 .idea
 temp
 .env
+.claude
 *storybook.log
 http-root/storybook/
 styleguide/
